@@ -47,7 +47,7 @@ public class SpringConfi implements WebMvcConfigurer{
         //set path for image display
 
         registry.addResourceHandler("/images/**")
-                .addResourceLocations("file:C:\\Users\\VARSHITHA\\Desktop\\ImageUpload/");
+                .addResourceLocations("file:C:\\Users\\VARSHITHA\\Desktop\\X-Workz-Project\\imageEdit/");
 
     }
 

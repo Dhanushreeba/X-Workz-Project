@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+
 @Data
 @Entity
 @Table(name="image_upload")
@@ -21,11 +22,11 @@ public class ImageDto {
     @Column(name="image_name")
     private String imageName;
 
-    @Column(name ="image_type")
+    @Column(name="image_type")
     private String imageType;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "image_user_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private SignUpDto user;
 
     @Column(name="createdBy")
@@ -34,18 +35,14 @@ public class ImageDto {
     @Column(name="createdOn")
     private LocalDateTime createdOn;
 
-    @Column(name ="updatedBy")
+    @Column(name="updatedBy")
     private String updatedBy;
 
     @Column(name="updatedOn")
     private LocalDateTime updatedOn;
 
-    @Column(name = "image_path")
+    @Column(name="image_path")
     private String imagePath;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private SignUpDto userId;
 
    // private Integer id;
 
@@ -62,7 +59,6 @@ public class ImageDto {
                 ", updatedBy='" + updatedBy + '\'' +
                 ", updatedOn=" + updatedOn +
                 ", imagePath='" + imagePath + '\'' +
-                ", userId=" + userId +
                 '}';
     }
 
@@ -146,12 +142,12 @@ public class ImageDto {
         this.imagePath = imagePath;
     }
 
-    public SignUpDto getUserId() {
-        return userId;
-    }
-
-    public void setUserId(SignUpDto userId) {
-        this.userId = userId;
-    }
+//    public SignUpDto getUserId() {
+//        return userId;
+//    }
+//
+//    public void setUserId(SignUpDto userId) {
+//        this.userId = userId;
+//    }
 
 }

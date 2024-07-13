@@ -1,12 +1,14 @@
 package com.xworkz.project.model.service;
 
 import com.xworkz.project.dto.ImageDto;
+import com.xworkz.project.dto.SignUpDto;
 import com.xworkz.project.model.repo.ImageRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -40,6 +42,16 @@ public class ImageServiceImpl implements ImageService{
 
 
         return true;
+    }
+
+    @Override
+    public void setAuditValues(SignUpDto dto, String createdBy, LocalDateTime createdOn, String updatedBy, LocalDateTime updatedOn, boolean isActive)
+    {
+        dto.setCreatedBy(createdBy);
+        dto.setCreatedOn(createdOn);
+        dto.setUpdatedBy(updatedBy);
+        dto.setUpdatedOn(updatedOn);
+        dto.setActive(isActive);
     }
 
     @Override

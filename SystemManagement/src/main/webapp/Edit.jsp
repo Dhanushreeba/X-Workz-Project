@@ -169,16 +169,15 @@
             <div class="card-body">
 
                 <form action="edit-profile" method="post" enctype="multipart/form-data">
-
-                 <span style="color:red">${errorMessageProfile}</span>
-                        <span style="color:green">${message}</span>
-                        <span style="color:red">${errorMessage}</span>
-                <span style="color:green"><strong>${successMessage}</strong></span>
+                    <span style="color:red">${errorMessageProfile}</span>
+                    <span style="color:green">${message}</span>
+                    <span style="color:red">${errorMessage}</span>
+                    <span style="color:green"><strong>${successMessage}</strong></span>
 
                     <h3><b>Edit Profile</b></h3>
                     <Strong style="color:green">${successMessage}</Strong>
 
-                    <div class="text-primary">${email}</div>
+
                     <span style="color:red;">
                         <c:forEach items="${errors}" var="dtoError">
                             ${dtoError.defaultMessage}</br>
@@ -225,13 +224,18 @@
                         <span id="addressError"></span><br>
                         <label for="address" class="form-floating"></label>
                         <textarea class="form-control" placeholder="Leave a Address here" id="address"
-                        style="height: 100px" name="address"onblur="addressValidation()">${dto.address}</textarea>
+                        style="height: 100px" name="address" onblur="addressValidation()">${dto.address}</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="file" class="form-label"><b>Upload Profile Image:</b></label>
+                        <input type="file" class="form-control" id="file" name="file"/>
                     </div>
 
                     <br>
-
                     <input class="btn btn-info" type="submit" id="submit" value="Update" disabled/>
                 </form>
+
             </div>
         </div>
     </div>

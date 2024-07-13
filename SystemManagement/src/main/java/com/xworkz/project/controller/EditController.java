@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -30,7 +31,7 @@ import java.time.LocalDateTime;
 public class EditController {
 
     //to upload an image to the profile page
-    private static final String UPLOAD_DIR = "C:\\Users\\VARSHITHA\\Desktop\\ImageUpload/";
+    private static final String UPLOAD_DIR = "C:\\Users\\VARSHITHA\\Desktop\\X-Workz-Project\\imageEdit";
 
     private static final Logger log = LoggerFactory.getLogger(EditController.class);
     @Autowired
@@ -103,9 +104,24 @@ public class EditController {
                 String originalFilename = file.getOriginalFilename();
                 newFileName = dto.getEmail() + "_" + originalFilename;
                 Path path = Paths.get(UPLOAD_DIR, newFileName);
-                log.info("path: {}", path);
+                log.info("Path: {}", path);
                 Files.write(path, file.getBytes());
                 dto.setImageName(newFileName);
+
+                // Save the file to disk (optional)
+//                String fileName = file.getOriginalFilename();
+//                String filePath = "C:\\Users\\VARSHITHA\\Desktop\\X-Workz-Project\\imageEdit" + fileName;
+//                file.transferTo(new File(filePath));
+//
+//                // Create and save ImageDto
+//                ImageDto imageDto = new ImageDto();
+//                imageDto.setImageName(fileName);
+//                imageDto.setImageSize(file.getSize());
+//                imageDto.setImageType(file.getContentType());
+//                imageDto.setImagePath(filePath);
+//                imageDto.setUser(user);
+//                imageDto.setCreatedOn(LocalDateTime.now());
+//                imageService.saveImage(imageDto);
 
                 // Save image details in database
                 ImageDto imageDto = new ImageDto();
@@ -119,13 +135,14 @@ public class EditController {
                 imageDto.setUpdatedBy(dto.getEmail());
                 imageDto.setUpdatedOn(LocalDateTime.now());
 
-                imageService.saveImageDetails(imageDto);
+                boolean isSaved = imageService.saveImageDetails(imageDto);
+                log.info("Image details saved: {}", isSaved);
             }
 
             SignUpDto updatedUser = editUserService.editByEmail(dto);
             if (updatedUser != null) {
                 model.addAttribute("dto", updatedUser);
-                model.addAttribute("successMessage", "Profile updated successfully");
+                model.addAttribute("successMessage", "Profile updated successfully :"+dto.getFirstName());
                 httpSession.setAttribute("email", updatedUser.getEmail());
                 httpSession.setAttribute("firstName", updatedUser.getFirstName());
                 httpSession.setAttribute("lastName", updatedUser.getLastName());
@@ -157,5 +174,6 @@ public class EditController {
         return "ProfileUpload";// Handle error or success case
 
     }
+
 
 }

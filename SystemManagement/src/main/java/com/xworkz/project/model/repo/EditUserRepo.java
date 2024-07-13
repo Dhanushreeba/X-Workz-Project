@@ -10,5 +10,7 @@ public interface EditUserRepo {
     //Edit
     SignUpDto editByEmail(SignUpDto updatedUserDetails);
 
+    SignUpDto update(SignUpDto signUpDto);
+
 }
 

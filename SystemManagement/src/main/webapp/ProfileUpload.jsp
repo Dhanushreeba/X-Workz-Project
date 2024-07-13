@@ -37,26 +37,29 @@
                 <div>
                 <div class="dropdown">
 
-             <!--     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left=500px">
-                      <img src="https://www.pexels.com/photo/green-and-blue-peacock-feather-674010/" class="d-flex" alt="" width=40 height=40   style="border-radius=20px"/>
+             <!--     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left=500px"/>
+                      <img src="https://www.pexels.com/photo/green-and-blue-peacock-feather-674010 " class="d-flex" alt="" width=40 height=40   style="border-radius=20px"/>
+                      <!--<img src="${pageContext.request.contextPath}${sessionScope.profileImage}"  class="d-flex" alt="" width=40 height=40   style="border-radius=20px"/>-->
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="#">Action</a>
                     <a class="dropdown-item" href="#">Another action</a>
                     <a class="dropdown-item" href="#">Something else here</a>
                   </div>
-                </div> -->
+                </div>
 
  <div class="row">
              <div class="col-12">
                  <ul class="nav nav-tabs">
                      <li class="nav-item dropdown d-flex align-items-down">
                          <a class="nav-link dropdown-toggle mr-1" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"></a>
-                         <div class="dropdown-menu dropdown-menu-left">
-                             <a class="dropdown-item" href="view">View</a>
-                             <a class="dropdown-item" href="edits">Edit</a>
-                             <a class="dropdown-item" href="ResetPassword.jsp">Reset</a>
-                         </div>
+                         <!--<div class="dropdown-menu dropdown-menu-left">-->
+                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                             <li><a class="dropdown-item" href="view">View</a></li>
+                             <li><a class="dropdown-item" href="edits?email=${dto.email}">Edit</a></li>
+                             <li><a class="dropdown-item" href="ResetPassword.jsp">Reset</a></li>
+                             </ul>
+                         <!--</div>-->
                          <img src="https://img.icons8.com/?size=100&id=c8SsrDOfQgn3&format=png&color=000000" alt="" width="60" height="60" style="border-radius=30px"/>
                      </li>
                  </ul>
@@ -71,7 +74,7 @@
                   <div class="container mt-5 mb-5 d-flex justify-content-center">
                   <div class="card px-2 mt-5 mb-5 py-2 bg-body shadow mt-5 mb-6 rounded" style="width:40%; padding:30px;">
                   <div class="card-body">
-                           <strong style="color:blue"><h3>${ProfilePageMessage}</h3></strong>
+                           <strong style="color:blue"><h3>${msg}</h3></strong>
                   </div>
                      </div>
                           </div>

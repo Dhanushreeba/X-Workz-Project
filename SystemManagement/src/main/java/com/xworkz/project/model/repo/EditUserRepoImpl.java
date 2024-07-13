@@ -1,16 +1,25 @@
 package com.xworkz.project.model.repo;
 
 import com.xworkz.project.dto.SignUpDto;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
 
+@Slf4j
 @Repository
-public class EditUserRepoImpl implements EditUserRepo{
+public class EditUserRepoImpl implements EditUserRepo {
 
+    private static final Logger log = LoggerFactory.getLogger(EditUserRepoImpl.class);
     @Autowired
     private EntityManagerFactory entityManagerFactory;
+
+    public EditUserRepoImpl() {
+        EditUserRepoImpl.log.info("created constr for EditUserRepoImpl");
+    }
 
     //Edit
     @Override
@@ -52,8 +61,6 @@ public class EditUserRepoImpl implements EditUserRepo{
                 entityManager.merge(existingUser);
                 entityTransaction.commit();
                 return existingUser;
-            } else {
-                return null; // User not found
             }
         } catch (PersistenceException persistenceException) {
             persistenceException.printStackTrace();
@@ -62,6 +69,27 @@ public class EditUserRepoImpl implements EditUserRepo{
         } finally {
             entityManager.close();
         }
+        return null;
     }
 
+
+    @Override
+    public SignUpDto update(SignUpDto dto) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+
+        try {
+            entityTransaction.begin();
+            entityManager.merge(dto);
+            entityTransaction.commit();
+        } catch (PersistenceException persistenceException) {
+            persistenceException.printStackTrace();
+            entityTransaction.rollback();
+
+        } finally {
+            entityManager.close();
+        }
+
+        return dto;
+    }
 }

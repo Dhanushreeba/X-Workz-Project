@@ -1,5 +1,8 @@
 package com.xworkz.project.configuration;
 
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,10 +17,13 @@ import java.util.Properties;
 //DataBaseConfi is to set the connection for database
 //@Configuration
 @Configuration
+@Slf4j
 public class DataBaseConfi {
 
+    private static final Logger log = LoggerFactory.getLogger(DataBaseConfi.class);
+
     public DataBaseConfi(){
-        System.out.println("Created DataBaseConfi");
+        DataBaseConfi.log.info("Created DataBaseConfi");
     }
 
     //@value is to
@@ -37,7 +43,7 @@ public class DataBaseConfi {
     @Bean
     public DataSource dataSource(){
 
-        System.out.println("Registred DataSource dataBaseConfi");
+        log.info("Registred DataSource dataBaseConfi");
         DriverManagerDataSource dataSource=new DriverManagerDataSource();
         dataSource.setUrl(url);
         dataSource.setUsername(username);
@@ -49,7 +55,7 @@ public class DataBaseConfi {
     @Bean
     public LocalContainerEntityManagerFactoryBean containerEntityManagerFactoryBean(DataSource dataSource){
 
-        System.out.println("created LocalContainerEntityManagerFactoryBean in dataBaseConfi");
+        log.info("created LocalContainerEntityManagerFactoryBean in dataBaseConfi");
         LocalContainerEntityManagerFactoryBean bean=new LocalContainerEntityManagerFactoryBean();
         bean.setDataSource(dataSource);
         JpaVendorAdapter jpaVendorAdapter=new HibernateJpaVendorAdapter();

@@ -44,7 +44,7 @@ public class AjaxEmailController {
 
     @GetMapping("/validateContactNumber/{contactNumber}")
     public String contactNumberValidation(@PathVariable Long contactNumber) {
-        System.out.println(contactNumber);
+        log.info("contactNumber :" +contactNumber);
         if (signUpService.existsByContactNumber(contactNumber)) {
             return "<span style='color:red;'>Contact Number Already exists</span>";
         } else {

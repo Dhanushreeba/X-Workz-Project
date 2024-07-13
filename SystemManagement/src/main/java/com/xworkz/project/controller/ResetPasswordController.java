@@ -58,7 +58,7 @@ public class ResetPasswordController {
             model.addAttribute("passwordResetError", "Failed to reset password.Please check your password");
         }
 
-        return "SignIn";
+        return "ResetPassword";
     }
     // return "ResetPassword";
 }

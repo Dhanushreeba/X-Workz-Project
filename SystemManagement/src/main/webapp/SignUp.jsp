@@ -266,7 +266,7 @@
                                 <h3><b>SignUp page</b></h3>
 
                                 <div class="text-primary">${name}</div>
-                                <span style="color:red;">
+                                <span style="color:red;">${errors}
                                     <c:forEach items="${errors}" var="dtoError">
                                         ${dtoError.defaultMessage}</br>
                                     </c:forEach>

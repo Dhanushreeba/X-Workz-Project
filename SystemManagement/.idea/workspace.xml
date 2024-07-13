@@ -26,14 +26,19 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/dto/SignUpDto.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/repo/EditUserRepo.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/repo/EditUserRepoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/repo/ImageRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/repo/ImageRepoImpl.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/repo/SignUpRepo.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/repo/SignUpRepoImpl.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/service/EditUserService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/service/EditUserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/service/ImageService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/service/ImageServiceImpl.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/service/SignUpService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/service/SignUpServiceImpl.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/util/PasswordGenerator.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/Application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/Edit.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/ForgetPassword.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/ProfileUpload.jsp" afterDir="false" />
@@ -152,6 +157,10 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="com.mysql.cj.jdbc.exceptions.MySQLTransactionRollbackException" package="com.mysql.cj.jdbc.exceptions" />
           <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.springframework.beans.factory.BeanCreationException" package="org.springframework.beans.factory" />
+          <option name="timeStamp" value="2" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>

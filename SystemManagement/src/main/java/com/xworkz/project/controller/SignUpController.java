@@ -80,7 +80,6 @@ public class SignUpController {
                 return "SignIn";
             }
         }
-        model.addAttribute("name", "SignUp Successful " + dto.getFirstName());
         log.info("Creating SignUp page/SignUp");
         log.info("SignUp Data :" + dto);
         return "SignIn";
@@ -129,6 +128,8 @@ public class SignUpController {
             }
             return "SignIn"; // Return to login page
         }
+    }
+}
 
         //System.out.println("login not success");
         // model.addAttribute("error","Invalid email or password. Please try again");
@@ -147,6 +148,5 @@ public class SignUpController {
 //        return "email.jsp";
 //    }
 
-    }
-}
+
 

@@ -128,9 +128,8 @@ function confirmPasswordValidation() {
         <h3><b><center>Reset Password</center></b></h3>
     </div>
     <div class="card-body text-dark">
-        <span style="color:green"><strong>${resetPasswordMessage}</strong></span>
-        <span style="color:red"><strong>${resetPasswordError}</strong></span>
-
+        <span style="color:green"><b>${passwordResetMessage}</b></span>
+        <span style="color:red"><b>${passwordResetError}</b></span>
 
         <form action="reset" method="post">
             <div class="mb-3">

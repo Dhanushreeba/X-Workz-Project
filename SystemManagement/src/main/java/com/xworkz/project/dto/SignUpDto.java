@@ -49,12 +49,17 @@ public class SignUpDto {
    // @Column(unique = true)
     private String password;
 
+    @Column(name = "created_by")
     private String createdBy;
 
+    @Column(name = "created_on")
     private LocalDateTime createdOn;
 
+    @Column(name = "updated_by")
     private String updatedBy;
 
+
+    @Column(name = "updated_on")
     private LocalDateTime updatedOn;
 
     private boolean isActive;
@@ -66,6 +71,9 @@ public class SignUpDto {
 
     @Column(name = "acc_locked")
     private Boolean accLocked=true;
+
+    @Column(name="image_name")
+    private String  imageName;
 
     @Override
     public String toString() {
@@ -85,6 +93,7 @@ public class SignUpDto {
                 ", isActive=" + isActive +
                 ", failedAttempt=" + failedAttempt +
                 ", accLocked=" + accLocked +
+                ", imageName='" + imageName + '\'' +
                 ", agree='" + agree + '\'' +
                 ", passwordGenerator='" + passwordGenerator + '\'' +
                 '}';
@@ -230,5 +239,25 @@ public class SignUpDto {
 
     public void setAccLocked(Boolean accLocked) {
         this.accLocked = accLocked;
+    }
+
+    public Boolean getAccLocked() {
+        return accLocked;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public String getPasswordGenerator() {
+        return passwordGenerator;
+    }
+
+    public void setPasswordGenerator(String passwordGenerator) {
+        this.passwordGenerator = passwordGenerator;
     }
 }

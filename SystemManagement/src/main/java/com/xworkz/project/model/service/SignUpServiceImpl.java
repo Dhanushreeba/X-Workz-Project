@@ -2,6 +2,9 @@ package com.xworkz.project.model.service;
 
 import com.xworkz.project.dto.SignUpDto;
 import com.xworkz.project.model.repo.SignUpRepo;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.mail.SimpleMailMessage;
@@ -14,8 +17,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
+@Slf4j
 public class SignUpServiceImpl implements SignUpService {
 
+    private static final Logger log = LoggerFactory.getLogger(SignUpServiceImpl.class);
     @Autowired
     private SignUpRepo signUpRepo;
 
@@ -35,7 +40,7 @@ public class SignUpServiceImpl implements SignUpService {
 
 
     public SignUpServiceImpl(){
-        System.out.println("running constr for SignUpServiceImpl class");
+        SignUpServiceImpl.log.info("running constr for SignUpServiceImpl class");
     }
 
     @Override
@@ -46,22 +51,22 @@ public class SignUpServiceImpl implements SignUpService {
 //            return false;
 //        }
 
-        System.out.println("save method from SignUpServiceImpl");
+        log.info("save method from SignUpServiceImpl");
 
-        setAuditValues(dto,dto.getFirstName(),LocalDateTime.now(),dto.getFirstName(),null,true);
-
+        setAuditValues(dto,dto.getFirstName(),LocalDateTime.now(),dto.getFirstName(),LocalDateTime.now(),true);
         boolean save= signUpRepo.saveAndValidation(dto);
         if (save){
-            System.out.println("Repo save in search successfull "+dto);
+            log.info("Repo save in search successfull "+dto);
         }else{
-            System.out.println("Repo save in search not successfull "+dto);
+            log.info("Repo save in search not successfull "+dto);
         }
         users.put(dto.getEmail(), dto); // Simulate saving to a database//password locking
         return true;
     }
 
     @Override
-    public void setAuditValues(SignUpDto dto, String createdBy, LocalDateTime createdOn, String updatedBy, LocalDateTime updatedOn, boolean isActive) {
+    public void setAuditValues(SignUpDto dto, String createdBy, LocalDateTime createdOn, String updatedBy, LocalDateTime updatedOn, boolean isActive)
+    {
         dto.setCreatedBy(createdBy);
         dto.setCreatedOn(createdOn);
         dto.setUpdatedBy(updatedBy);
@@ -105,7 +110,7 @@ public class SignUpServiceImpl implements SignUpService {
 
     @Override
     public SignUpDto findByEmail(String email) {
-        System.out.println("Running findByEmail in service");
+        log.info("Running findByEmail in service");
 
         SignUpDto user=users.get(email);
         if (user !=null && !user.isAccLocked()){
@@ -213,7 +218,7 @@ public class SignUpServiceImpl implements SignUpService {
 //    }
     @Override
     public boolean existsByContactNumber(Long contactNumber) {
-        System.out.println("contactNumber:" + contactNumber);
+        log.info("contactNumber:" + contactNumber);
         SignUpDto dto = signUpRepo.existsByContactNumber(contactNumber);
         return dto != null;
     }
@@ -235,7 +240,7 @@ public class SignUpServiceImpl implements SignUpService {
 
     @Override
     public boolean lookByEmail(String email) {
-        System.out.println("Email:" + email);
+        log.info("Email:" + email);
         SignUpDto dto = signUpRepo.lookByEmail(email);
         if (dto != null) {
             return true;

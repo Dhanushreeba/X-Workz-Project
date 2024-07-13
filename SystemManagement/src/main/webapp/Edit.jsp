@@ -70,12 +70,12 @@
                                 console.log(element.value);
                                 console.log(error);
 
-                                if (element.value.length = 1 && element.value.length < 30 && lastNameRegex.test(element.value)) {
+                                if (element.value.length = 1 && element.value.length < 20 && lastNameRegex.test(element.value)) {
                                     error.innerHTML = "";
                                     fieldsChecks["lastName"] = true;
                                 }
                                 else {
-                                    error.innerHTML = "Invalid lastName. Characters start from 1 and lessthan 30 ";
+                                    error.innerHTML = "Invalid lastName. Characters start from 1 and lessthan 20 ";
                                     error.style.color = "red"
                                     fieldsChecks["lastName"] = false;
 
@@ -156,14 +156,27 @@
                 <a class="navbar-brand text-dark" href="index.jsp"><b>Home</b></a>
                 <a class="navbar-brand text-dark" href="SignIn.jsp"><b>SignIn</b></a>
             </div>
+             <li class="nav-item">
+                        <!--image display in right side icon--- for when i new user signIn based user signIn it will display image of user--!>
+                        <img src="${pageContext.request.contextPath}${sessionScope.profileImage}" width="80" height="80" class="rounded-circle profile-image" alt="Profile Image" id="profileImage">
+                       <!-- <img src="https://www.pexels.com/photo/green-and-blue-peacock-feather-674010 " class="d-flex" alt="" width=40 height=40   style="border-radius=20px"/>-->
+                                                    </li>
         </div>
     </nav>
 
     <div class="container mt-5 mb-5 d-flex justify-content-center">
         <div class="card p-4">
             <div class="card-body">
-                <form action="edit" method="post">
+
+                <form action="edit-profile" method="post" enctype="multipart/form-data">
+
+                 <span style="color:red">${errorMessageProfile}</span>
+                        <span style="color:green">${message}</span>
+                        <span style="color:red">${errorMessage}</span>
+                <span style="color:green"><strong>${successMessage}</strong></span>
+
                     <h3><b>Edit Profile</b></h3>
+                    <Strong style="color:green">${successMessage}</Strong>
 
                     <div class="text-primary">${email}</div>
                     <span style="color:red;">
@@ -183,7 +196,7 @@
                         <span id="lastNameError"></span><br>
                         <label for="lastName" class="form-label"><b>LastName:</b></label>
                         <input type="text" class="form-control" value="${dto.lastName}"
-                        id="lastName" name="lastName" onblur="lastNameValidation()/>
+                        id="lastName" name="lastName" onblur="lastNameValidation()"/>
                     </div>
 
                     <div class="row mb-3">
@@ -216,20 +229,16 @@
                     </div>
 
                     <br>
-                    <div class="list-group">
-                        <span id="agreeError"></span>
-                        <label for="agree" class="list-group-item">
-                            <input name="agree" id="agree" class="form-check-input me-1" type="checkbox" value="yes" ${dto.agree eq 'yes' ? 'checked' : ''}/>
-                            Agree
-                        </label>
-                    </div>
-                    <br>
 
-                    <input class="btn btn-info" type="submit" id="submit" value="Update"/>
+                    <input class="btn btn-info" type="submit" id="submit" value="Update" disabled/>
                 </form>
             </div>
         </div>
     </div>
+
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-ND83p6+2LC9sNGvzFgiptEh0Wt3veCHpdwwvWY3Aj23FR5f4ob0C5sHbPkzJf6Hm" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-5mrLOimZlMFbbXUpiH8eAFKmKXbLqaW8GDoAWF+Q6h4Ec8Q2pSyyKhcvwwa3fznK" crossorigin="anonymous"></script>
+
 </body>
 </html>
 

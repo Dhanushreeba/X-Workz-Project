@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 
-@Data
+
 @Entity
 @Table(name="image_upload")
 public class ImageDto {
@@ -25,26 +25,37 @@ public class ImageDto {
     @Column(name="image_type")
     private String imageType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private SignUpDto user;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_id", referencedColumnName = "id")
+//    private SignUpDto user;
 
-    @Column(name="createdBy")
+    @Column(name="created_by")
     private String createdBy;
 
-    @Column(name="createdOn")
+    @Column(name="created_on")
     private LocalDateTime createdOn;
 
-    @Column(name="updatedBy")
+    @Column(name="updated_by")
     private String updatedBy;
 
-    @Column(name="updatedOn")
+    @Column(name="updated_on")
     private LocalDateTime updatedOn;
 
     @Column(name="image_path")
     private String imagePath;
 
+    @Column(name="user_id")
+    private Integer userId;
+
    // private Integer id;
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     @Override
     public String toString() {
@@ -53,7 +64,7 @@ public class ImageDto {
                 ", imageSize=" + imageSize +
                 ", imageName='" + imageName + '\'' +
                 ", imageType='" + imageType + '\'' +
-                ", user=" + user +
+                ", userId=" + userId +
                 ", createdBy='" + createdBy + '\'' +
                 ", createdOn=" + createdOn +
                 ", updatedBy='" + updatedBy + '\'' +
@@ -126,13 +137,15 @@ public class ImageDto {
         this.updatedOn = updatedOn;
     }
 
-    public SignUpDto getUser() {
-        return user;
-    }
+//    public SignUpDto getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(SignUpDto user) {
+//        this.user = user;
+//    }
 
-    public void setUser(SignUpDto user) {
-        this.user = user;
-    }
+
 
     public String getImagePath() {
         return imagePath;

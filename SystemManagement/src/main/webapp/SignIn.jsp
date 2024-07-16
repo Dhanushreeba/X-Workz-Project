@@ -149,14 +149,14 @@ function disableButton() {
             <div class="  row mb-3 ">
                         <span id="erroremail" ></span><br>
                                     <label for="email" class="form-label  "><b>Email:</b></label>
-                                    <input type="email" class="form-control "  value="${dto.email}" id="email" name="email" onblur="emailValidation()">
+                                    <input type="email" class="form-control "  id="email" name="email" onblur="emailValidation()">
                                 </div>
 
 
               <div class="  row mb-3 ">
               <span id="errorpassword"></span><br>
                  <label for="password" class="form-label  "><b>Password:</b></label>
-                 <input type="password" class="form-control "  value="${dto.password}" id="password" name="password" onblur="passwordValidation()">
+                 <input type="password" class="form-control " id="password" name="password" onblur="passwordValidation()">
                  <i id="password-icon" class="fa fa-key" style="display: none;"></i>
                         </div>
 

@@ -14,5 +14,11 @@ public interface ImageRepo {
 
     Optional<ImageDto> findByUserId(int id);  //id from signUp id
 
-    ImageDto update(ImageDto imageDto);
+    //to update image table
+
+    void imageUpdateDetails(ImageDto imageDto);
+
+    void SetAllImagesInactiveForUser(int id);
+
+//    EditProfileImageDTO findByUserId(String email);
 }

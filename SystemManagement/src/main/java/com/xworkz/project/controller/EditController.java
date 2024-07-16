@@ -1,12 +1,9 @@
-
 package com.xworkz.project.controller;
 
 import com.xworkz.project.dto.ImageDto;
 import com.xworkz.project.dto.SignUpDto;
 import com.xworkz.project.model.service.EditUserService;
 import com.xworkz.project.model.service.ImageService;
-import com.xworkz.project.model.service.ImageServiceImpl;
-import com.xworkz.project.model.service.SignUpService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +23,7 @@ import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/")
-@SessionAttributes("dto")
+@SessionAttributes({"userData"})
 @Slf4j
 public class EditController {
 
@@ -97,12 +94,16 @@ public class EditController {
 //    }
 
     @PostMapping("/edit-profile") // In this image also uploading
-    public String updateUserProfile(SignUpDto dto, Model model, @RequestParam("file") MultipartFile file, HttpSession httpSession) {
+    public String updateUserProfile(@RequestParam("file") MultipartFile file, SignUpDto dto, Model model, HttpSession session) {
+
+        SignUpDto signUpDto = (SignUpDto) model.getAttribute("userData");
+        System.out.println(" image upload user data "+signUpDto);
+
         try {
             String newFileName = null;
             if (file != null && !file.isEmpty()) {
                 String originalFilename = file.getOriginalFilename();
-                newFileName = dto.getEmail() + "_" + originalFilename;
+                newFileName = signUpDto.getEmail() + "_" + originalFilename;
                 Path path = Paths.get(UPLOAD_DIR, newFileName);
                 log.info("Path: {}", path);
                 Files.write(path, file.getBytes());
@@ -112,34 +113,35 @@ public class EditController {
 //                String fileName = file.getOriginalFilename();
 //                String filePath = "C:\\Users\\VARSHITHA\\Desktop\\X-Workz-Project\\imageEdit" + fileName;
 //                file.transferTo(new File(filePath));
-//
-//                // Create and save ImageDto
-//                ImageDto imageDto = new ImageDto();
-//                imageDto.setImageName(fileName);
-//                imageDto.setImageSize(file.getSize());
-//                imageDto.setImageType(file.getContentType());
-//                imageDto.setImagePath(filePath);
-//                imageDto.setUser(user);
-//                imageDto.setCreatedOn(LocalDateTime.now());
-//                imageService.saveImage(imageDto);
+
 
                 // Save image details in database
                 ImageDto imageDto = new ImageDto();
-                imageDto.setUser(dto); // Set the user
+//                imageDto.setUser(dto); // Set the user
                 imageDto.setImagePath(newFileName); // Set the image path
                 imageDto.setImageName(originalFilename);
                 imageDto.setImageSize(file.getSize());
                 imageDto.setImageType(file.getContentType());
-                imageDto.setCreatedBy(dto.getEmail());
+                imageDto.setCreatedBy(signUpDto.getEmail());
                 imageDto.setCreatedOn(LocalDateTime.now());
-                imageDto.setUpdatedBy(dto.getEmail());
+                imageDto.setUpdatedBy(signUpDto.getEmail());
                 imageDto.setUpdatedOn(LocalDateTime.now());
+                imageDto.setUserId(signUpDto.getId());
+                signUpDto.setImageName(newFileName);
+
+
+
+                System.out.println(" image data "+imageDto);
+
+                System.out.println("image name in signUp database"+signUpDto);
 
                 boolean isSaved = imageService.saveImageDetails(imageDto);
                 log.info("Image details saved: {}", isSaved);
+
+
             }
 
-            SignUpDto updatedUser = editUserService.editByEmail(dto);
+            SignUpDto updatedUser = editUserService.updateUser(signUpDto);
             if (updatedUser != null) {
                 model.addAttribute("dto", updatedUser);
                 model.addAttribute("successMessage", "Profile updated successfully :"+dto.getFirstName());

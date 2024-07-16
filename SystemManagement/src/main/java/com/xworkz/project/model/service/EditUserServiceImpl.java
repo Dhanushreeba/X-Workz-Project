@@ -62,6 +62,7 @@ public class EditUserServiceImpl implements EditUserService {
                 existingUser.setUpdatedOn(LocalDateTime.now());
                 editUserRepo.update(existingUser);
 
+
                 return editUserRepo.editByEmail(existingUser); // Save the updated user details to repository
             } else {
                 log.error("Existing user not found for email: {}", signedInUserEmail);
@@ -80,6 +81,11 @@ public class EditUserServiceImpl implements EditUserService {
         dto.setUpdatedBy(updatedBy);
         dto.setUpdatedOn(updatedOn);
 
+    }
+
+    @Override
+    public SignUpDto updateUser(SignUpDto signUpDto) {
+        return editUserRepo.update(signUpDto);
     }
 
 }

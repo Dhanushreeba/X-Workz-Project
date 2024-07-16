@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -22,6 +23,7 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/")
 @Slf4j
+@SessionAttributes({"userData", "signedInUserEmail"})
 public class SignUpController {
 
     private static final Logger log = LoggerFactory.getLogger(SignUpController.class);
@@ -35,8 +37,8 @@ public class SignUpController {
     private PasswordGenerator passwordGenerator;
 
     //View
-    @Autowired
-    private HttpSession httpSession;
+//    @Autowired
+//    private HttpSession httpSession;
 
 
     public SignUpController() {
@@ -100,14 +102,22 @@ public class SignUpController {
         log.info("Email :" + email);
         log.info("password :" + password);
         SignUpDto dto = signUpService.findByEmailAndPassword(email, password);
+
         if (dto != null) {
             //System.out.println("login success");
             signUpService.resetFailedAttempts(email);
             model.addAttribute("msg", "SignIn successful " + dto.getFirstName());
             //view
-            httpSession.setAttribute("signedInUserEmail",email);
+            model.addAttribute("signedInUserEmail",email);
+            model.addAttribute("userData",dto);
 
-            return "ProfileUpload";//change to welcome page
+            System.out.println("data === "+ (SignUpDto)model.getAttribute("userData"));
+
+            //set profile image name in the session
+            String imageUrl="/images/" +dto.getImageName();
+            model.getAttribute("imageUrl");
+
+            return "ProfileUpload";//change to welcome page\
         } else {
             //the else part is set account lock
             //acc lock after 3 attempts

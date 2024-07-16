@@ -34,7 +34,6 @@ public class ImageServiceImpl implements ImageService{
         {
             log.info("imageUploadRepo in ImageUploadServiceImpl");
         }
-
         else
         {
             log.info("imageUploadRepo not in ImageUploadServiceImpl");
@@ -44,6 +43,24 @@ public class ImageServiceImpl implements ImageService{
         return true;
     }
 
+
+    @Override
+    public Optional<ImageDto> getImageDetailsByUserId(int id) {
+        return imageRepo.findByUserId(id);
+    }
+
+    @Override
+    public void updateImageDetails(ImageDto imageDto) {
+
+        log.info("updateImageDetails method running in ImageUploadServiceImpl..");
+        imageRepo.imageUpdateDetails(imageDto);
+    }
+
+    @Override
+    public void setAllImagesInactiveForUser(int id) {
+        log.info("setAllImagesInactiveForUser method running in ImageUploadServiceImpl..");
+        imageRepo.SetAllImagesInactiveForUser(id);
+    }
     @Override
     public void setAuditValues(SignUpDto dto, String createdBy, LocalDateTime createdOn, String updatedBy, LocalDateTime updatedOn, boolean isActive)
     {
@@ -54,8 +71,4 @@ public class ImageServiceImpl implements ImageService{
         dto.setActive(isActive);
     }
 
-    @Override
-    public Optional<ImageDto> getImageDetailsByUserId(int id) {
-        return imageRepo.findByUserId(id);
-    }
 }

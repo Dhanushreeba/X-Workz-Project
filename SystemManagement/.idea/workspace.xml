@@ -19,21 +19,27 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/controller/AjaxEmailController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/controller/EditController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/controller/ForgetPasswordController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/controller/RaiseComplaintController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/controller/ResetPasswordController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/controller/SignUpController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/controller/ViewUserController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/dto/ImageDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/dto/RaiseComplaintDto.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/dto/SignUpDto.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/repo/EditUserRepo.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/repo/EditUserRepoImpl.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/repo/ImageRepo.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/repo/ImageRepoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/repo/RaiseComplaintRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/repo/RaiseComplaintRepoImpl.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/repo/SignUpRepo.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/repo/SignUpRepoImpl.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/service/EditUserService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/service/EditUserServiceImpl.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/service/ImageService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/service/ImageServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/service/RaiseComplaintService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/service/RaiseComplaintServiceImpl.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/service/SignUpService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/model/service/SignUpServiceImpl.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/util/PasswordGenerator.java" afterDir="false" />
@@ -42,6 +48,7 @@
       <change afterPath="$PROJECT_DIR$/src/main/webapp/Edit.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/ForgetPassword.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/ProfileUpload.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/RaiseComplaints.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/ResetPassword.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/SignIn.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/SignUp.jsp" afterDir="false" />

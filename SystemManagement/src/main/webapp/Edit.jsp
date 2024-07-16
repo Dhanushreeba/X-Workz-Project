@@ -147,16 +147,15 @@
          </script>
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-info">
-        <div class="container-fluid">
-            <div class="navbar-header">
+<nav class="navbar navbar-dark bg-info">
+    <div class="container-fluid">
+        <div class="navbar-header">
                 <a class="navbar-brand" href="#">
                     <img src="https://x-workz.in/static/media/Logo.cf195593dc1b3f921369.png" alt="xworkz" width="140" height="70">
                 </a>
                 <a class="navbar-brand text-dark" href="index.jsp"><b>Home</b></a>
                 <a class="navbar-brand text-dark" href="SignIn.jsp"><b>SignIn</b></a>
             </div>
-             <li class="nav-item">
                         <!--image display in right side icon--- for when i new user signIn based user signIn it will display image of user--!>
                         <img src="${pageContext.request.contextPath}${sessionScope.profileImage}" width="80" height="80" class="rounded-circle profile-image" alt="Profile Image" id="profileImage">
                        <!-- <img src="https://www.pexels.com/photo/green-and-blue-peacock-feather-674010 " class="d-flex" alt="" width=40 height=40   style="border-radius=20px"/>-->
@@ -172,7 +171,6 @@
                     <span style="color:red">${errorMessageProfile}</span>
                     <span style="color:green">${message}</span>
                     <span style="color:red">${errorMessage}</span>
-                    <span style="color:green"><strong>${successMessage}</strong></span>
 
                     <h3><b>Edit Profile</b></h3>
                     <Strong style="color:green">${successMessage}</Strong>

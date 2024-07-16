@@ -16,5 +16,6 @@ public interface EditUserService {
 
     void setAuditValues(SignUpDto dto, String updatedBy, LocalDateTime updatedOn);
 
+    SignUpDto updateUser(SignUpDto signUpDto);
 }
 

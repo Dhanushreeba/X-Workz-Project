@@ -13,6 +13,15 @@ public interface ImageService {
 
     Optional<ImageDto> getImageDetailsByUserId(int id);
 
+
+    /// New method for updating image details
+    void updateImageDetails(ImageDto imageDto); // New method
+
+
+    //  void setAudit(EditProfileImageDTO editProfileImageDTO , String updatedBy, LocalDateTime updatedOn);
+    void setAllImagesInactiveForUser(int id);  // New method declaration
+
+
     void setAuditValues(SignUpDto dto, String createdBy, LocalDateTime createdOn, String updatedBy, LocalDateTime updatedOn, boolean isActive);
 
 

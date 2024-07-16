@@ -26,6 +26,8 @@
                 <a class="navbar-brand  text-dark" href="SignUp.jsp"><b>SignUp</b></a>
                 <a class="navbar-brand  text-dark" href="SignIn.jsp"><b>SignIn</b></a>
                 <a class="navbar-brand  text-dark" href="ProfileUpload.jsp"><b>ProfileUpload</b></a>
+                <a class="navbar-brand text-dark" href="RaiseComplaints.jsp"><b>RaiseComplaints</b></a>
+
 
   </div>
 </nav>

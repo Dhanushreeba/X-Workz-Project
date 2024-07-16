@@ -1,6 +1,8 @@
 package com.xworkz.project.dto;
 
+import com.xworkz.project.constant.Status;
 import lombok.Data;
+import org.apache.logging.log4j.status.StatusData;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -46,6 +48,10 @@ public class ImageDto {
 
     @Column(name="user_id")
     private Integer userId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private Status status;
 
    // private Integer id;
 

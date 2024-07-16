@@ -95,7 +95,7 @@ function passwordValidation() {
 }
 
 function disableButton() {
-              var accountLocked = document.getElementById("accountLocked").value;
+              var accountLocked = document.getElementById("accountLocked");
               if (accountLocked === "true") {
                   document.getElementById("signinsubmit").disabled = true;
               }

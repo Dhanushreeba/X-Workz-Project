@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -37,7 +38,7 @@ public class SignUpController {
     private PasswordGenerator passwordGenerator;
 
     //View
-//    @Autowired
+//   @Autowired
 //    private HttpSession httpSession;
 
 
@@ -97,7 +98,7 @@ public class SignUpController {
 
     //this login method is for Signin form and signin.jsp
     @PostMapping("/signin")
-    public String signin(@RequestParam("email") String email, @RequestParam("password") String password, Model model) {
+    public String signin(@RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpServletRequest request) {
         log.info("running signIn method...");
         log.info("Email :" + email);
         log.info("password :" + password);
@@ -107,15 +108,19 @@ public class SignUpController {
             //System.out.println("login success");
             signUpService.resetFailedAttempts(email);
             model.addAttribute("msg", "SignIn successful " + dto.getFirstName());
+
+            HttpSession httpSession=request.getSession();
             //view
             model.addAttribute("signedInUserEmail",email);
             model.addAttribute("userData",dto);
 
             System.out.println("data === "+ (SignUpDto)model.getAttribute("userData"));
 
+
+
             //set profile image name in the session
             String imageUrl="/images/" +dto.getImageName();
-            model.getAttribute("imageUrl");
+            httpSession.getAttribute("imageUrl");
 
             return "ProfileUpload";//change to welcome page\
         } else {

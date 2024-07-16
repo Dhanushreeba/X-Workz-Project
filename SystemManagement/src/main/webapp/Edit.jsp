@@ -7,6 +7,10 @@
     <title>Edit Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
+    <!--<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" crossorigin="anonymous" integrity="SHA384-<your-updated-integrity-hash>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"  crossorigin="anonymous" integrity="SHA384-<your-updated-integrity-hash>"></script>-->
+
+
     <script>
     let fieldsChecks =
                             {
@@ -231,15 +235,12 @@
                     </div>
 
                     <br>
-                    <input class="btn btn-info" type="submit" id="submit" value="Update" disabled/>
+                    <input class="btn btn-info" type="submit" id="submit" value="Update" />
                 </form>
 
             </div>
         </div>
     </div>
-
-     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-ND83p6+2LC9sNGvzFgiptEh0Wt3veCHpdwwvWY3Aj23FR5f4ob0C5sHbPkzJf6Hm" crossorigin="anonymous"></script>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-5mrLOimZlMFbbXUpiH8eAFKmKXbLqaW8GDoAWF+Q6h4Ec8Q2pSyyKhcvwwa3fznK" crossorigin="anonymous"></script>
 
 </body>
 </html>

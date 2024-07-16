@@ -44,6 +44,8 @@ public class EditController {
         EditController.log.info("Created constr for EditController");
     }
 
+
+
 //    @GetMapping("/edits/{email}")
 //    public String showEditForm(@PathVariable String email, Model model) {
 //        SignUpDto user = editUserService.findByEmail(email);
@@ -113,6 +115,8 @@ public class EditController {
 //                String fileName = file.getOriginalFilename();
 //                String filePath = "C:\\Users\\VARSHITHA\\Desktop\\X-Workz-Project\\imageEdit" + fileName;
 //                file.transferTo(new File(filePath));
+
+               // editUserService.updateUser(signUpDto);
 
 
                 // Save image details in database

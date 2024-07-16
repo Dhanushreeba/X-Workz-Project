@@ -4,6 +4,7 @@ import com.xworkz.project.dto.ImageDto;
 import com.xworkz.project.dto.SignUpDto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 public interface ImageService {
@@ -19,11 +20,16 @@ public interface ImageService {
 
 
     //  void setAudit(EditProfileImageDTO editProfileImageDTO , String updatedBy, LocalDateTime updatedOn);
-    void setAllImagesInactiveForUser(int id);  // New method declaration
+    void setAllImagesInactiveForUser(int userId);  // New method declaration
+
+    void SetAllImagesActiveForUser(int userId);
 
 
     void setAuditValues(SignUpDto dto, String createdBy, LocalDateTime createdOn, String updatedBy, LocalDateTime updatedOn, boolean isActive);
 
+
+
+    List<ImageDto> findByexsitsUserId(int userId);
 
 //service
 }

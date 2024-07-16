@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -57,10 +59,19 @@ public class ImageServiceImpl implements ImageService{
     }
 
     @Override
-    public void setAllImagesInactiveForUser(int id) {
-        log.info("setAllImagesInactiveForUser method running in ImageUploadServiceImpl..");
-        imageRepo.SetAllImagesInactiveForUser(id);
+    public void setAllImagesInactiveForUser(int userId) {
+        log.info("setAllImagesInactiveForUser method running in ImageServiceImpl..");
+        imageRepo.SetAllImagesInactiveForUser(userId);
     }
+
+
+    @Override
+    public void SetAllImagesActiveForUser(int userId) {
+        log.info("setAllImagesActiveForUser method running in ImageServiceImpl..");
+        imageRepo.SetAllImagesActiveForUser(userId);
+    }
+
+
     @Override
     public void setAuditValues(SignUpDto dto, String createdBy, LocalDateTime createdOn, String updatedBy, LocalDateTime updatedOn, boolean isActive)
     {
@@ -71,4 +82,9 @@ public class ImageServiceImpl implements ImageService{
         dto.setActive(isActive);
     }
 
+
+    @Override
+    public List<ImageDto> findByexsitsUserId(int userId) {
+        return imageRepo.findByexsitsUserId(userId);
+    }
 }

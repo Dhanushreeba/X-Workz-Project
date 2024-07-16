@@ -46,6 +46,8 @@ public class ImageDto {
     @Column(name="image_path")
     private String imagePath;
 
+
+    //foriegnKey
     @Column(name="user_id")
     private Integer userId;
 
@@ -70,12 +72,13 @@ public class ImageDto {
                 ", imageSize=" + imageSize +
                 ", imageName='" + imageName + '\'' +
                 ", imageType='" + imageType + '\'' +
-                ", userId=" + userId +
                 ", createdBy='" + createdBy + '\'' +
                 ", createdOn=" + createdOn +
                 ", updatedBy='" + updatedBy + '\'' +
                 ", updatedOn=" + updatedOn +
                 ", imagePath='" + imagePath + '\'' +
+                ", userId=" + userId +
+                ", status=" + status +
                 '}';
     }
 
@@ -169,4 +172,12 @@ public class ImageDto {
 //        this.userId = userId;
 //    }
 
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 }

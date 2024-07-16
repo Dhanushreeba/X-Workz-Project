@@ -1,5 +1,6 @@
 package com.xworkz.project.controller;
 
+import com.xworkz.project.constant.Status;
 import com.xworkz.project.dto.ImageDto;
 import com.xworkz.project.dto.SignUpDto;
 import com.xworkz.project.model.service.EditUserService;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -134,16 +134,22 @@ public class EditController {
                 signUpDto.setImageName(newFileName);
 
 
-
                 System.out.println(" image data "+imageDto);
 
                 System.out.println("image name in signUp database"+signUpDto);
 
+                // Set all existing images to INACTIVE
+                imageService.setAllImagesInactiveForUser(signUpDto.getId());
+                log.info("All existing images set to INACTIVE for user ID: {}", signUpDto.getId());
+
+                // Set new image to ACTIVE
+                imageDto.setStatus(Status.ACTIVE);
+
                 boolean isSaved = imageService.saveImageDetails(imageDto);
                 log.info("Image details saved: {}", isSaved);
 
-
             }
+
 
             SignUpDto updatedUser = editUserService.updateUser(signUpDto);
             if (updatedUser != null) {
@@ -175,6 +181,7 @@ public class EditController {
         } catch (IOException e) {
             model.addAttribute("errorMessage", "Error uploading file: " + e.getMessage());
             log.error("Error uploading file", e);
+            e.printStackTrace();
         }
 
         return "ProfileUpload";// Handle error or success case

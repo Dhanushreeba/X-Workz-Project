@@ -10,14 +10,14 @@
 
 <script>
 
- <!--this button disabled is not working in js file-->
+ <!--this button disabled is not working in js file
                      function disableButton() {
                  var accountLocked = "${accountLocked}";
                  if (accountLocked === "true") {
                      document.getElementById("signinsubmit").disabled = true;
                  }
              }
-             window.onload = disableButton;
+             window.onload = disableButton;-->
  </script>
 <script>
 let fieldsChecks=
@@ -44,11 +44,11 @@ function validateAndEnableSubmit()
 
     if(!flag)
     {
-        document.getElementById("submit").removeAttribute("disabled");//valuse empty idre disabled
+        document.getElementById("submit").removeAttribute("disabled");
     }
     else
     {
-        document.getElementById("submit").setAttribute("disabled","");//valuse iddaga enable agirutte
+        document.getElementById("submit").setAttribute("disabled","");
     }
 }
 
@@ -94,13 +94,13 @@ function passwordValidation() {
                     validateAndEnableSubmit();
 }
 
-function disableButton() {
+<!--function disableButton() {
               var accountLocked = document.getElementById("accountLocked");
               if (accountLocked === "true") {
                   document.getElementById("signinsubmit").disabled = true;
               }
           }
-          window.onload =disableButton;
+          window.onload =disableButton;-->
 
 </script>
 </head>

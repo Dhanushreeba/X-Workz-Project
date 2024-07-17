@@ -17,6 +17,9 @@
                     <img src="https://www.x-workz.in/Logo.png" alt="xworkz" width="140" height="70" />
                 </a>
                 <a class="navbar-brand text-dark" href="index.jsp"><b>Home</b></a>
+
+                <span style="color:green"><h2>${raiseComplaintMsg}</h2></span>
+
             </div>
             <div class="dropdown">
                 <div class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -29,6 +32,7 @@
                     <li><a class="dropdown-item" href="edits?email=${dto.email}"><strong>Edit</strong></a></li>
                     <li><a class="dropdown-item" href="ResetPassword.jsp"><strong>Password Reset</strong></a></li>
                     <li><a class="dropdown-item" href="view"><strong>View</strong></a></li>
+                    <li><a class="dropdown-item" href="RaiseComplaint.jsp"><strong>RaiseComplaint</strong></a></li>
 
                 </ul>
             </div>

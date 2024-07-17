@@ -49,7 +49,7 @@
       <change afterPath="$PROJECT_DIR$/src/main/webapp/Edit.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/ForgetPassword.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/ProfileUpload.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/RaiseComplaints.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/RaiseComplaint.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/ResetPassword.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/SignIn.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/SignUp.jsp" afterDir="false" />

@@ -3,14 +3,15 @@ package com.xworkz.project.dto;
 import javax.persistence.*;
 
 @Entity
-@Table(name="complaint_type")
+@Table(name="complaint_raise")
 public class RaiseComplaintDto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name="id")
+    private Integer comaplaintId;
 
-    @Column(name="complaint_type")
+    @Column(name = "complaint_type")
     private String complaintType;
 
     private String country;
@@ -28,7 +29,7 @@ public class RaiseComplaintDto {
     @Override
     public String toString() {
         return "RaiseComplaintDto{" +
-                "id=" + id +
+                "comaplaintId=" + comaplaintId +
                 ", complaintType='" + complaintType + '\'' +
                 ", country='" + country + '\'' +
                 ", state='" + state + '\'' +
@@ -39,12 +40,12 @@ public class RaiseComplaintDto {
                 '}';
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getComaplaintId() {
+        return comaplaintId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setComaplaintId(Integer comaplaintId) {
+        this.comaplaintId = comaplaintId;
     }
 
     public String getComplaintType() {

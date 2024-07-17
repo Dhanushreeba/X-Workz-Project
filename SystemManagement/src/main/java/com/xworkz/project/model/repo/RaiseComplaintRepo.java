@@ -5,8 +5,9 @@ import com.xworkz.project.dto.RaiseComplaintDto;
 
 public interface RaiseComplaintRepo {
 
-    boolean saveImage(RaiseComplaintDto raiseComplaintDto);
+    boolean saveComplaintRaiseData(RaiseComplaintDto raiseComplaintDto);
 
-    RaiseComplaintDto userId(RaiseComplaintDto raiseComplaintDto);
+   // RaiseComplaintDto userId(RaiseComplaintDto raiseComplaintDto);
+
 
 }

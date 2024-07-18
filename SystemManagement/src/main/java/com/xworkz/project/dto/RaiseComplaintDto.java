@@ -9,7 +9,7 @@ public class RaiseComplaintDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private Integer comaplaintId;
+    private Integer complaintId;
 
     @Column(name = "complaint_type")
     private String complaintType;
@@ -29,7 +29,7 @@ public class RaiseComplaintDto {
     @Override
     public String toString() {
         return "RaiseComplaintDto{" +
-                "comaplaintId=" + comaplaintId +
+                "complaintId=" + complaintId +
                 ", complaintType='" + complaintType + '\'' +
                 ", country='" + country + '\'' +
                 ", state='" + state + '\'' +
@@ -40,12 +40,12 @@ public class RaiseComplaintDto {
                 '}';
     }
 
-    public Integer getComaplaintId() {
-        return comaplaintId;
+    public Integer getComplaintId() {
+        return complaintId;
     }
 
-    public void setComaplaintId(Integer comaplaintId) {
-        this.comaplaintId = comaplaintId;
+    public void setComplaintId(Integer complaintId) {
+        this.complaintId = complaintId;
     }
 
     public String getComplaintType() {

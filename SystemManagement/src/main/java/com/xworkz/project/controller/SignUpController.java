@@ -42,9 +42,24 @@ public class SignUpController {
         log.info("Created constructor for SignUpController");
     }
 
+    @GetMapping("/SignUpPage")
+    public String SignUpPage(){
+        return "SignUp";
+    }
+
     @GetMapping("/SignInPage")
     public String SignInPage(){
         return "SignIn";
+    }
+
+    @GetMapping("/ProfileUploadPage")
+    public String ProfileUploadPage(){
+        return "ProfileUpload";
+    }
+
+    @GetMapping("/HomePage")
+    public String HomePage(){
+        return "index";
     }
 
     //this display method is for Signup form and signUp.jsp

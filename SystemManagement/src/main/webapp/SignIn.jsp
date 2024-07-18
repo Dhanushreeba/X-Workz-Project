@@ -116,8 +116,8 @@ function passwordValidation() {
                                     <!-- End of logo -->
 
 
-        <a class="navbar-brand  text-dark" href="index.jsp"><b>Home</b></a>
-        <a class="navbar-brand  text-dark" href="SignUp.jsp"><b>SignUp</b></a>
+        <a class="navbar-brand  text-dark" href="HomePage"><b>Home</b></a>
+        <a class="navbar-brand  text-dark" href="SignInPage"><b>SignUp</b></a>
 
 
 
@@ -166,7 +166,7 @@ function passwordValidation() {
                             </div>
 
                         <div class="form-group">
-                                  <p class="text-center text-muted mt-5 mb-0">Forget password? <a href="ForgetPassword.jsp"
+                                  <p class="text-center text-muted mt-5 mb-0">Forget password? <a href="ForgetPage"
                                       class="fw-bold text-body"><u>Click here</u></a></p>
                                   </div>
 

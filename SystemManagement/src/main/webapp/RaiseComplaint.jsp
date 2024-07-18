@@ -26,8 +26,8 @@
                 <a class="navbar-brand" href="#">
                     <img src="https://x-workz.in/static/media/Logo.cf195593dc1b3f921369.png" alt="xworkz" width="140" height="70">
                 </a>
-                <a class="navbar-brand text-dark" href="index.jsp"><b>Home</b></a>
-                <a class="navbar-brand text-dark" href="SignIn.jsp"><b>SignIn</b></a>
+                <a class="navbar-brand text-dark" href="HomePage"><b>Home</b></a>
+                <a class="navbar-brand text-dark" href="SignInPage"><b>SignIn</b></a>
             </div>
         </div>
     </nav>
@@ -40,7 +40,7 @@
 
             <span style="color:green"><h2>${raiseComplaintMsg}</h2></span>
 
-            <form action="raise-complaint" method="post">
+            <form action="raise" method="post">
 
                 <!-- For server side validation -->
                 <div class="text-success"><strong>${msg}</strong></div>
@@ -122,7 +122,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <center><p>Already have an account? <a href="SignIn.jsp" class="link-primary"><strong>SignIn Here</strong></a></p></center>
+                    <center><p>Already have an account? <a href="SignInPage" class="link-primary"><strong>SignIn Here</strong></a></p></center>
                 </div>
             </form>
         </div>

@@ -14,8 +14,8 @@
                 <a class="navbar-brand" href="#">
                     <img src="https://x-workz.in/static/media/Logo.cf195593dc1b3f921369.png" alt="xworkz" width="140" height="70">
                 </a>
-                <a class="navbar-brand text-dark" href="index.jsp"><b>Home</b></a>
-                <a class="navbar-brand text-dark" href="ProfileUpload.jsp"><b>Profile</b></a>
+                <a class="navbar-brand text-dark" href="HomePage"><b>Home</b></a>
+                <a class="navbar-brand text-dark" href="ProfileUploadPage"><b>Profile</b></a>
             </div>
                         <img src="${pageContext.request.contextPath}${sessionScope.profileImage}" width="80" height="80" class="rounded-circle profile-image" alt="Profile Image" id="profileImage">
         </div>

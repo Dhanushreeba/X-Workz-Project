@@ -23,10 +23,10 @@
                                     <!-- End of logo -->
 
 
-        <a class="navbar-brand  text-dark" href="index.jsp"><b>Home</b></a>
-        <a class="navbar-brand  text-dark" href="SignUp.jsp"><b>SignUp</b></a>
-        <a class="navbar-brand  text-dark" href="SignIn.jsp"><b>SignIn</b></a>
-        <a class="navbar-brand  text-dark" href="ForgetPassword.jsp"><b>ForgetPassword</b></a>
+        <a class="navbar-brand  text-dark" href="HomePage"><b>Home</b></a>
+        <a class="navbar-brand  text-dark" href="SignUpPage"><b>SignUp</b></a>
+        <a class="navbar-brand  text-dark" href="SignInPage"><b>SignIn</b></a>
+        <a class="navbar-brand  text-dark" href="ForgetPage"><b>ForgetPassword</b></a>
 
   </div>
 </nav>

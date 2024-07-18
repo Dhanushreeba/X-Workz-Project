@@ -16,7 +16,7 @@
                 <a class="navbar-brand" href="#">
                     <img src="https://www.x-workz.in/Logo.png" alt="xworkz" width="140" height="70" />
                 </a>
-                <a class="navbar-brand text-dark" href="index.jsp"><b>Home</b></a>
+                <a class="navbar-brand text-dark" href="HomePage"><b>Home</b></a>
 
                 <span style="color:green"><h2>${raiseComplaintMsg}</h2></span>
 
@@ -30,9 +30,9 @@
                 </div>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" href="edits?email=${dto.email}"><strong>Edit</strong></a></li>
-                    <li><a class="dropdown-item" href="ResetPassword.jsp"><strong>Password Reset</strong></a></li>
+                    <li><a class="dropdown-item" href="ResetPasswordPage"><strong>Password Reset</strong></a></li>
                     <li><a class="dropdown-item" href="view"><strong>View</strong></a></li>
-                    <li><a class="dropdown-item" href="RaiseComplaint.jsp"><strong>RaiseComplaint</strong></a></li>
+                    <li><a class="dropdown-item" href="RaiseComplaintPage"><strong>RaiseComplaint</strong></a></li>
 
                 </ul>
             </div>
@@ -42,7 +42,7 @@
 
    <!-- <li><a class="dropdown-item" href="view">View</a></li>
                   <li><a class="dropdown-item" href="edits?email=${dto.email}">Edit</a></li>
-                  <li><a class="dropdown-item" href="ResetPassword.jsp">Reset</a></li>--!>
+                  <li><a class="dropdown-item" href="ResetPasswordPage">Reset</a></li>--!>
 
 
     <form action="/edit-profile" method="post" enctype="multipart/form-data">

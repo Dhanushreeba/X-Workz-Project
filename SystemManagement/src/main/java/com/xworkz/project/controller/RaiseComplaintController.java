@@ -5,8 +5,10 @@ import com.xworkz.project.model.service.RaiseComplaintService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/")
@@ -20,8 +22,14 @@ public class RaiseComplaintController {
         System.out.println("created constr for RaiseComplaintController");
     }
 
-    @PostMapping("/raise-complaint")
-    public String raiseComplaint(RaiseComplaintDto raiseComplaintDto, Model model) {
+    @GetMapping("/RaiseComplaintPage")
+    public String RaiseComplaintPage(){
+        return "RaiseComplaint";
+    }
+
+
+    @PostMapping("/raise")
+    public String raiseComplaint(RaiseComplaintDto raiseComplaintDto, Model model, RedirectAttributes redirectAttributes) {
         System.out.println("raiseComplaint method running in RaiseComplaintController..");
 
 
@@ -34,9 +42,9 @@ public class RaiseComplaintController {
 
         if (dataValid) {
             System.out.println("RaiseComplaintService registration successful in RaiseComplaintController.");
-            model.addAttribute("raiseComplaintMsg", " RaiseComplaint Registration Successful : " + raiseComplaintDto.getComaplaintId());
+            model.addAttribute("raiseComplaintMsg", " RaiseComplaint Registration Successful : " + raiseComplaintDto.getComplaintId());
 
-             return "ProfileUpload";
+             return "RaiseComplaint";
 
 
         } else {

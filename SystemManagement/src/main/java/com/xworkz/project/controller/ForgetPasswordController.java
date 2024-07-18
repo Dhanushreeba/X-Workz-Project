@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,6 +32,11 @@ public class ForgetPasswordController {
 
     public ForgetPasswordController() {
         System.out.println("Created constructor for ForgetPasswordController");
+    }
+
+    @GetMapping("/ForgetPage")
+    public String ForgetPage(){
+        return "ForgetPassword";
     }
 
 //    //this is  after forget password
@@ -98,7 +104,7 @@ public class ForgetPasswordController {
             String body = "Hello " + dto.getEmail() + ",\n\nA new password has been generated for you: " + dto.getPassword();
 
             signUpService.sendingEmail(email, subject, body);
-            return "WelcomePage";
+            return "SignIn";
         } else {
             log.info("Details Not Saved Successfully " + dto);
             model.addAttribute("error", "Failed to save details");

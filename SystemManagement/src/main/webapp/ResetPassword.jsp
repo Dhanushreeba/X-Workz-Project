@@ -118,7 +118,7 @@ function confirmPasswordValidation() {
             <a class="navbar-brand" href="#">
                 <img src="https://x-workz.in/static/media/Logo.cf195593dc1b3f921369.png" alt="xworkz" width="140" height="70">
             </a>
-            <a class="navbar-brand text-dark" href="index.jsp"><b>Home</b></a>
+            <a class="navbar-brand text-dark" href="HomePage"><b>Home</b></a>
         </div>
     </div>
 </nav>
@@ -160,7 +160,7 @@ function confirmPasswordValidation() {
                 <input class="btn btn-info" type="submit" id="submit" value="Reset" />
             </div>
             <div class="mb-3">
-                <center><a href="SignIn.jsp" class="link-primary"><strong>SignIn Here?</strong></a></center>
+                <center><a href="SignInPage" class="link-primary"><strong>SignIn Here?</strong></a></center>
             </div>
         </form>
     </div>

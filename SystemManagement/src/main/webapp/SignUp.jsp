@@ -244,8 +244,8 @@
                         <!-- End of logo -->
 
 
-                        <a class="navbar-brand  text-dark" href="index.jsp"><b>Home</b></a>
-                        <a class="navbar-brand  text-dark" href="SignIn.jsp"><b>SignIn</b></a>
+                        <a class="navbar-brand  text-dark" href="HomePage"><b>Home</b></a>
+                        <a class="navbar-brand  text-dark" href="SignInPage"><b>SignIn</b></a>
 
                     </div>
                 </div>
@@ -337,6 +337,9 @@
                                 <input class="btn btn-info" type="submit" id="submit" value="SignUp"/>
 
                             </form>
+                             <div class="mb-3">
+                                   <center><a href="SignInPage" class="link-primary"><strong>SignIn Here?</strong></a></center>
+                             </div>
 
                         </div>
                     </div>

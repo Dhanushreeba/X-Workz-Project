@@ -17,7 +17,6 @@
         }
     </style>
 
-
 </head>
 <body>
     <nav class="navbar navbar-dark bg-info">
@@ -107,14 +106,6 @@
                         <textarea class="form-control" placeholder="Leave a comment here" name="discription" id="discription"  style="height:80px"></textarea>
                         <label for="discription">Description</label>
                     </div>
-                </div>
-
-                <div>
-                    <span id="agreeError"></span>
-                    <label for="agree" class="list-group-item">
-                        <input name="agree" id="agree" class="form-check-input me-1" type="checkbox" value="agree" ${signUpDTO.agree eq 'agree' ? 'checked' : ''}>
-                        <b>Agree</b>
-                    </label>
                 </div><br>
 
                 <div>

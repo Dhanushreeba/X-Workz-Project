@@ -26,6 +26,7 @@ public class RaiseComplaintDto {
 
     private String discription;
 
+
     @Override
     public String toString() {
         return "RaiseComplaintDto{" +
@@ -103,4 +104,5 @@ public class RaiseComplaintDto {
     public void setDiscription(String discription) {
         this.discription = discription;
     }
+
 }

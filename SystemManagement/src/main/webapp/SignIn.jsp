@@ -140,6 +140,7 @@ function passwordValidation() {
 
                     <div class="text-primary">${msg}</div>
                     <span style="color:green">${name}</span>
+                    <span style="color:green">${error}</span>
                     <span style="color:red;">${errors}
                         <c:forEach items="${errors}" var="dtoError">
                         ${dtoError.defaultMessage}<br/>

@@ -22,13 +22,15 @@ public class RaiseComplaintController {
         System.out.println("created constr for RaiseComplaintController");
     }
 
-    @GetMapping("/RaiseComplaintPage")
+    @RequestMapping("/RaiseComplaintPage")
     public String RaiseComplaintPage(){
+
         return "RaiseComplaint";
     }
 
 
-    @PostMapping("/raise")
+
+    @RequestMapping("/raise")
     public String raiseComplaint(RaiseComplaintDto raiseComplaintDto, Model model, RedirectAttributes redirectAttributes) {
         System.out.println("raiseComplaint method running in RaiseComplaintController..");
 
@@ -43,17 +45,17 @@ public class RaiseComplaintController {
         if (dataValid) {
             System.out.println("RaiseComplaintService registration successful in RaiseComplaintController.");
             model.addAttribute("raiseComplaintMsg", " RaiseComplaint Registration Successful : " + raiseComplaintDto.getComplaintId());
+            return "ProfileUpload";
 
-             return "RaiseComplaint";
 
 
         } else {
             System.out.println("RaiseComplaintService registration not successful in RaiseComplaintController..");
             model.addAttribute("raiseComplaintMsg", " RaiseComplaint Registration failed ");
-
+            return "RaiseComplaint";
         }
 
-        return "ProfileUpload";
+
     }
 
 }

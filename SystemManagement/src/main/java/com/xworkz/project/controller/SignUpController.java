@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,6 +33,9 @@ public class SignUpController {
     //passwordGenerator is to generate a random password
     @Autowired
     private PasswordGenerator passwordGenerator;
+
+    @Autowired
+    private PasswordEncoder encoder;
 
     //View
 //    @Autowired
@@ -68,8 +72,9 @@ public class SignUpController {
     //Model
     //@RequestParam
     @PostMapping("/signup")
-    public String display(@Valid SignUpDto dto, BindingResult bindingResult, Model model, @RequestParam("email") String email) {
+    public String display(@Valid SignUpDto dto, BindingResult bindingResult, Model model, @RequestParam("email") String email,@RequestParam("password") String password) {
         // Generate and set password before validation
+        //dto.getPassword();
         String generatedPassword =passwordGenerator.generatePassword(12);
         dto.setPassword(generatedPassword);
 
@@ -83,6 +88,7 @@ public class SignUpController {
             return "SignUp";
         } else {
             model.addAttribute("name", "SignUp Successful " + dto.getFirstName());
+
             boolean save = this.signUpService.save(dto);
             log.info("dto" + dto);
             if (save) {

@@ -1,3 +1,4 @@
+
 package com.xworkz.project.configuration;
 
 import lombok.extern.slf4j.Slf4j;
@@ -68,6 +69,7 @@ public class SpringConfi implements WebMvcConfigurer{
 
     @Bean
     public PasswordEncoder encoder(){
+
         return new BCryptPasswordEncoder();
     }
 

@@ -2,6 +2,7 @@ package com.xworkz.project.model.service;
 
 import com.xworkz.project.dto.SignUpDto;
 import com.xworkz.project.model.repo.SignUpRepo;
+import com.xworkz.project.util.PasswordGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
@@ -27,6 +29,12 @@ public class SignUpServiceImpl implements SignUpService {
 
     @Autowired
     private JavaMailSender mailSender;
+
+    @Autowired
+    private PasswordGenerator passwordGenerator;
+
+    @Autowired
+    private PasswordEncoder encoder;
 
     //view
     @Autowired
@@ -54,6 +62,7 @@ public class SignUpServiceImpl implements SignUpService {
         log.info("save method from SignUpServiceImpl");
 
         setAuditValues(dto,dto.getFirstName(),LocalDateTime.now(),dto.getFirstName(),LocalDateTime.now(),true);
+
         boolean save= signUpRepo.saveAndValidation(dto);
         if (save){
             log.info("Repo save in search successfull "+dto);

@@ -72,11 +72,14 @@ public class SignUpController {
     //Model
     //@RequestParam
     @PostMapping("/signup")
-    public String display(@Valid SignUpDto dto, BindingResult bindingResult, Model model, @RequestParam("email") String email,@RequestParam("password") String password) {
+    public String display(@Valid SignUpDto dto, BindingResult bindingResult, Model model, @RequestParam("email") String email, String password) {
         // Generate and set password before validation
         //dto.getPassword();
         String generatedPassword =passwordGenerator.generatePassword(12);
-        dto.setPassword(generatedPassword);
+        //encrypted password sending
+        dto.setPassword(encoder.encode(generatedPassword));
+      //  dto.setPassword(generatedPassword);
+
 
         if (bindingResult.hasErrors()) {
             log.info("Dto has invalid data in SignUpController");
@@ -92,13 +95,14 @@ public class SignUpController {
             boolean save = this.signUpService.save(dto);
             log.info("dto" + dto);
             if (save) {
-                System.out.println("Details Saved Successfully " + dto);
-
+                dto.setPassword(generatedPassword);
                 //send email with generated password
                 String subject="Welcome to our Issue Management";
 
                 String body="Hello" + dto.getFirstName() + ",\n\n your registration is successfull. your password is :" +dto.getPassword();
                 signUpService.sendingEmail(email,subject, body);
+                System.out.println("Details Saved Successfully " + dto);
+
 
             } else {
                 log.info("Details Not Saved Successfully " + dto);

@@ -103,9 +103,17 @@ public class SignUpServiceImpl implements SignUpService {
 
     @Override
     public SignUpDto findByEmailAndPassword(String email, String password) {
+        SignUpDto dto=signUpRepo.findByEmail(email);
+
         // Make sure email and password are not null
         if (email == null || password == null) {
             throw new IllegalArgumentException("Email and Password cannot be null");
+        }
+
+        //to send encrypted password for database and decrypted password for email
+        if (dto!=null && encoder.matches(password,dto.getPassword())) {
+            System.out.println("data exists :"+dto);
+            return dto;
         }
 
         // Ensure the repository is not null

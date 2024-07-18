@@ -45,8 +45,7 @@ public class RaiseComplaintController {
         if (dataValid) {
             System.out.println("RaiseComplaintService registration successful in RaiseComplaintController.");
             model.addAttribute("raiseComplaintMsg", " RaiseComplaint Registration Successful : " + raiseComplaintDto.getComplaintId());
-            return "ProfileUpload";
-
+            return "RaiseComplaint";
 
 
         } else {

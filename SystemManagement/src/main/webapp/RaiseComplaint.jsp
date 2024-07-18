@@ -108,7 +108,8 @@
                 </div><br>
 
                 <div>
-                    <center><input type="submit" id="submit" value="Apply" class="btn btn-primary oval-btn" required></center>
+                    <center><input type="submit" id="submit" value="RaiseComplaint" class="btn btn-primary oval-btn" required></center></br>
+                    <center><input type="submit" id="submit" value="Reset" class="btn btn-primary oval-btn" required></center>
                 </div>
 
                 <div class="mb-3">

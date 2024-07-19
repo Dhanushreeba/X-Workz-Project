@@ -46,25 +46,7 @@ public class EditController {
 
 
 
-//    @GetMapping("/edits/{email}")
-//    public String showEditForm(@PathVariable String email, Model model) {
-//        SignUpDto user = editUserService.findByEmail(email);
-//        String userEmail = (String) httpSession.getAttribute("signedInUserEmail");
-//        model.addAttribute("dto", user);
-//        return "Edit"; // JSP page name for editing profile
-//    }
-//
-//    @PostMapping("/edit")
-//    public String editUser(SignUpDto dto, Model model) {
-//        SignUpDto updatedUser = editUserService.editByEmail(dto);
-//        if (updatedUser != null) {
-//            model.addAttribute("dto", updatedUser);
-//            model.addAttribute("successMessage", "Profile updated successfully");
-//            return "ProfileUpload"; // Redirect or forward to the profile page
-//        }
-//        model.addAttribute("errorMessage", "Error updating profile");
-//        return "editProfile"; // Redirect back to the edit profile page
-//    }
+
 
     //Edit
     @GetMapping("edits")

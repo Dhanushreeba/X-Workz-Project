@@ -46,42 +46,35 @@ public class ForgetPasswordController {
     //Using @RequestParam annotation im fetching only the fields of email and password because,
     //here in forget password im only generating  password to an existing email so i used this
     @PostMapping("/forget")
-    public String run(@RequestParam("email") String email, Model model) {
-        // Create a new SignUpDto and set only the email
-        SignUpDto dto= signUpService.findByEmail(email);//here y i use findByEmail is to generate password for existing email and it has to be stored in database
+    public String run(@RequestParam("email") String email, Model model,String password) {
+        // Create a new SignUpDto and set only the emai
 
         if (email == null) {
             ForgetPasswordController.log.info("No user found with email: " + email);
-            model.addAttribute("error", "No user found with this email." +dto.getEmail());
+            model.addAttribute("error", "No user found with this email." + email);
             return "ForgetPassword"; // Or the appropriate view name
-        }else{
-            log.info("user found with this password :"+dto.getEmail());
-        }
-
-        // Generate and set password before saving
-        String generatedPassword = passwordGenerator.generatePassword(12);
-        dto.setPassword(generatedPassword);
-        dto.setPassword(encoder.encode(generatedPassword));
-
-        model.addAttribute("msg", "new password Successfully generated " + dto.getEmail());
-        boolean save = this.signUpService.save(dto);
-        if (save) {
-            log.info("Details Saved Successfully " + dto);
-
-            // Send email with generated password
-            String subject = "Welcome to our Issue Management";
-            String body = "Hello " + dto.getEmail() + ",\n\nA new password has been generated for you: " + dto.getPassword();
-
-            signUpService.sendingEmail(email, subject, body);
-            return "SignIn";
         } else {
-            log.info("Details Not Saved Successfully " + dto);
-            model.addAttribute("error", "Failed to save details");
-            return "ForgetPassword"; // Return the name of the forget password view
+            SignUpDto dto = signUpService.findByEmail(email);//here y i use findByEmail is to generate password for existing email and it has to be stored in database
+            if (dto != null) {
+                String generatedPassword = passwordGenerator.generatePassword(12);
+                dto.setPassword(encoder.encode(generatedPassword));
+                boolean save = this.signUpService.save(dto);
+                if (save) {
+                    log.info("Details Saved Successfully " + dto);
+                    String subject = "Welcome to our Issue Management";
+                    String body = "Hello " + dto.getEmail() + ",\n\nA new password has been generated for you: " + generatedPassword;
+                    signUpService.sendingEmail(email, subject, body);
+                    model.addAttribute("msg", "new password Successfully generated " + dto.getEmail());
+                    return "SignIn";
+                } else {
+                    log.info("Details Not Saved Successfully " + dto);
+                    model.addAttribute("error", "Failed to save details");
+                    return "ForgetPassword"; // Return the name of the forget password view
+                }
+            }
+            return "ForgetPassword";
         }
-
     }
-
 }
 
 

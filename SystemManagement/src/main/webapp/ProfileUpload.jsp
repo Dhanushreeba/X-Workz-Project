@@ -23,7 +23,8 @@
             </div>
             <div class="dropdown">
                 <div class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="${pageContext.request.contextPath}${sessionScope.profileImage}"  class="rounded-circle profile-image" width="80" height="80" alt="Profile" id="profileImage" onerror="this.onerror=null;this.src='https://img.icons8.com/?size=100&id=c8SsrDOfQgn3&format=png&color=000000';">
+                     <img src="${pageContext.request.contextPath}${sessionScope.profileImage}"  class="rounded-circle profile-image" width="80" height="80" alt="Profile" id="profileImage"
+                       onerror="this.onerror=null;this.src='https://img.icons8.com/?size=100&id=c8SsrDOfQgn3&format=png&color=000000';">
                     <!--<img src="https://img.icons8.com/?size=100&id=c8SsrDOfQgn3&format=png&color=000000" alt="" width="60" height="60" style="border-radius=30px"/>-->
                     <!--<img src="${pageContext.request.contextPath}${sessionScope.profileImage}" alt="Profile" width="80" height="80" class="rounded-circle"/>-->
 

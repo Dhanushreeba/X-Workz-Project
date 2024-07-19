@@ -270,53 +270,73 @@ public class SignUpServiceImpl implements SignUpService {
     //ResetPassword
     @Override
     public boolean resetPassword(String email, String oldPassword, String newPassword, String confirmPassword) {
-        if (!signUpRepo.emailExists(email))
-        {
-            return false;
-        }
+        System.out.println("calling resetPassword method :");
+        SignUpDto dto = signUpRepo.lookByEmail(email);
 
-        if (!signUpRepo.verifyOldPassword(email, oldPassword))
-        {
+        if (!signUpRepo.emailExists(email)) {
+            System.out.println("user not found in reset password inside 1st if :" + email);
             return false;
         }
-        if (!newPassword.equals(confirmPassword))
-        {
-            return false;
-        }
-        signUpRepo.updatePassword(email, newPassword);
-        sendPasswordEmail(email, "Password Reset Successful", "Your password has been successfully reset..Your new password is :" +newPassword);
+        // SignUpDto signUpDto = new SignUpDto();
+        String storepassword = dto.getPassword();
 
+        System.out.println("storedPassword:" + newPassword + "oldPassword:" + oldPassword);
+        if (encoder.matches(oldPassword, storepassword)) {
+
+//            SignUpDto dto=dto.getPassword();
+
+            System.out.println(confirmPassword + "---------->" + newPassword);
+
+
+            if (!signUpRepo.verifyOldPassword(email, storepassword)) {
+                System.out.println("old password not matched :" + email);
+                return false;
+            }
+            if (!newPassword.equals(confirmPassword)) {
+                return false;
+            }
+            //signUpRepo.updatePassword(email, newPassword);
+            dto.setPassword(encoder.encode(newPassword));
+            signUpRepo.update(dto);
+            sendPasswordEmail(email, "Password Reset Successful", "Your password has been successfully reset..Your new password is :" + newPassword);
+
+
+
+
+        }else{
+        System.out.println("encoder is not working........");}
         return true;
     }
 
-    //ResetPassword
-    @Override
-    public void sendPasswordEmail(String toEmail, String subject, String body) {
+
+        //ResetPassword
+        @Override
+        public void sendPasswordEmail(String toEmail, String subject, String body) {
 
 
-        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setTo(toEmail);
-        simpleMailMessage.setSubject(subject);
-        simpleMailMessage.setText(body);
-        simpleMailMessage.setFrom("dhanushreegowda1999.com");
+            SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+            simpleMailMessage.setTo(toEmail);
+            simpleMailMessage.setSubject(subject);
+            simpleMailMessage.setText(body);
+            simpleMailMessage.setFrom("dhanushreegowda1999.com");
 
 
-        mailSender.send(simpleMailMessage);
-    }
+            mailSender.send(simpleMailMessage);
+        }
 
-    //view
-    @Override
-    public SignUpDto getUserByEmail(String email) {
-        return signUpRepo.findByEmail(email);
+        //view
+        @Override
+        public SignUpDto getUserByEmail(String email) {
+            return signUpRepo.findByEmail(email);
 
-    }
+        }
 
-    //view
-    @Override
-    public String getSignedInUserEmail() {
+        //view
+        @Override
+        public String getSignedInUserEmail() {
 
-        httpSession.getAttribute("signedInUserEmail");
-        return "String";
-    }
+            httpSession.getAttribute("signedInUserEmail");
+            return "String";
+        }
 }
 

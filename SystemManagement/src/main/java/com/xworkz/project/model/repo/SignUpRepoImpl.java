@@ -305,6 +305,7 @@ public class SignUpRepoImpl implements SignUpRepo {
             // to update the reset password to password in database
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             EntityTransaction entityTransaction = entityManager.getTransaction();
+            System.out.println("email :"+email + "password :"+newPassword);
 
 
             try {

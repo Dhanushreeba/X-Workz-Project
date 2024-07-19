@@ -38,8 +38,8 @@ public class SignUpController {
     private PasswordEncoder encoder;
 
     //View
-//    @Autowired
-//    private HttpSession httpSession;
+@Autowired
+ private HttpSession httpSession;
 
 
     public SignUpController() {
@@ -142,6 +142,7 @@ public class SignUpController {
 
             //set profile image name in the session
             String imageUrl="/images/" +dto.getImageName();
+            httpSession.setAttribute("profileImage", imageUrl);
             model.getAttribute("imageUrl");
 
             return "ProfileUpload";//change to welcome page\

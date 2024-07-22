@@ -33,6 +33,7 @@
                     <li><a class="dropdown-item" href="view"><strong>View</strong></a></li>
                     <li><a class="dropdown-item" href="RaiseComplaintPage"><strong>RaiseComplaint</strong></a></li>
                     <li> <a class="dropdown-item" href="view-raiseComplaint?id=${userData.id}" ><strong>ViewRaiseComplaint</strong></a></li>
+                    <!--<li> <a class="dropdown-item" href="EditRaiseComplaint" ><strong>EditRaiseComplaint</strong></a></li>-->
 
 
                 </ul>

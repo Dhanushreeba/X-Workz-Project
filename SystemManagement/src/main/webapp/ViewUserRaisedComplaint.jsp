@@ -19,7 +19,7 @@
                 <img src="https://x-workz.in/static/media/Logo.cf195593dc1b3f921369.png" alt="xworkz" width="140" height="70">
             </a>
             <a class="navbar-brand text-dark" href="HomePage"><b>Home</b></a>
-            <a class="navbar-brand text-dark" href="SignIn"><b>SignIn</b></a>
+            <a class="navbar-brand text-dark" href="SignInPage"><b>SignIn</b></a>
         </div>
 
         <!-- Display profile image when user is signed in -->
@@ -76,7 +76,8 @@
 
 
 
-                           <!--<td><a href="edit-complaint/${ViewUserRaisedComplaint.complaintId}">Edit</a></td>-->
+
+                           <td><a href="edit-complaint/${ViewUserRaisedComplaint.complaintId}">Edit</a></td>
 
                         </tr>
                     </c:forEach>

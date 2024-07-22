@@ -18,4 +18,7 @@ public interface RaiseComplaintRepo {
     //used for view raise complaint
     //view
     List<RaiseComplaintDto> findByRaise(int id);
+
+    //edit
+    public Optional<RaiseComplaintDto> findByComplaintId(int complaintId) ;
 }

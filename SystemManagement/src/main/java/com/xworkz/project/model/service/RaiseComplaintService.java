@@ -20,4 +20,7 @@ public interface RaiseComplaintService {
     //used for view raised complaint
 
     List<RaiseComplaintDto> getComplaintsByUserId(int id);
+
+    //edit
+    public RaiseComplaintDto getComplaintById(int complaintId) ;
 }

@@ -33,12 +33,13 @@ public class RaiseComplaintServiceImpl implements RaiseComplaintService{
         return false;
     }
 
+    //view
     @Override
     public Optional<RaiseComplaintDto> findByUserId(int id) {
         return raiseComplaintRepo.findByUserId(id);
     }
 
-
+//view
     @Override
     public Optional<RaiseComplaintDto> findBySignedInUser(HttpServletRequest request) {
         HttpSession httpSession = request.getSession();
@@ -50,9 +51,16 @@ public class RaiseComplaintServiceImpl implements RaiseComplaintService{
 
     }
 
+    //view
     @Override
     public List<RaiseComplaintDto> getComplaintsByUserId(int id) {
         return raiseComplaintRepo.findByRaise(id);
+    }
+
+    //Edit
+    @Override
+    public RaiseComplaintDto getComplaintById(int complaintId) {
+        return raiseComplaintRepo.findByComplaintId(complaintId).orElse(null);
     }
 }
 

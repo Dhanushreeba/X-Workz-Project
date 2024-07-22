@@ -33,6 +33,12 @@ public class RaiseComplaintController {
         return "RaiseComplaint";
     }
 
+    @RequestMapping("/EditRaiseComplaintPage")
+    public String EditRaiseComplaintPage(){
+
+        return "EditRaiseComplaint";
+    }
+
 
 
     @RequestMapping("/raise")
@@ -75,6 +81,15 @@ public class RaiseComplaintController {
         System.out.println("print complaint...."+complaints);
         model.addAttribute("ViewUserRaisedComplaints", complaints);
         return "ViewUserRaisedComplaint";
+    }
+
+
+    //edit Raise_Complaint
+    @GetMapping("/edit-complaint/{complaintId}")
+    public String showEditComplaintForm(@PathVariable("complaintId") int complaintId, Model model) {
+        RaiseComplaintDto raiseComplaintDto = raiseComplaintService.getComplaintById(complaintId);
+        model.addAttribute("raiseComplaintDto", raiseComplaintDto);//values should be retain in page
+        return "EditRaiseComplaint";
     }
 
 }

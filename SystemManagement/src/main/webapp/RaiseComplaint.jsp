@@ -29,7 +29,7 @@
                     <img src="https://x-workz.in/static/media/Logo.cf195593dc1b3f921369.png" alt="xworkz" width="140" height="70">
                 </a>
                 <a class="navbar-brand text-dark" href="HomePage"><b>Home</b></a>
-            <a class="navbar-brand text-dark" href="ProfileUploadPage"><b>Profile</b></a>
+            <a class="navbar-brand text-dark" href="ProfileUploadPage"><b>ProfileUpload</b></a>
             <a class="dropdown-item" href="view-raiseComplaint?id=${userData.id}" ></b>ViewRaiseComplaint</b></a>
 
             </div>
@@ -66,12 +66,12 @@
                     <span id="complaintTypeError"></span>
                     <label for="complaintType" class="form-label"><b>Complaint Type:</b></label>
                     <select class="form-select custom-select-width" id="complaintType" name="complaintType">
-                        <option value="0" ${countryDTO.complaintType == null ? 'selected' : ''}>Select</option>
-                        <option value="Electric issue" ${countryDTO.complaintType == 'Electric issue' ? 'selected' : ''}>Electric issue</option>
-                        <option value="Water Supply" ${countryDTO.complaintType == 'Water Supply' ? 'selected' : ''}>Water Supply</option>
-                        <option value="Network Problem" ${countryDTO.complaintType == 'Network Problem' ? 'selected' : ''}>Network Problem</option>
-                        <option value="System Problem" ${countryDTO.complaintType == 'System Problem' ? 'selected' : ''}>System Problem</option>
-                        <option value="Water Problem" ${countryDTO.complaintType == 'Water Problem' ? 'selected' : ''}>Water Problem</option>
+                        <option value="0" ${raiseComplaintDto.complaintType == null ? 'selected' : ''}>Select</option>
+                        <option value="Electric issue" ${raiseComplaintDto.complaintType == 'Electric issue' ? 'selected' : ''}>Electric issue</option>
+                        <option value="Water Supply" ${raiseComplaintDto.complaintType == 'Water Supply' ? 'selected' : ''}>Water Supply</option>
+                        <option value="Network Problem" ${raiseComplaintDto.complaintType == 'Network Problem' ? 'selected' : ''}>Network Problem</option>
+                        <option value="System Problem" ${raiseComplaintDto.complaintType == 'System Problem' ? 'selected' : ''}>System Problem</option>
+                        <option value="Water Problem" ${raiseComplaintDto.complaintType == 'Water Problem' ? 'selected' : ''}>Water Problem</option>
                     </select><br>
                 </div>
 

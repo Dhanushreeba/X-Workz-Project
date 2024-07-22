@@ -54,9 +54,11 @@
       <change afterPath="$PROJECT_DIR$/src/main/webapp/SignIn.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/SignUp.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/ViewUserPage.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/ViewUserRaisedComplaint.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/WelcomePage.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/javascript/RaiseComplaint.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,8 +69,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>

@@ -18,8 +18,6 @@
                 </a>
                 <a class="navbar-brand text-dark" href="HomePage"><b>Home</b></a>
 
-                <span style="color:green"><h2>${raiseComplaintMsg}</h2></span>
-
             </div>
             <div class="dropdown">
                 <div class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -30,10 +28,12 @@
 
                 </div>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="edits?email=${dto.email}"><strong>Edit</strong></a></li>
+                    <li><a class="dropdown-item" href="edits?email=${userData.email}"><strong>Edit</strong></a></li>
                     <li><a class="dropdown-item" href="ResetPasswordPage"><strong>Password Reset</strong></a></li>
                     <li><a class="dropdown-item" href="view"><strong>View</strong></a></li>
                     <li><a class="dropdown-item" href="RaiseComplaintPage"><strong>RaiseComplaint</strong></a></li>
+                    <li> <a class="dropdown-item" href="view-raiseComplaint?id=${userData.id}" ><strong>ViewRaiseComplaint</strong></a></li>
+
 
                 </ul>
             </div>

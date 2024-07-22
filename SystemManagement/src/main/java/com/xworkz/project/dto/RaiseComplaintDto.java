@@ -8,7 +8,7 @@ public class RaiseComplaintDto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name="complaint_id")
     private Integer complaintId;
 
     @Column(name = "complaint_type")
@@ -26,6 +26,14 @@ public class RaiseComplaintDto {
 
     private String discription;
 
+    //foriegnKey
+//    @Column(name="signup_id")
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "signup_id", referencedColumnName = "id")
+    private SignUpDto dto;
+
 
     @Override
     public String toString() {
@@ -38,6 +46,7 @@ public class RaiseComplaintDto {
                 ", area='" + area + '\'' +
                 ", address='" + address + '\'' +
                 ", discription='" + discription + '\'' +
+                ", dto=" + dto +
                 '}';
     }
 
@@ -105,4 +114,11 @@ public class RaiseComplaintDto {
         this.discription = discription;
     }
 
+    public SignUpDto getDto() {
+        return dto;
+    }
+
+    public void setDto(SignUpDto dto) {
+        this.dto = dto;
+    }
 }

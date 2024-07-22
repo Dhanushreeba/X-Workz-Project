@@ -1,9 +1,16 @@
 package com.xworkz.project.model.service;
 
 import com.xworkz.project.dto.RaiseComplaintDto;
+import com.xworkz.project.dto.SignUpDto;
 import com.xworkz.project.model.repo.RaiseComplaintRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RaiseComplaintServiceImpl implements RaiseComplaintService{
@@ -24,6 +31,28 @@ public class RaiseComplaintServiceImpl implements RaiseComplaintService{
             System.out.println("saveRaiseComplaintData no successful in RaiseComplaintServiceImpl..");
         }
         return false;
+    }
+
+    @Override
+    public Optional<RaiseComplaintDto> findByUserId(int id) {
+        return raiseComplaintRepo.findByUserId(id);
+    }
+
+
+    @Override
+    public Optional<RaiseComplaintDto> findBySignedInUser(HttpServletRequest request) {
+        HttpSession httpSession = request.getSession();
+        SignUpDto signedInUser = (SignUpDto) httpSession.getAttribute("signUpDTO");
+        if (signedInUser != null) {
+            return raiseComplaintRepo.findByUserId(signedInUser.getId());
+        }
+        return Optional.empty();
+
+    }
+
+    @Override
+    public List<RaiseComplaintDto> getComplaintsByUserId(int id) {
+        return raiseComplaintRepo.findByRaise(id);
     }
 }
 

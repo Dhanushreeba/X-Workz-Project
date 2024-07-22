@@ -143,6 +143,8 @@ public class SignUpController {
             //set profile image name in the session
             String imageUrl="/images/" +dto.getImageName();
             httpSession.setAttribute("profileImage", imageUrl);
+
+            httpSession.setAttribute("dto",dto);
             model.getAttribute("imageUrl");
 
             return "ProfileUpload";//change to welcome page\

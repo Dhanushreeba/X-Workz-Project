@@ -45,9 +45,6 @@ public class EditController {
     }
 
 
-
-
-
     //Edit
     @GetMapping("edits")
     public String showUserDetails(Model model) {
@@ -65,18 +62,6 @@ public class EditController {
     }
 
     //Edit
-//    @PostMapping("/edit")
-//    public String editUser(SignUpDto dto, Model model) {
-//        SignUpDto updatedUser = editUserService.editByEmail(dto);
-//        if (updatedUser != null) {
-//            model.addAttribute("dto", updatedUser);
-//            model.addAttribute("successMessage", "Profile updated successfully");
-//            return "Edit";
-//        }
-//        model.addAttribute("errorMessage", "Error updating profile");
-//        return "ProfileUpload";
-//    }
-
     @PostMapping("/edit-profile") // In this image also uploading
     public String updateUserProfile(@RequestParam("file") MultipartFile file, SignUpDto dto, Model model, HttpSession session) {
 

@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="ISO-8859-1">
-    <title>Student Form</title>
+    <title>System Management</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
@@ -30,14 +30,23 @@
                 </a>
                 <a class="navbar-brand text-dark" href="HomePage"><b>Home</b></a>
             <a class="navbar-brand text-dark" href="ProfileUploadPage"><b>ProfileUpload</b></a>
-            <a class="dropdown-item" href="view-raiseComplaint?id=${userData.id}" ></b>ViewRaiseComplaint</b></a>
-
             </div>
 
 
-            <!-- Display profile image when user is signed in -->
-                    <img src="${pageContext.request.contextPath}${sessionScope.profileImage}" alt="Profile" width="80" height="80" class="rounded-circle">
 
+
+        <!-- Display profile image when user is signed in -->
+         <div class="dropdown">
+             <div class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="${pageContext.request.contextPath}${sessionScope.profileImage}" width="80" height="80" class="rounded-circle profile-image" alt="Profile Image" id="profileImage">
+
+                </div>
+
+                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                        <li> <a class="dropdown-item" href="view-raiseComplaint?id=${userData.id}" ><strong>ViewRaiseComplaint</strong></a></li>
+
+                              </ul>
+                 </div>
 
         </div>
 
@@ -66,12 +75,12 @@
                     <span id="complaintTypeError"></span>
                     <label for="complaintType" class="form-label"><b>Complaint Type:</b></label>
                     <select class="form-select custom-select-width" id="complaintType" name="complaintType">
-                        <option value="0" ${raiseComplaintDto.complaintType == null ? 'selected' : ''}>Select</option>
-                        <option value="Electric issue" ${raiseComplaintDto.complaintType == 'Electric issue' ? 'selected' : ''}>Electric issue</option>
-                        <option value="Water Supply" ${raiseComplaintDto.complaintType == 'Water Supply' ? 'selected' : ''}>Water Supply</option>
-                        <option value="Network Problem" ${raiseComplaintDto.complaintType == 'Network Problem' ? 'selected' : ''}>Network Problem</option>
-                        <option value="System Problem" ${raiseComplaintDto.complaintType == 'System Problem' ? 'selected' : ''}>System Problem</option>
-                        <option value="Water Problem" ${raiseComplaintDto.complaintType == 'Water Problem' ? 'selected' : ''}>Water Problem</option>
+                        <option value="0" >Select</option>
+                        <option value="Electric issue">Electric issue</option>
+                        <option value="Water Supply">Water Supply</option>
+                        <option value="Network Problem">Network Problem</option>
+                        <option value="System Problem">System Problem</option>
+                        <option value="Water Problem">Water Problem</option>
                     </select><br>
                 </div>
 

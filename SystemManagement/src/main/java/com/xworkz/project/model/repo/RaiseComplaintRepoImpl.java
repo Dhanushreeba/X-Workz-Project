@@ -89,4 +89,29 @@ public class RaiseComplaintRepoImpl implements RaiseComplaintRepo {
         }
     }
 
+    //Update
+    @Override
+    public RaiseComplaintDto updateRaiseComplaintUserDetails(RaiseComplaintDto raiseComplaintDto) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+
+        try
+        {
+            entityTransaction.begin();
+            entityManager.merge(raiseComplaintDto);
+            entityTransaction.commit();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            entityTransaction.rollback();
+        }
+        finally {
+            entityManager.close();
+            log.info("connection closed for updateRaiseComplaintUserDetails");
+        }
+
+        return raiseComplaintDto;
+    }
+
 }

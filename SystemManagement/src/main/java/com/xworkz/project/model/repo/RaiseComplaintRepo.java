@@ -21,4 +21,7 @@ public interface RaiseComplaintRepo {
 
     //edit
     public Optional<RaiseComplaintDto> findByComplaintId(int complaintId) ;
+
+    //update
+    RaiseComplaintDto updateRaiseComplaintUserDetails(RaiseComplaintDto raiseComplaintDto);
 }

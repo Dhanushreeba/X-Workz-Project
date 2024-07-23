@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -39,7 +40,7 @@ public class SignUpController {
 
     //View
 @Autowired
- private HttpSession httpSession;
+ private HttpServletRequest request;
 
 
     public SignUpController() {
@@ -129,7 +130,7 @@ public class SignUpController {
         log.info("Email :" + email);
         log.info("password :" + password);
         SignUpDto dto = signUpService.findByEmailAndPassword(email, password);
-
+        System.out.println("********"+dto+"***********");
         if (dto != null) {
             //System.out.println("login success");
             signUpService.resetFailedAttempts(email);
@@ -142,9 +143,12 @@ public class SignUpController {
 
             //set profile image name in the session
             String imageUrl="/images/" +dto.getImageName();
+           HttpSession httpSession=request.getSession();
             httpSession.setAttribute("profileImage", imageUrl);
 
-            httpSession.setAttribute("dto",dto);
+            httpSession.setAttribute("signindata",dto);
+            System.out.println((SignUpDto)httpSession.getAttribute("signindata")+"===========>");
+
             model.getAttribute("imageUrl");
 
             return "ProfileUpload";//change to welcome page\

@@ -23,4 +23,7 @@ public interface RaiseComplaintService {
 
     //edit
     public RaiseComplaintDto getComplaintById(int complaintId) ;
+
+    //update
+    List <RaiseComplaintDto> updateRaiseComplaintUserDetails(RaiseComplaintDto raiseComplaintDto);
 }

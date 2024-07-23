@@ -62,5 +62,27 @@ public class RaiseComplaintServiceImpl implements RaiseComplaintService{
     public RaiseComplaintDto getComplaintById(int complaintId) {
         return raiseComplaintRepo.findByComplaintId(complaintId).orElse(null);
     }
+
+    //update
+//to set the signUpDTO id to stored id in
+    @Override
+    public List<RaiseComplaintDto> updateRaiseComplaintUserDetails(RaiseComplaintDto raiseComplaintDto) {
+        RaiseComplaintDto complaint= this.raiseComplaintRepo.findByComplaintId(raiseComplaintDto.getComplaintId()).get();
+        raiseComplaintDto.setDto(complaint.getDto());
+        RaiseComplaintDto raiseComplaintDto1=raiseComplaintRepo.updateRaiseComplaintUserDetails(raiseComplaintDto);
+        List<RaiseComplaintDto> dtos=this.raiseComplaintRepo.findByRaise(raiseComplaintDto1.getDto().getId());
+        if(dtos!=null)
+        {
+            System.out.println("Data successfully updated");
+            return  dtos;
+        }
+        else
+        {
+            System.out.println("Data is not successfully updated");
+            return  null;
+        }
+
+    }
+
 }
 

@@ -7,8 +7,6 @@
     <meta charset="ISO-8859-1">
     <title>View Raised Complaints</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -20,21 +18,8 @@
             </a>
             <a class="navbar-brand text-dark" href="HomePage"><b>Home</b></a>
             <a class="navbar-brand text-dark" href="SignInPage"><b>SignIn</b></a>
+            <a class="navbar-brand text-dark" href="ProfileUploadPage"><b>ProfileUpload</b></a>
         </div>
-
-        <!-- Display profile image when user is signed in -->
-         <div class="dropdown">
-             <div class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="${pageContext.request.contextPath}${sessionScope.profileImage}" width="80" height="80" class="rounded-circle profile-image" alt="Profile Image" id="profileImage">
-
-                </div>
-
-                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                        <li> <a class="dropdown-item" href="view-raiseComplaint?id=${userData.id}" ><strong>ViewRaiseComplaint</strong></a></li>
-
-                              </ul>
-                 </div>
-
     </div>
 </nav>
 

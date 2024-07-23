@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -40,22 +42,26 @@ public class RaiseComplaintController {
     }
 
 
-
     @RequestMapping("/raise")
-    public String raiseComplaint(RaiseComplaintDto raiseComplaintDto, Model model, RedirectAttributes redirectAttributes, @ModelAttribute("dto") SignUpDto dto ){
+    public String raiseComplaint(RaiseComplaintDto raiseComplaintDto, Model model, RedirectAttributes redirectAttributes, HttpServletRequest request,SignUpDto signUpDto){
         System.out.println("raiseComplaint method running in RaiseComplaintController..");
 
 
 
 //        log.info("RaiseComplaintsDTO: {}", raiseComplaintDTO);
         System.out.println("RaiseComplaintController: " +raiseComplaintDto);
+      HttpSession   session=request.getSession();
+      SignUpDto  userdata =(SignUpDto) session.getAttribute("signindata");
 
-        SignUpDto userid= new SignUpDto();
-        userid.setId(dto.getId());
-             raiseComplaintDto.setDto(userid);
+        System.out.println((SignUpDto)session.getAttribute("signindata")+"************");
+        System.out.println((SignUpDto)session.getAttribute("signindata.getId")+"++++++++");
+      SignUpDto userid= new SignUpDto();
+       userid.setId(userdata.getId());
+            raiseComplaintDto.setDto(userid);
         System.out.println("*************************");
         boolean dataValid = raiseComplaintService.saveComplaintRaiseData(raiseComplaintDto);
-        System.out.println(dataValid);
+        System.out.println(dataValid+""+raiseComplaintDto);
+        System.out.println(raiseComplaintDto);
 
         if (dataValid) {
             System.out.println("RaiseComplaintService registration successful in RaiseComplaintController.");
@@ -89,6 +95,22 @@ public class RaiseComplaintController {
     public String showEditComplaintForm(@PathVariable("complaintId") int complaintId, Model model) {
         RaiseComplaintDto raiseComplaintDto = raiseComplaintService.getComplaintById(complaintId);
         model.addAttribute("raiseComplaintDto", raiseComplaintDto);//values should be retain in page
+        return "EditRaiseComplaint";
+    }
+
+    //update
+
+    @PostMapping("/update-complaint")
+    public String updateComplaint(@ModelAttribute("raiseComplaintDto") RaiseComplaintDto raiseComplaintDto, Model model) {
+        System.out.println("RaiseComplaintDTO"+raiseComplaintDto);
+        List<RaiseComplaintDto> isUpdated = raiseComplaintService.updateRaiseComplaintUserDetails(raiseComplaintDto);
+        if (isUpdated!=null) {
+            model.addAttribute("updateMsg", "Complaint updated successfully!");
+            model.addAttribute("viewRaiseComplaints", isUpdated);
+            return "ProfileUpload";
+        } else {
+            model.addAttribute("updateErrorMsg", "Failed to update complaint. Please try again.");
+        }
         return "EditRaiseComplaint";
     }
 

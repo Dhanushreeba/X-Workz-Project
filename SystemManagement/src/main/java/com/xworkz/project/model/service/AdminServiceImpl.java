@@ -1,6 +1,7 @@
 package com.xworkz.project.model.service;
 
 import com.xworkz.project.dto.AdminDto;
+import com.xworkz.project.dto.RaiseComplaintDto;
 import com.xworkz.project.dto.SignUpDto;
 import com.xworkz.project.model.repo.AdminRepo;
 import com.xworkz.project.util.PasswordGenerator;
@@ -46,6 +47,22 @@ public class AdminServiceImpl implements AdminService{
         else
         {
             System.out.println("findById data not successful in AdminServiceImpl..");
+        }
+        return Collections.emptyList();
+    }
+
+    @Override
+    public List<RaiseComplaintDto> getById(RaiseComplaintDto raiseComplaintDto) {
+        System.out.println("getById method in AdminServiceImpl..");
+        List<RaiseComplaintDto> raiseComplaintDtoData=  adminRepo.getById(raiseComplaintDto);
+        if(raiseComplaintDtoData!=null)
+        {
+            System.out.println("getById data successful in AdminServiceImpl..");
+            return raiseComplaintDtoData;
+        }
+        else
+        {
+            System.out.println("getById data not successful in AdminServiceImpl..");
         }
         return Collections.emptyList();
     }

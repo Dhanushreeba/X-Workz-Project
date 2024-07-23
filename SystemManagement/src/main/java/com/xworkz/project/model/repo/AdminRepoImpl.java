@@ -22,7 +22,7 @@ public class AdminRepoImpl implements AdminRepo{
         System.out.println("constr for AdminRepoImpl class");
     }
 
-
+//Login page
     @Override
     public AdminDto findByEmailAndPassword(String email, String password) {
         System.out.println("findByEmailAndPassword  method in AdminRepo");
@@ -59,6 +59,7 @@ public class AdminRepoImpl implements AdminRepo{
         return null;
     }
 
+    //Admin can view all user data
     @Override
     public List<SignUpDto> findById(SignUpDto dto) {
         System.out.println("findById method in AdminRepoImpl...");
@@ -86,33 +87,34 @@ public class AdminRepoImpl implements AdminRepo{
 
         return Collections.emptyList();
     }
-//
-//    @Override
-//    public List<RaiseComplaintDto> getByComplaintId(RaiseComplaintDto raiseComplaintDto) {
-//        System.out.println("getByComplaintId method in AdminRepoImpl...");
-//        EntityManager entityManager = entityManagerFactory.createEntityManager();
-//
-//        try {
-//            String query = "SELECT r FROM  RaiseComplaintDto r";
-//            Query query1 = entityManager.createQuery(query);
-//            List<RaiseComplaintDto> datas = query1.getResultList();
-//            System.out.println("Data:"+datas);
-//
-//            return datas;
-//        }
-//
-//        catch (Exception e)
-//        {
-//            e.printStackTrace();
-//        }
-//
-//        finally
-//        {
-//            entityManager.close();
-//            System.out.println("Connection closed");
-//        }
-//
-//        return Collections.emptyList();
-//    }
+
+    //Admin to view raised complaint
+    @Override
+    public List<RaiseComplaintDto> getById(RaiseComplaintDto raiseComplaintDto) {
+        System.out.println("getByComplaintId method in AdminRepoImpl...");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            String query = "SELECT r FROM  RaiseComplaintDto r";
+            Query query1 = entityManager.createQuery(query);
+            List<RaiseComplaintDto> datas = query1.getResultList();
+            System.out.println("Data:"+datas);
+
+            return datas;
+        }
+
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        finally
+        {
+            entityManager.close();
+            System.out.println("Connection closed");
+        }
+
+        return Collections.emptyList();
+    }
 
 }

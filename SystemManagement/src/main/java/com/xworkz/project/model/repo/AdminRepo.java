@@ -9,12 +9,16 @@ import java.util.Optional;
 
 public interface AdminRepo {
 
+    //Login page
     AdminDto findByEmailAndPassword(String email, String password);
 
     //Admin can view all user data
     List<SignUpDto> findById(SignUpDto dto);
 
-  //   List<RaiseComplaintDto> getByComplaintId(RaiseComplaintDto raiseComplaintDto) ;
+    //Admin to view raised complaint
+     List<RaiseComplaintDto> getById(RaiseComplaintDto raiseComplaintDto) ;
+
+
 
 }
 

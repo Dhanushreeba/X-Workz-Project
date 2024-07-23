@@ -2,6 +2,7 @@ package com.xworkz.project.controller;
 
 
 import com.xworkz.project.dto.AdminDto;
+import com.xworkz.project.dto.RaiseComplaintDto;
 import com.xworkz.project.dto.SignUpDto;
 import com.xworkz.project.model.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +65,26 @@ public class AdminController {
             System.out.println("view-user-details not  successful in AdminController..");
         }
         return "AdminViewUserDetails";
+    }
+
+    @GetMapping("view-user-raise-complaint")
+    public String viewUserRaiseDetails(RaiseComplaintDto raiseComplaintDto, Model model) {
+        System.out.println("viewUserRaiseDetails method in AdminController..");
+        List<RaiseComplaintDto> raiseComplaintDtoData = adminService.getById(raiseComplaintDto);
+        model.addAttribute("viewRaiseComplaint",raiseComplaintDtoData);
+
+        if (raiseComplaintDtoData != null) {
+            System.out.println("view-user-raise-details successful in AdminController..");
+            model.addAttribute("viewUserRaiseDetails",raiseComplaintDtoData);
+            return "AdminViewRaiseComplaintDetails";
+
+
+        }
+        else
+        {
+            System.out.println("view-user-raise-details not  successful in AdminController..");
+        }
+        return "AdminViewRaiseComplaintDetails";
     }
 
     @GetMapping("/AdminPage")

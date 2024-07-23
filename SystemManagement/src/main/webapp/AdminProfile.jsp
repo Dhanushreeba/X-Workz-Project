@@ -24,7 +24,7 @@
 
                 </div>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                    <li> <a class="dropdown-item" href="view-raiseComplaint?id=${userData.id}"><strong>ViewRaiseComplaint</strong></a></li>
+                    <li> <a class="dropdown-item" href="view-user-raise-complaint"><strong>ViewRaiseComplaint</strong></a></li>
                      <li> <a class="dropdown-item" href="view-user-details"><strong>ViewUserDetail</strong></a></li>
 
                 </ul>

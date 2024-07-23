@@ -25,6 +25,7 @@
 
                 <a class="navbar-brand  text-dark" href="SignUpPage"><b>SignUp</b></a>
                 <a class="navbar-brand  text-dark" href="SignInPage"><b>SignIn</b></a>
+                <a class="navbar-brand  text-dark" href="AdminPage"><b>Admin</b></a>
 
 
 

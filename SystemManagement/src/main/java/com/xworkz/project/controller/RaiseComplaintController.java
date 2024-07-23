@@ -47,7 +47,6 @@ public class RaiseComplaintController {
         System.out.println("raiseComplaint method running in RaiseComplaintController..");
 
 
-
 //        log.info("RaiseComplaintsDTO: {}", raiseComplaintDTO);
         System.out.println("RaiseComplaintController: " +raiseComplaintDto);
       HttpSession   session=request.getSession();

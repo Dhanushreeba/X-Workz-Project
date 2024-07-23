@@ -63,7 +63,8 @@ public class EditController {
 
     //Edit
     @PostMapping("/edit-profile") // In this image also uploading
-    public String updateUserProfile(@RequestParam("file") MultipartFile file, SignUpDto dto, Model model, HttpSession session) {
+    public String updateUserProfile(@RequestParam("file") MultipartFile file, SignUpDto dto, Model model,
+                                    HttpSession session) {
 
         SignUpDto signUpDto = (SignUpDto) model.getAttribute("userData");
         System.out.println(" image upload user data "+signUpDto);

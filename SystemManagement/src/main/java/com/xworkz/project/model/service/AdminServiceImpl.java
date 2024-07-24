@@ -66,4 +66,63 @@ public class AdminServiceImpl implements AdminService{
         }
         return Collections.emptyList();
     }
+
+    //searchByType search operation
+    @Override
+    public List<RaiseComplaintDto> searchByType(String complaintType) {
+        System.out.println("Running searchByType");
+        List<RaiseComplaintDto> list = this.adminRepo.searchByType(complaintType);
+        if (!list.isEmpty()) {
+            System.out.println("Search result for complaint type: " + complaintType);
+            return list;
+        } else {
+            System.out.println("No complaints found for complaint type: " + complaintType);
+        }
+        return Collections.emptyList();
+    }
+
+    //search by city
+    @Override
+    public List<RaiseComplaintDto> searchByCity(String city) {
+        System.out.println("Running searchByCity");
+        List<RaiseComplaintDto> list = this.adminRepo.searchByCity(city);
+        if (!list.isEmpty()) {
+            System.out.println("Search result for city: " + city);
+            return list;
+        } else {
+            System.out.println("No complaints found for city: " + city);
+        }
+        return Collections.emptyList();
+    }
+
+    //search by type and city
+    @Override
+    public List<RaiseComplaintDto> searchByTypeAndCity(String complaintType, String city) {
+        System.out.println("Running searchByType");
+        List<RaiseComplaintDto> list = this.adminRepo.searchByType(complaintType);
+        if (!list.isEmpty()) {
+            System.out.println("Search result for complaint type: " + complaintType);
+            return list;
+        } else {
+            System.out.println("No complaints found for complaint type: " + complaintType);
+        }
+        return Collections.emptyList();
+    }
+
 }
+
+//    @Override
+//    public List<RaiseComplaintDto> searchByCity(RaiseComplaintDto raiseComplaintDto) {
+//        System.out.println("Running searchByCity method in AdminServiceImpl");
+//        List<RaiseComplaintDto> list=this.adminRepo.searchByCity(raiseComplaintDto);
+//        if(!list.isEmpty())
+//        {
+//            System.out.println("searched resulted  in dtos"+raiseComplaintDto);
+//            return  list;
+//        }
+//        else {
+//            System.out.println(" searched resulted in empty list in service"+raiseComplaintDto);
+//        }
+//
+//        return Collections.emptyList();
+//    }

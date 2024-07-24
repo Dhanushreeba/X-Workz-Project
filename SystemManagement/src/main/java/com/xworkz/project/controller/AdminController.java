@@ -8,11 +8,13 @@ import com.xworkz.project.model.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -87,6 +89,29 @@ public class AdminController {
         return "AdminViewRaiseComplaintDetails";
     }
 
+
+    @PostMapping("searchBy")
+    public String searchComplaintByTypeAndCity(@Validated RaiseComplaintDto raiseComplaintDto, Model model) {
+        System.out.println("Search method is running in controller");
+
+        List<RaiseComplaintDto> list = adminService.searchByTypeAndCity(
+                raiseComplaintDto.getComplaintType(), raiseComplaintDto.getCity());
+
+        if (!list.isEmpty()) {
+            System.out.println("Search in controller success: " + raiseComplaintDto);
+            model.addAttribute("message", raiseComplaintDto.getComplaintType());
+            model.addAttribute("complaintList", list);
+            return  "ComplaintSearchByAdmin";
+        } else {
+            System.out.println("Search in controller is not successful: " + raiseComplaintDto);
+        }
+
+
+
+        return "ComplaintSearchByAdmin";
+    }
+
+
     @GetMapping("/AdminPage")
     public String AdminPage(){
         return "Admin";
@@ -97,4 +122,28 @@ public class AdminController {
         return "AdminProfile";
     }
 
+    @GetMapping("/ComplaintSearchByAdminPage")
+    public String ComplaintSearchByAdminPage(){
+        return "ComplaintSearchByAdmin";
+    }
+
 }
+
+//@GetMapping("/city-search")
+//public String search(@Valid RaiseComplaintDto raiseComplaintDto, Model model)
+//{
+//    System.out.println("search method is running in searchController");
+//    List<RaiseComplaintDto> list=adminService.searchByCity(raiseComplaintDto);
+//    if(!list.isEmpty())
+//    {
+//        System.out.println("search in controller success"+raiseComplaintDto);
+//    }
+//    else {
+//        System.out.println("search in controller not success"+raiseComplaintDto);
+//        return "AdminSearchByCity";
+//
+//    }
+//    model.addAttribute("complaint",raiseComplaintDto.getCity());
+//    model.addAttribute("listOfComplaint",list);
+//    return "AdminSearchByCity";
+//}

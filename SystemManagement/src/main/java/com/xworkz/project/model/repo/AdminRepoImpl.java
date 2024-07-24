@@ -117,4 +117,80 @@ public class AdminRepoImpl implements AdminRepo{
         return Collections.emptyList();
     }
 
+    @Override
+    public List<RaiseComplaintDto> searchByCity(String city) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try {
+            Query query = entityManager.createQuery("SELECT c FROM RaiseComplaintDto c WHERE c.city = :city");
+            query.setParameter("city", city);
+            return query.getResultList();
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    @Override
+    public List<RaiseComplaintDto> searchByTypeAndCity(String complaintType, String city) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try {
+            String queryString = "SELECT c FROM RaiseComplaintDto c WHERE 1=1";
+            if (complaintType != null && !complaintType.isEmpty()) {
+                queryString += " AND c.complaintType = :complaintType";
+            }
+            if (city != null && !city.isEmpty()) {
+                queryString += " AND c.city = :city";
+            }
+            Query query = entityManager.createQuery(queryString);
+            if (complaintType != null && !complaintType.isEmpty()) {
+                query.setParameter("complaintType", complaintType);
+            }
+            if (city != null && !city.isEmpty()) {
+                query.setParameter("city", city);
+            }
+            return query.getResultList();
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    @Override
+    public List<RaiseComplaintDto> searchByType(String complaintType) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try {
+            Query query = entityManager.createQuery("SELECT c FROM RaiseComplaintDto c WHERE c.complaintType = :complaintType");
+            query.setParameter("complaintType", complaintType);
+            return query.getResultList();
+        } finally {
+            entityManager.close();
+        }
+    }
+
 }
+
+//search operation to search by city
+//    @Override
+//    public List<RaiseComplaintDto> searchByCity(RaiseComplaintDto raiseComplaintDto) {
+//        System.out.println("Running searchByCity method in AdminRepoImpl ");
+//        EntityManager entityManager = this.entityManagerFactory.createEntityManager();
+//        EntityTransaction entityTransaction = entityManager.getTransaction();
+//        entityTransaction.begin();
+//
+//
+//        try {
+//            String query = "select r from RaiseComplaintDto r where r.city=:city";
+//            Query query1 = entityManager.createQuery(query);
+//            query1.setParameter("city", raiseComplaintDto.getCity());
+//            List<RaiseComplaintDto> resultList = query1.getResultList();
+//
+//            entityTransaction.commit();
+//            return resultList;
+//
+//        } catch (PersistenceException persistenceException) {
+//            persistenceException.printStackTrace();
+//            entityTransaction.rollback();
+//        } finally {
+//            entityManager.close();
+//        }
+//
+//        return Collections.emptyList();
+//    }

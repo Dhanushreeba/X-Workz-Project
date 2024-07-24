@@ -117,6 +117,7 @@ public class AdminRepoImpl implements AdminRepo{
         return Collections.emptyList();
     }
 
+    //Search by city
     @Override
     public List<RaiseComplaintDto> searchByCity(String city) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -129,6 +130,7 @@ public class AdminRepoImpl implements AdminRepo{
         }
     }
 
+    //search by type and city
     @Override
     public List<RaiseComplaintDto> searchByTypeAndCity(String complaintType, String city) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();

@@ -12,7 +12,7 @@
 <nav class="navbar navbar-dark bg-info">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="#">
                 <img src="https://x-workz.in/static/media/Logo.cf195593dc1b3f921369.png" alt="xworkz" width="140" height="70">
             </a>
             <a class="navbar-brand text-dark" href="HomePage"><b>Home</b></a>
@@ -64,11 +64,12 @@
 
                 <div class="form-group">
                     <label for="city">City:</label>
-                    <input type="text" class="form-control" id="city" name="city" value="${raiseComplaintDto.city}">
+                    <input type="text" class="form-control" id="city" name="city">
                     <span class="error" id="cityError"></span>
                 </div>
 
-                <button type="submit" class="btn btn-dark">Search</button>
+                <button type="submit" class="btn btn-info">Search</button>
+
             </form>
         </div>
     </div>

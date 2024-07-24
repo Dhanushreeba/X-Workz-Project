@@ -98,8 +98,8 @@ public class AdminServiceImpl implements AdminService{
     //search by type and city
     @Override
     public List<RaiseComplaintDto> searchByTypeAndCity(String complaintType, String city) {
-        System.out.println("Running searchByType");
-        List<RaiseComplaintDto> list = this.adminRepo.searchByType(complaintType);
+        System.out.println("Running search By Type and city");
+        List<RaiseComplaintDto> list = this.adminRepo.searchByTypeAndCity(complaintType,city);
         if (!list.isEmpty()) {
             System.out.println("Search result for complaint type: " + complaintType);
             return list;

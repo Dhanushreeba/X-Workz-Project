@@ -93,22 +93,34 @@ public class AdminController {
     @PostMapping("searchBy")
     public String searchComplaintByTypeAndCity(@Validated RaiseComplaintDto raiseComplaintDto, Model model) {
         System.out.println("Search method is running in controller");
+        System.out.println(raiseComplaintDto.getComplaintType()+"****8****"+raiseComplaintDto.getCity());
+if( raiseComplaintDto.getCity()!=null &&  raiseComplaintDto.getComplaintType().isEmpty()){
+    List<RaiseComplaintDto> list = adminService.searchByCity(raiseComplaintDto.getCity());
+    model.addAttribute("complaintList", list);
+    return  "ComplaintSearchByAdmin";
 
-        List<RaiseComplaintDto> list = adminService.searchByTypeAndCity(
-                raiseComplaintDto.getComplaintType(), raiseComplaintDto.getCity());
+} else if (raiseComplaintDto.getComplaintType()!=null && raiseComplaintDto.getCity().isEmpty()
+) {
+    List<RaiseComplaintDto> list = adminService.searchByType(raiseComplaintDto.getComplaintType());
+    model.addAttribute("complaintList", list);
+    return  "ComplaintSearchByAdmin";
+} else {
 
-        if (!list.isEmpty()) {
-            System.out.println("Search in controller success: " + raiseComplaintDto);
-            model.addAttribute("message", raiseComplaintDto.getComplaintType());
-            model.addAttribute("complaintList", list);
-            return  "ComplaintSearchByAdmin";
-        } else {
-            System.out.println("Search in controller is not successful: " + raiseComplaintDto);
-        }
+    List<RaiseComplaintDto> list = adminService.searchByTypeAndCity(
+            raiseComplaintDto.getComplaintType(), raiseComplaintDto.getCity());
 
-
-
+    if (!list.isEmpty()) {
+        System.out.println("Search in controller success: " + raiseComplaintDto);
+        model.addAttribute("message", raiseComplaintDto.getComplaintType());
+        model.addAttribute("complaintList", list);
         return "ComplaintSearchByAdmin";
+    } else {
+        System.out.println("Search in controller is not successful: " + raiseComplaintDto);
+    }
+
+
+    return "ComplaintSearchByAdmin";
+}
     }
 
 

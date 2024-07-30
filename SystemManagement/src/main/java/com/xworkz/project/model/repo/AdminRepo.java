@@ -18,14 +18,27 @@ public interface AdminRepo {
     //Admin to view raised complaint
      List<RaiseComplaintDto> getById(RaiseComplaintDto raiseComplaintDto) ;
 
-     //search by city
-     List<RaiseComplaintDto> searchByCity(String city);
+//     //search by city
+//     List<RaiseComplaintDto> searchByCity(String city);
+//
+//    //Search by Type
+//    List<RaiseComplaintDto> searchByType(String complaintType);
+//
+////     //Search by TypeAndCity
+//    List<RaiseComplaintDto> searchByTypeAndCity(String complaintType, String city);
+//
+//    //search by complaintType and city
+//    List<RaiseComplaintDto> searchByComplaintTypeOrCity(String complaintType, String city);
 
-     //Search by TypeAndCity
-    List<RaiseComplaintDto> searchByTypeAndCity(String complaintType, String city);
 
-    //Search by Type
-    List<RaiseComplaintDto> searchByType(String complaintType);
+    //search by complaint type
+
+    List<RaiseComplaintDto> searchByComplaintTypeAndCity(String complaintType, String city);
+
+
+    //search by complaintType and city
+
+    List<RaiseComplaintDto> searchByComplaintTypeOrCity(String complaintType, String city);
 
 }
 

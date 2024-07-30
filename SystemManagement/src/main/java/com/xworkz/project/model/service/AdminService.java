@@ -17,14 +17,23 @@ public interface AdminService {
     //admin to view all complaits raised
     List<RaiseComplaintDto> getById(RaiseComplaintDto raiseComplaintDto);
 
-    //search operation to search by Type
-    List<RaiseComplaintDto> searchByType(String complaintType);
 
-    //search operation to search by City
-    List<RaiseComplaintDto> searchByCity(String city);
+//    //search operation to search by City
+//    List<RaiseComplaintDto> searchByCity(String city);
+//
+//    //search operation to search by Type
+//    List<RaiseComplaintDto> searchByType(String complaintType);
+//
+//    //search operation to search by TypeAndCity
+//    List<RaiseComplaintDto> searchByTypeAndCity(String complaintType, String city);
 
-    //search operation to search by TypeAndCity
-    List<RaiseComplaintDto> searchByTypeAndCity(String complaintType, String city);
+    //admin search by based on complaint type And city
 
+    List<RaiseComplaintDto> searchByComplaintTypeAndCity(String complaintType, String city);
+
+
+    //admin search by complaint type or city
+
+    List<RaiseComplaintDto> searchByComplaintTypeOrCity(String complaintType, String city);
 
 }

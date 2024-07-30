@@ -90,37 +90,43 @@ public class AdminController {
     }
 
 
+
     @PostMapping("searchBy")
     public String searchComplaintByTypeAndCity(@Validated RaiseComplaintDto raiseComplaintDto, Model model) {
-        System.out.println("Search method is running in controller");
-        System.out.println(raiseComplaintDto.getComplaintType()+"****8****"+raiseComplaintDto.getCity());
-if( raiseComplaintDto.getCity()!=null &&  raiseComplaintDto.getComplaintType().isEmpty()){
-    List<RaiseComplaintDto> list = adminService.searchByCity(raiseComplaintDto.getCity());
-    model.addAttribute("complaintList", list);
-    return  "ComplaintSearchByAdmin";
-
-} else if (raiseComplaintDto.getComplaintType()!=null && raiseComplaintDto.getCity().isEmpty()
-) {
-    List<RaiseComplaintDto> list = adminService.searchByType(raiseComplaintDto.getComplaintType());
-    model.addAttribute("complaintList", list);
-    return  "ComplaintSearchByAdmin";
-} else {
-
-    List<RaiseComplaintDto> list = adminService.searchByTypeAndCity(
-            raiseComplaintDto.getComplaintType(), raiseComplaintDto.getCity());
-
-    if (!list.isEmpty()) {
-        System.out.println("Search in controller success: " + raiseComplaintDto);
-        model.addAttribute("message", raiseComplaintDto.getComplaintType());
-        model.addAttribute("complaintList", list);
-        return "ComplaintSearchByAdmin";
-    } else {
-        System.out.println("Search in controller is not successful: " + raiseComplaintDto);
-    }
+        System.out.println("searchByComplaintType method running in AdminController..!!"+"***************__________"+raiseComplaintDto);
 
 
-    return "ComplaintSearchByAdmin";
-}
+        if(!raiseComplaintDto.getComplaintType().isEmpty() && !raiseComplaintDto.getCity().isEmpty()) {
+            List<RaiseComplaintDto> listOfTypeAndCity = adminService.searchByComplaintTypeAndCity(raiseComplaintDto.getComplaintType(), raiseComplaintDto.getCity());
+                // System.out.println("searchByComplaintTypeAndCity successful in AdminController");
+                model.addAttribute("raiseComplaint", listOfTypeAndCity);
+                return "ComplaintSearchByAdmin";
+            }
+
+        if (!raiseComplaintDto.getComplaintType().isEmpty() && raiseComplaintDto.getCity().isEmpty()) {
+            List<RaiseComplaintDto> listOfTypeOrCity = adminService.searchByComplaintTypeOrCity(raiseComplaintDto.getComplaintType(), raiseComplaintDto.getCity());
+            System.out.println("***********" + listOfTypeOrCity);
+                //   System.out.println("searchByComplaintTypeOrCity ");
+                model.addAttribute("raiseComplaint", listOfTypeOrCity);
+                return "ComplaintSearchByAdmin";
+
+
+        }
+
+        if (!raiseComplaintDto.getCity().isEmpty() && raiseComplaintDto.getComplaintType().isEmpty()) {
+
+            List<RaiseComplaintDto> listOfTypeOrCity = adminService.searchByComplaintTypeOrCity(raiseComplaintDto.getComplaintType(), raiseComplaintDto.getCity());
+            System.out.println("***********" + listOfTypeOrCity);
+
+                model.addAttribute("raiseComplaint", listOfTypeOrCity);
+                return "ComplaintSearchByAdmin";
+
+        }else{
+            model.addAttribute("msg", "no resultfound");
+            return "ComplaintSearchByAdmin";
+        }
+
+
     }
 
 
@@ -140,22 +146,3 @@ if( raiseComplaintDto.getCity()!=null &&  raiseComplaintDto.getComplaintType().i
     }
 
 }
-
-//@GetMapping("/city-search")
-//public String search(@Valid RaiseComplaintDto raiseComplaintDto, Model model)
-//{
-//    System.out.println("search method is running in searchController");
-//    List<RaiseComplaintDto> list=adminService.searchByCity(raiseComplaintDto);
-//    if(!list.isEmpty())
-//    {
-//        System.out.println("search in controller success"+raiseComplaintDto);
-//    }
-//    else {
-//        System.out.println("search in controller not success"+raiseComplaintDto);
-//        return "AdminSearchByCity";
-//
-//    }
-//    model.addAttribute("complaint",raiseComplaintDto.getCity());
-//    model.addAttribute("listOfComplaint",list);
-//    return "AdminSearchByCity";
-//}

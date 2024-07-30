@@ -6,6 +6,9 @@
     <meta charset="UTF-8">
     <title>System Raise Complaint Form</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -52,7 +55,7 @@
                                     <span id="complaintTypeError"></span>
                                     <label for="complaintType" class="form-label"><b>Complaint Type:</b></label>
                                     <select class="form-select custom-select-width" id="complaintType" name="complaintType">
-                                        <option value="0" >Select</option>
+                                        <option value="" >Select</option>
                                         <option value="Electric issue">Electric issue</option>
                                         <option value="Water Supply">Water Supply</option>
                                         <option value="Network Problem">Network Problem</option>
@@ -79,6 +82,7 @@
         <div class="card-body">
             <c:if test="${!empty message}">
                 <strong style="color:green;">Search result for: ${message}</strong>
+                <strong style="color:red;">${msg}</strong>
             </c:if>
             <table class="table">
                 <thead>
@@ -94,7 +98,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${complaintList}" var="raiseComplaint">
+                <c:forEach items="${raiseComplaint}" var="raiseComplaint">
                     <tr>
                         <td>${raiseComplaint.complaintId}</td>
                         <td>${raiseComplaint.complaintType}</td>

@@ -1,6 +1,7 @@
 package com.xworkz.project.model.repo;
 
 import com.xworkz.project.dto.AdminDto;
+import com.xworkz.project.dto.DepartmentDto;
 import com.xworkz.project.dto.RaiseComplaintDto;
 import com.xworkz.project.dto.SignUpDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -117,87 +118,6 @@ public class AdminRepoImpl implements AdminRepo{
         return Collections.emptyList();
     }
 
-//    //Search by city
-//    @Override
-//    public List<RaiseComplaintDto> searchByCity(String city) {
-//        EntityManager entityManager = entityManagerFactory.createEntityManager();
-//        try {
-//            Query query = entityManager.createQuery("SELECT c FROM RaiseComplaintDto c WHERE c.city = :city");
-//            query.setParameter("city", city);
-//            return query.getResultList();
-//        } finally {
-//            entityManager.close();
-//        }
-//    }
-//
-//    //Search by type
-//    @Override
-//    public List<RaiseComplaintDto> searchByType(String complaintType) {
-//        EntityManager entityManager = entityManagerFactory.createEntityManager();
-//        try {
-//            Query query = entityManager.createQuery("SELECT c FROM RaiseComplaintDto c WHERE c.complaintType = :complaintType");
-//            query.setParameter("complaintType", complaintType);
-//            return query.getResultList();
-//        } finally {
-//            entityManager.close();
-//        }
-//    }
-//
-//    //search by type and city
-//    @Override
-//    public List<RaiseComplaintDto> searchByTypeAndCity(String complaintType, String city) {
-//        EntityManager entityManager = entityManagerFactory.createEntityManager();
-//        try {
-//            String queryString = "SELECT c FROM RaiseComplaintDto c WHERE 1=1";
-//            if (complaintType != null && !complaintType.isEmpty()) {
-//                queryString += " AND c.complaintType = :complaintType";
-//            }
-//            if (city != null && !city.isEmpty()) {
-//                queryString += " AND c.city = :city";
-//            }
-//            Query query = entityManager.createQuery(queryString);
-//            if (complaintType != null && !complaintType.isEmpty()) {
-//                query.setParameter("complaintType", complaintType);
-//            }
-//            if (city != null && !city.isEmpty()) {
-//                query.setParameter("city", city);
-//            }
-//            return query.getResultList();
-//        } finally {
-//            entityManager.close();
-//        }
-//    }
-//
-//    @Override
-//    public List<RaiseComplaintDto> searchByComplaintTypeOrCity(String complaintType, String city) {
-//        System.out.println("searchByComplaintTypeAndCity method running in AdminRepoImpl");
-//
-//        EntityManager entityManager = entityManagerFactory.createEntityManager();
-//        EntityTransaction entityTransaction = entityManager.getTransaction();
-//        entityTransaction.begin();
-//
-//        try {
-//            String query = "SELECT ct FROM RaiseComplaintDto ct WHERE  ct.city =:City OR ct.complaintType =:ComplaintType ";
-//            Query query1 = entityManager.createQuery(query);
-//            query1.setParameter("ComplaintType", complaintType);
-//            query1.setParameter("City", city);
-//            List<RaiseComplaintDto> list = query1.getResultList();
-//            System.out.println("ListOfTypeOrCity: " + list);
-//            entityTransaction.commit();
-//
-//
-//            return list;
-//        } catch (PersistenceException persistenceException) {
-//            persistenceException.printStackTrace();
-//            entityTransaction.rollback();
-//        } finally {
-//            entityManager.close();
-//            System.out.println("Connection closed");
-//        }
-//        return Collections.emptyList();
-//    }
-
-
     //admin can view TypeAndCity
     @Override
     public List<RaiseComplaintDto> searchByComplaintTypeAndCity(String complaintType, String city) {
@@ -257,6 +177,80 @@ public class AdminRepoImpl implements AdminRepo{
             System.out.println("Connection closed");
         }
         return Collections.emptyList();
+    }
+
+    @Override
+    public DepartmentDto saveDepartment(DepartmentDto departmentDto) {
+        System.out.println("saveDepartment method in AdminRepoImpl for departmentDto");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+
+        try {
+            entityTransaction.begin();
+            entityManager.persist(departmentDto);
+            entityTransaction.commit();
+        } catch (PersistenceException persistenceException) {
+            persistenceException.printStackTrace();
+            entityTransaction.rollback();
+            return departmentDto;
+        } finally {
+            entityManager.close();
+        }
+        return departmentDto;
+    }
+
+    //find all department in viewRaisecomplaint details where admin view details dropdown
+    @Override
+    public List<DepartmentDto> findAll(String departmentType) {
+        System.out.println("findAll  method  is running in AdminRepoImpl..");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+
+        try {
+            String query = "select d from DepartmentDto d";
+
+            Query query1 = entityManager.createQuery(query);
+            List<DepartmentDto> data = query1.getResultList();
+            System.out.println("DepartmentName : " + data);
+
+            return data;
+
+        } catch (PersistenceException persistenceException) {
+            persistenceException.printStackTrace();
+        } finally {
+            entityManager.close();
+            System.out.println("Connection closed");
+        }
+        return null;
+    }
+
+    //update status and department id
+    @Override
+    public void updateStatusAndDepartmentId(int complaintId, int departmentId, String status) {
+        System.out.println("updateStatusAndDepartmentId method is running in in AdminRepoImpl.. RaiseComplaintRepoImpl..");
+
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+
+        try {
+            transaction.begin();
+            String updateQuery = "UPDATE RaiseComplaintDto r SET r.departmentDto.id = :departmentId, r.status = :status WHERE r.complaintId = :complaintId";
+            Query query = entityManager.createQuery(updateQuery);
+            query.setParameter("departmentId", departmentId);
+            query.setParameter("status", status);
+            query.setParameter("complaintId", complaintId);
+
+            int data = query.executeUpdate();
+            System.out.println("data :" + data);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
     }
 
 }

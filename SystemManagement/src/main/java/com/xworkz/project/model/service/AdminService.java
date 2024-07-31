@@ -1,6 +1,7 @@
 package com.xworkz.project.model.service;
 
 import com.xworkz.project.dto.AdminDto;
+import com.xworkz.project.dto.DepartmentDto;
 import com.xworkz.project.dto.RaiseComplaintDto;
 import com.xworkz.project.dto.SignUpDto;
 
@@ -18,15 +19,6 @@ public interface AdminService {
     List<RaiseComplaintDto> getById(RaiseComplaintDto raiseComplaintDto);
 
 
-//    //search operation to search by City
-//    List<RaiseComplaintDto> searchByCity(String city);
-//
-//    //search operation to search by Type
-//    List<RaiseComplaintDto> searchByType(String complaintType);
-//
-//    //search operation to search by TypeAndCity
-//    List<RaiseComplaintDto> searchByTypeAndCity(String complaintType, String city);
-
     //admin search by based on complaint type And city
 
     List<RaiseComplaintDto> searchByComplaintTypeAndCity(String complaintType, String city);
@@ -35,5 +27,14 @@ public interface AdminService {
     //admin search by complaint type or city
 
     List<RaiseComplaintDto> searchByComplaintTypeOrCity(String complaintType, String city);
+
+    //to save department details
+    DepartmentDto saveDepartment(DepartmentDto departmentDto);
+
+    //find all Departments in dropdown where admin view details
+    List<DepartmentDto> findAll(String departmentType) ;
+
+    //update status and department id
+    void updateStatusAndDepartmentId(int complaintId, int departmentId, String status);
 
 }

@@ -23,6 +23,15 @@
         .dropdown-toggle-custom:hover {
             background-color: #495057; /* Darker grey for hover */
         }
+
+
+             .status-select {
+            width: 180px; /* Adjust as needed for desired width */
+        }
+
+        .card-size {
+            width: 1400px; /* Adjust as needed for desired width */
+        }
     </style>
 
 </head>
@@ -50,8 +59,36 @@
 </nav>
 
 <div class="container mt-5 mb-5">
-    <div class="card">
+    <div class="card card-size">
         <div class="card-header">
+        <form action="searchBy" method="post" >
+        <div class="row mb-3">
+                                            <span id="complaintTypeError"></span>
+                                            <label for="complaintType" class="form-label"><b>Complaint Type:</b></label>
+                                            <select class="form-select custom-select-width" id="complaintType" name="complaintType">
+                                                <option value="" >Select</option>
+                                                <option value="Electric issue">Electric issue</option>
+                                                <option value="Water Supply">Water Supply</option>
+                                                <option value="Network Problem">Network Problem</option>
+                                                <option value="System Problem">System Problem</option>
+                                                <option value="Water Problem">Water Problem</option>
+                                            </select>
+                                        </div>
+
+
+                        <div class="form-group">
+                            <label for="city">City:</label>
+                            <input type="text" class="form-control" id="city" name="city">
+                            <span class="error" id="cityError"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-info">Search</button>
+
+                    </form>
+
+
+
+
             <h3><b>View User Complaint Details </b></h3>
         </div>
         <div class="card-body">
@@ -67,8 +104,8 @@
                     <th>Area</th>
                     <th>Address</th>
                     <th>Discription</th>
-
-
+                    <th>Allocate Department</th>
+                    <th>Status</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -83,6 +120,35 @@
                         <td>${viewRaiseComplaintUsers.area}</td>
                         <td>${viewRaiseComplaintUsers.address}</td>
                         <td>${viewRaiseComplaintUsers.discription}</td>
+
+                  <form action="update-department" method="post">
+                <input type="hidden" name="complaintId" value="${viewRaiseComplaintUsers.complaintId}">
+
+                    <td>
+                         <select class="form-select status-select" name="departmentId">
+                         <option value="Select">Select</option>
+                         <c:forEach var="department" items="${departments}">
+
+    <option value="${department.id}" ${viewRaiseComplaintUsers.departmentDto != null && viewRaiseComplaintUsers.departmentDto.id == department.id ? 'selected' : ''}>${department.departmentType}</option>
+
+                                        </c:forEach>
+                                    </select>
+                                </td>
+
+         <td>
+             <select class="form-select status-select" name="status">
+          <option value="Select">Select</option>
+   <option value="Pending" ${viewRaiseComplaintUsers.status == 'Pending' ? 'selected' : ''}>Pending</option>
+ <option value="In Process" ${viewRaiseComplaintUsers.status == 'In Process' ? 'selected' : ''}>In Process</option>
+   <option value="Completed" ${viewRaiseComplaintUsers.status == 'Completed' ? 'selected' : ''}>Completed</option>
+  </select>
+</td>
+
+<td>
+ <button type="submit" class="btn btn-primary">Submit</button>
+
+ </td>
+ </form>
 
                     </tr>
                 </c:forEach>

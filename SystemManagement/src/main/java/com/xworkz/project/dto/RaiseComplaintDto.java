@@ -3,12 +3,12 @@ package com.xworkz.project.dto;
 import javax.persistence.*;
 
 @Entity
-@Table(name="complaint_raise")
+@Table(name = "complaint_raise")
 public class RaiseComplaintDto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="complaint_id")
+    @Column(name = "complaint_id")
     private Integer complaintId;
 
     @Column(name = "complaint_type")
@@ -26,6 +26,8 @@ public class RaiseComplaintDto {
 
     private String discription;
 
+    private String status;
+
     //foriegnKey
 //    @Column(name="signup_id")
 
@@ -33,6 +35,13 @@ public class RaiseComplaintDto {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "signup_id", referencedColumnName = "id")
     private SignUpDto dto;
+
+
+
+@ManyToOne(fetch = FetchType.LAZY)
+@JoinColumn(name = "dep_id",referencedColumnName = "dep_id")
+    private DepartmentDto departmentDto;
+
 
 
     @Override
@@ -46,6 +55,7 @@ public class RaiseComplaintDto {
                 ", area='" + area + '\'' +
                 ", address='" + address + '\'' +
                 ", discription='" + discription + '\'' +
+                ", status='" + status + '\'' +
                 ", dto=" + dto +
                 '}';
     }
@@ -114,11 +124,28 @@ public class RaiseComplaintDto {
         this.discription = discription;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public SignUpDto getDto() {
         return dto;
     }
 
     public void setDto(SignUpDto dto) {
         this.dto = dto;
+
+    }
+
+    public DepartmentDto getDepartmentDto() {
+        return departmentDto;
+    }
+
+    public void setDepartmentDto(DepartmentDto departmentDto) {
+        this.departmentDto = departmentDto;
     }
 }

@@ -1,6 +1,7 @@
 package com.xworkz.project.model.service;
 
 import com.xworkz.project.dto.AdminDto;
+import com.xworkz.project.dto.DepartmentDto;
 import com.xworkz.project.dto.RaiseComplaintDto;
 import com.xworkz.project.dto.SignUpDto;
 import com.xworkz.project.model.repo.AdminRepo;
@@ -66,34 +67,6 @@ public class AdminServiceImpl implements AdminService{
     }
 
 
-//    //searchByType search operation
-//    @Override
-//    public List<RaiseComplaintDto> searchByType(String complaintType) {
-//        System.out.println("Running search By Type in Service implementation");
-//        List<RaiseComplaintDto> list = this.adminRepo.searchByType(complaintType);
-//        if (!list.isEmpty()) {
-//            System.out.println("Search result for complaint type: " + complaintType);
-//            return list;
-//        } else {
-//            System.out.println("No complaints found for complaint type: " + complaintType);
-//        }
-//        return Collections.emptyList();
-//    }
-
-//    //search by city
-//    @Override
-//    public List<RaiseComplaintDto> searchByCity(String city) {
-//        System.out.println("Running searchByCity in Service implementation");
-//        List<RaiseComplaintDto> list = this.adminRepo.searchByCity(city);
-//        if (!list.isEmpty()) {
-//            System.out.println("Search result for city: " + city);
-//            return list;
-//        } else {
-//            System.out.println("No complaints found for city: " + city);
-//        }
-//        return Collections.emptyList();
-//    }
-
     //search by type and city
     @Override
     public List<RaiseComplaintDto> searchByComplaintTypeAndCity(String complaintType, String city) {
@@ -123,6 +96,51 @@ public class AdminServiceImpl implements AdminService{
         }
 
 
+    }
+
+    @Override
+    public DepartmentDto saveDepartment(DepartmentDto departmentDto) {
+        System.out.println("saveDepartment method running in AdminServiceImpl..");
+
+        DepartmentDto data = adminRepo.saveDepartment(departmentDto);
+
+        System.out.println("data:" + data);
+
+        if (data != null) {
+            System.out.println("saveDepartment  successful in AdminServiceImpl..");
+
+            return data;
+        } else {
+            System.out.println("saveDepartment not successful in AdminServiceImpl..");
+        }
+
+        return null;
+    }
+
+    //find all Departments in dropdown where admin view details
+    @Override
+    public List<DepartmentDto> findAll(String departmentType) {
+        System.out.println("findAll method is running in AdminServiceImpl..");
+        List<DepartmentDto> data = adminRepo.findAll(departmentType);
+        System.out.println("DepartmentName: " +data);
+
+        if (data != null) {
+            System.out.println("findAll successful in AdminServiceImpl..");
+            return data;
+        } else {
+            System.out.println("findAll  not successful in AdminServiceImpl..");
+        }
+        return null;
+
+    }
+
+    //update department id and Status
+    @Override
+    public void updateStatusAndDepartmentId(int complaintId, int departmentId, String status) {
+        //update status and department id
+
+        System.out.println("updateStatusAndDepartmentId method running in AdminRepoImpl.. RaiseComplaintService");
+        adminRepo.updateStatusAndDepartmentId(complaintId, departmentId, status);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.xworkz.project.model.repo;
 
 import com.xworkz.project.dto.AdminDto;
+import com.xworkz.project.dto.DepartmentDto;
 import com.xworkz.project.dto.RaiseComplaintDto;
 import com.xworkz.project.dto.SignUpDto;
 
@@ -18,18 +19,6 @@ public interface AdminRepo {
     //Admin to view raised complaint
      List<RaiseComplaintDto> getById(RaiseComplaintDto raiseComplaintDto) ;
 
-//     //search by city
-//     List<RaiseComplaintDto> searchByCity(String city);
-//
-//    //Search by Type
-//    List<RaiseComplaintDto> searchByType(String complaintType);
-//
-////     //Search by TypeAndCity
-//    List<RaiseComplaintDto> searchByTypeAndCity(String complaintType, String city);
-//
-//    //search by complaintType and city
-//    List<RaiseComplaintDto> searchByComplaintTypeOrCity(String complaintType, String city);
-
 
     //search by complaint type
 
@@ -39,6 +28,15 @@ public interface AdminRepo {
     //search by complaintType and city
 
     List<RaiseComplaintDto> searchByComplaintTypeOrCity(String complaintType, String city);
+
+    //to save details of department
+    DepartmentDto saveDepartment(DepartmentDto departmentDto);
+
+    //find all department
+    List<DepartmentDto> findAll(String  departmentType);
+
+    //update status and department id
+    void updateStatusAndDepartmentId(int complaintId, int departmentId, String status);
 
 }
 

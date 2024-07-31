@@ -1,4 +1,4 @@
-<%@ page isELIgnored="false" %>
+<!--<%@ page isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,8 +82,9 @@
         <div class="card-body">
             <c:if test="${!empty message}">
                 <strong style="color:green;">Search result for: ${message}</strong>
-                <strong style="color:red;">${msg}</strong>
+
             </c:if>
+            <strong style="color:red;">${msg}</strong>
             <table class="table">
                 <thead>
                 <tr>
@@ -116,4 +117,4 @@
     </div>
 </div>
 </body>
-</html>
+</html>--!>

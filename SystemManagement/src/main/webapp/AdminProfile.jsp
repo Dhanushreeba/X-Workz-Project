@@ -27,6 +27,7 @@
                     <li> <a class="dropdown-item" href="view-user-raise-complaint"><strong>ViewRaiseComplaint</strong></a></li>
                      <li> <a class="dropdown-item" href="view-user-details"><strong>ViewUserDetail</strong></a></li>
                      <li><a class="dropdown-item" href="ComplaintSearchByAdmin.jsp"><strong>Search</strong></a></li>
+                     <li><a class="dropdown-item" href="DepartmentAdding"><strong>Add Department</strong></a></li>
 
                 </ul>
             </div>

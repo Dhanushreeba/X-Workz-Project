@@ -1,9 +1,6 @@
 package com.xworkz.project.model.repo;
 
-import com.xworkz.project.dto.AdminDto;
-import com.xworkz.project.dto.DepartmentDto;
-import com.xworkz.project.dto.RaiseComplaintDto;
-import com.xworkz.project.dto.SignUpDto;
+import com.xworkz.project.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -251,6 +248,31 @@ public class AdminRepoImpl implements AdminRepo{
         } finally {
             entityManager.close();
         }
+    }
+
+    //register department admin data save
+    @Override
+    public boolean saveDepartmentAdminData(DepartmentAdminDto departmentAdminDto) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+
+
+        try {
+            entityTransaction.begin();
+            entityManager.persist(departmentAdminDto);
+            entityTransaction.commit();
+
+            return true;
+        } catch (PersistenceException persistenceException)
+        {
+            persistenceException.printStackTrace();
+        } finally
+        {
+            entityManager.close();
+            System.out.println("Connection closed");
+        }
+
+        return false;
     }
 
 }

@@ -1,9 +1,6 @@
 package com.xworkz.project.model.service;
 
-import com.xworkz.project.dto.AdminDto;
-import com.xworkz.project.dto.DepartmentDto;
-import com.xworkz.project.dto.RaiseComplaintDto;
-import com.xworkz.project.dto.SignUpDto;
+import com.xworkz.project.dto.*;
 import com.xworkz.project.model.repo.AdminRepo;
 import com.xworkz.project.util.PasswordGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -141,6 +138,27 @@ public class AdminServiceImpl implements AdminService{
 
         System.out.println("updateStatusAndDepartmentId method running in AdminRepoImpl.. RaiseComplaintService");
         adminRepo.updateStatusAndDepartmentId(complaintId, departmentId, status);
+    }
+
+    //save department admin data
+    @Override
+    public boolean saveDepartmentAdminData(DepartmentAdminDto departmentAdminDto) {
+        System.out.println("saveDepartmentAdminData method running in saveDepartmentAdminData in AdminServiceImpl..");
+
+        boolean saveData= adminRepo.saveDepartmentAdminData(departmentAdminDto);
+
+        if(saveData)
+        {
+            System.out.println("saveDepartmentAdminData saved successfully..");
+            return  true;
+        }
+
+        else
+        {
+            System.out.println("saveDepartmentAdminData not saved successfully....");
+        }
+
+        return false;
     }
 
 }

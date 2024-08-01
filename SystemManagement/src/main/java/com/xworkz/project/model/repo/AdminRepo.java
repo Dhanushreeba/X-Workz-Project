@@ -1,9 +1,6 @@
 package com.xworkz.project.model.repo;
 
-import com.xworkz.project.dto.AdminDto;
-import com.xworkz.project.dto.DepartmentDto;
-import com.xworkz.project.dto.RaiseComplaintDto;
-import com.xworkz.project.dto.SignUpDto;
+import com.xworkz.project.dto.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -38,5 +35,8 @@ public interface AdminRepo {
     //update status and department id
     void updateStatusAndDepartmentId(int complaintId, int departmentId, String status);
 
+
+    //register department admin data save
+    boolean saveDepartmentAdminData(DepartmentAdminDto departmentAdminDto);
 }
 

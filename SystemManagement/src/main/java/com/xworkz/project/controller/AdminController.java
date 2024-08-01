@@ -1,19 +1,20 @@
 package com.xworkz.project.controller;
 
 
-import com.xworkz.project.dto.AdminDto;
-import com.xworkz.project.dto.DepartmentDto;
-import com.xworkz.project.dto.RaiseComplaintDto;
-import com.xworkz.project.dto.SignUpDto;
+import com.xworkz.project.dto.*;
 import com.xworkz.project.model.service.AdminService;
+import com.xworkz.project.util.PasswordGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -24,6 +25,12 @@ public class AdminController {
 
     @Autowired
      private AdminService adminService;
+
+    @Autowired
+     private PasswordGenerator passwordGenerator;
+
+    @Autowired
+    private PasswordEncoder encoder;
 
      AdminController(){
          System.out.println("created constr for AdminController");
@@ -163,6 +170,61 @@ public class AdminController {
         return "redirect:/view-user-raise-complaint";
     }
 
+    //****************************************************
+    //Add Department Admin and saved in database(register page)
+
+    @PostMapping("add-department-admin")
+    public String addDepartmentAdmin(@Valid DepartmentAdminDto departmentAdminDto, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes,@RequestParam("email") String email,String password) {
+        System.out.println("addDepartmentAdmin method running in AdminController..");
+
+        //generate automatic password encrypted
+        String generatedPassword=passwordGenerator.generatePassword(12);
+
+        //generate automatic password encrypted
+        departmentAdminDto.setPassword(encoder.encode(generatedPassword));
+
+        System.out.println("DepartmentAdminDto  : " + departmentAdminDto);
+
+        if (bindingResult.hasErrors()) {
+            System.out.println("DepartmentAdminDto has invalid data");
+            bindingResult.getAllErrors().forEach(objectError -> System.out.println(objectError.getDefaultMessage()));
+            redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
+            // model.addAttribute("errors", bindingResult.getAllErrors());
+            model.addAttribute("departmentAdminDto", departmentAdminDto); //this retaining values form form page
+
+            return "RegisterDepartmentAdmin";
+
+
+        } else {
+            boolean saveData = adminService.saveDepartmentAdminData(departmentAdminDto);
+            if (saveData) {
+                departmentAdminDto.setPassword(generatedPassword);
+
+                //send email with generated password
+                String subject="Welcome to our Issue Management";
+
+                String body="Hello" + departmentAdminDto.getAdminName() + ",\n\n your password is successfull generated. your password is :" +departmentAdminDto.getPassword();
+                //adminService.sendingEmail(email,subject, body);
+
+
+                System.out.println("saveDepartmentAdminData saved successful in addDepartmentAdmin");
+                redirectAttributes.addFlashAttribute("msg", "Department Admin data saved successfully..");
+                // model.addAttribute("msg", "Department Admin data saved successfully..");
+
+                return "RegisterDepartmentAdmin";
+
+            } else {
+                System.out.println("saveDepartmentAdminData not saved successful..");
+                redirectAttributes.addFlashAttribute("errorMsg", "Department Admin data not saved successfully..");
+                //model.addAttribute("msg", "Department Admin data saved successfully..");
+
+            }
+
+            return "RegisterDepartmentAdmin";
+        }
+    }
+
+
     @GetMapping("/AdminPage")
     public String AdminPage(){
         return "Admin";
@@ -181,5 +243,10 @@ public class AdminController {
     @GetMapping("/DepartmentAdding")
     public  String DepartmentAdd(){
          return "DepartmentAdding";
+    }
+
+    @GetMapping("/RegisterDepartmentAdmin")
+    public  String RegisterDepartmentAdminPage(){
+        return "RegisterDepartmentAdmin";
     }
 }

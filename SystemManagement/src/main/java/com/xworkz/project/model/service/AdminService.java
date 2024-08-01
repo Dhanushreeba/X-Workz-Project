@@ -1,9 +1,6 @@
 package com.xworkz.project.model.service;
 
-import com.xworkz.project.dto.AdminDto;
-import com.xworkz.project.dto.DepartmentDto;
-import com.xworkz.project.dto.RaiseComplaintDto;
-import com.xworkz.project.dto.SignUpDto;
+import com.xworkz.project.dto.*;
 
 import java.util.List;
 
@@ -36,5 +33,8 @@ public interface AdminService {
 
     //update status and department id
     void updateStatusAndDepartmentId(int complaintId, int departmentId, String status);
+
+    //save department admin data
+    boolean saveDepartmentAdminData(DepartmentAdminDto departmentAdminDto);
 
 }

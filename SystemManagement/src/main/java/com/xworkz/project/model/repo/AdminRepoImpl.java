@@ -418,5 +418,81 @@ public class AdminRepoImpl implements AdminRepo{
         return true;
     }
 
+    @Override
+    public boolean emailExists(String email) {
+        //check if email exists in database or not
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            String query = "SELECT d FROM DepartmentAdminDto d where d.email=:email";
+            Query query1 = entityManager.createQuery(query);
+            query1.setParameter("email", email);
+
+            DepartmentAdminDto departmentAdminDto = (DepartmentAdminDto) query1.getSingleResult();
+
+            return true;
+        } catch (NoResultException e) {
+            return false;
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    @Override
+    public boolean verifyOldPassword(String email, String oldPassword) {
+        //to verify  the old password
+
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+
+        try {
+            String query = "SELECT d FROM DepartmentAdminDto d WHERE d.email=:email AND d.password=:password ";
+            Query query1 = entityManager.createQuery(query);
+            query1.setParameter("email", email);
+            query1.setParameter("password", oldPassword);
+            DepartmentAdminDto departmentAdminDto = (DepartmentAdminDto) query1.getSingleResult();
+            System.out.println(departmentAdminDto);
+            return true;
+        } catch (NoResultException e) {
+            // If no result is found, return false
+            return false;
+        } finally {
+            entityManager.close();
+        }
+
+    }
+
+    @Override
+    public void updatedPassword(String email, String newPassword) {
+        // to update the reset password to password in database
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        System.out.println("email :"+email + "password :"+newPassword);
+
+
+        try {
+
+            entityTransaction.begin();
+            //update table name set password=? where email=?;
+
+            String query = "UPDATE dep DepartmentAdminDto dep SET dep.password=:password WHERE dep.email=:email ";
+
+            Query query1 = entityManager.createQuery(query);
+            query1.setParameter("password", newPassword);
+            query1.setParameter("email", email);
+
+            int executeData = query1.executeUpdate();
+            System.out.println(executeData);
+            entityTransaction.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityTransaction.rollback();
+        } finally {
+
+            entityManager.close();
+        }
+    }
+
 }
 

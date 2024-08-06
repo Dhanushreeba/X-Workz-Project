@@ -2,6 +2,7 @@ package com.xworkz.project.controller;
 
 
 import com.xworkz.project.dto.*;
+import com.xworkz.project.model.repo.AdminRepo;
 import com.xworkz.project.model.service.AdminService;
 import com.xworkz.project.util.PasswordGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -25,6 +27,9 @@ public class AdminController {
 
     @Autowired
      private AdminService adminService;
+
+    @Autowired
+    private AdminRepo adminRepo;
 
     @Autowired
      private PasswordGenerator passwordGenerator;
@@ -228,17 +233,17 @@ public class AdminController {
     @PostMapping("sub-admin-log-in")
     public String subAdminLogin(DepartmentAdminDto departmentAdminDto,
                                 @RequestParam("email") String email,
-                                @RequestParam("password") String password, Model model) {
+                                @RequestParam("password") String password, Model model, HttpSession session) {
         System.out.println("subAdminLogin method running in AdminController..");
         DepartmentAdminDto login = adminService.findEmailAndPassword(email, password);
 
         if (login != null) {
             System.out.println("subAdminLogin successful AdminController..");
-
+             session.setAttribute("departmentAdminDto",login);
             // adminService.resetFailedAttempts(email); //locked
 
             model.addAttribute("msg", "Login successful");
-            return "SubAdminLogin";
+            return "SubAdminProfile";
         } else {
             System.out.println("subAdminLogin not successful in AdminController..");
             adminService.incrementFailedAttempts(email); //locked
@@ -259,7 +264,7 @@ public class AdminController {
                 model.addAttribute("accountLocked", false);
             }
 
-            return "SubAdminProfile";
+            return "SubAdminLogin";
         }
     }
 
@@ -277,13 +282,59 @@ public class AdminController {
             adminService.resetFailedAttempts(email);
             adminService.unlockAccount(email);
 
-            return "SubAdminForgetPassword";
+            return "SubAdminLogin";
         } else {
             System.out.println("forgotPassword not successful in AdminController..");
             model.addAttribute("errorMsg", "Email Address not found");
         }
 
         return "SubAdminForgetPassword";
+    }
+
+
+    @PostMapping("admin-reset")
+    public String resetPassword(Model model,
+                                @RequestParam("email") String email,
+                                @RequestParam("oldPassword") String oldPassword,
+                                @RequestParam("newPassword") String newPassword,
+                                @RequestParam("confirmPassword") String confirmPassword) {
+        DepartmentAdminDto departmentAdminDto = adminRepo.findByEmail(email);
+
+        if (departmentAdminDto == null) {
+            System.out.println("No user found with email: " + email);
+            model.addAttribute("passwordResetError", "No user found with provided email.");
+            return "SubAdminResetPassword";
+        }
+
+        String storedPassword = departmentAdminDto.getPassword();
+
+        if (storedPassword == null) {
+            System.out.println("No stored password for email: " + email);
+            model.addAttribute("passwordResetError", "Stored password is missing for the user.");
+            return "SubAdminResetPassword";
+        }
+
+        System.out.println("Hello...........");
+
+        boolean resetSuccessful = adminService.resetPassword(email, oldPassword, newPassword, confirmPassword);
+
+        System.out.println("Thank You..........");
+
+        if (!encoder.matches(oldPassword, storedPassword)) {
+            System.out.println("Old password verification failed for email: " + email);
+            return "SubAdminLogin"; // Old password doesn't match
+        }
+
+        System.out.println(departmentAdminDto.getPassword() + "**********");
+
+        if (resetSuccessful) {
+            System.out.println("Password reset Successful: " + resetSuccessful);
+            model.addAttribute("passwordResetMessage", "Password reset successful");
+        } else {
+            model.addAttribute("passwordResetError", "Failed to reset password. Please check your password.");
+        }
+
+        return "SubAdminResetPassword";
     }
 
 
@@ -325,5 +376,11 @@ public class AdminController {
     @GetMapping("/SubAdminForgetPassword")
     public  String SubAdminForgetPasswordPage(){
         return "SubAdminForgetPassword";
+    }
+
+    @GetMapping("/SubAdminResetPassword")
+    public String SubAdminResetPasswordPage(){
+
+        return "SubAdminResetPassword";
     }
 }

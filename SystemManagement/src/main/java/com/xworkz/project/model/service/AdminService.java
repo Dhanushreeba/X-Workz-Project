@@ -59,4 +59,12 @@ public interface AdminService {
     //to unlock when I new password generate
     void unlockAccount(String email);
 
+    //Reset Password
+    public boolean resetPassword(String email, String oldPassword, String newPassword, String confirmPassword);
+
+    //send Reset password to email
+
+    //Reset Password
+    public void sendPasswordEmail(String toEmail, String subject, String body);
+
 }

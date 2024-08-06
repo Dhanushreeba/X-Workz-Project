@@ -25,7 +25,8 @@
                 </div>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                     <li> <a class="dropdown-item" href="SubAdminProfile"><strong>sub Admin</strong></a></li>
-                    <li> <a class="dropdown-item" href="SubAdminForgetPassword.jsp"><strong>sub Admin</strong></a></li>
+                    <li> <a class="dropdown-item" href="SubAdminForgetPassword.jsp"><strong>Forget password</strong></a></li>
+                    <li> <a class="dropdown-item" href="SubAdminResetPassword"><strong>Reset password</strong></a></li>
 
                 </ul>
             </div>

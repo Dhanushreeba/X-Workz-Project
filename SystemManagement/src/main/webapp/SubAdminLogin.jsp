@@ -63,14 +63,12 @@
     <div class="card-body ">
 
         <span style="color:green"><strong>${msg}</strong></span>
-       <!-- <span style="color:red"><strong>${errorMsg}</strong></span>--!>
+        <span style="color:red"><strong>${errorMsg}</strong></span>
 
                 <span style="color:red"><strong>${error}</strong></span>
                         <span style="color:red"><strong>${accountError}</strong></span>
 
-       <!-- <span style="color:red"><strong>${accountLocked}</strong></span> --!>
-
-
+        <span style="color:red"><strong>${accountLocked}</strong></span>
 
 
 

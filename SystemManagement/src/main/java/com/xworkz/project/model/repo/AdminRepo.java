@@ -56,5 +56,14 @@ public interface AdminRepo {
     //update account locked and attempt failed
 
     boolean update(DepartmentAdminDto  departmentAdminDto);
+
+    //ResetPassword
+    boolean emailExists(String email);
+
+    //ResetPassword
+    boolean verifyOldPassword(String email, String oldPassword);
+
+    //ResetPassword
+    void updatedPassword(String email, String newPassword);
 }
 

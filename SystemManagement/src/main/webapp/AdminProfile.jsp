@@ -30,6 +30,7 @@
                      <li><a class="dropdown-item" href="DepartmentAdding"><strong>Add Department</strong></a></li>
                      <li><a class="dropdown-item" href="RegisterDepartmentAdmin"><strong>Register DepartmentAdmin</strong></a></li>
                      <li> <a class="dropdown-item" href="SubAdminLogin"><strong>SubAdminLogin</strong></a></li>
+                     <li> <a class="dropdown-item" href="SubAdminResetPassword"><strong>Reset Password</strong></a></li>
 
                 </ul>
             </div>

@@ -88,7 +88,6 @@
             <div class="row mb-3">
                 <label for="departmentType" class="form-label"><b>Department Name:</b></label>
                 <div class="input-group">
-                    <span class="input-group-text"></i></span>
                     <input type="text" class="form-control" id="departmentType" name="departmentType" placeholder="Enter department name" value="" required>
                 </div>
             </div>
@@ -97,7 +96,6 @@
             <div class="mb-3">
                 <label for="area" class="form-label"><b>Area:</b></label>
                 <div class="input-group">
-                    <span class="input-group-text"></i></span>
                     <input type="text" class="form-control" id="area" name="area" placeholder="Enter area" value=""  required>
                 </div>
             </div>
@@ -106,7 +104,6 @@
         <div class="mb-3">
                 <label for="address" class="form-label"><b>Address:</b></label>
                 <div class="input-group">
-                    <span class="input-group-text"></i></span>
                     <input type="text" class="form-control" id="address" name="address" placeholder="Enter address" value=""  required>
                 </div>
             </div>

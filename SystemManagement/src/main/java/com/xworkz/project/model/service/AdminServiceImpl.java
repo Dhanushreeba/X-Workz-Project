@@ -308,4 +308,55 @@ public class AdminServiceImpl implements AdminService{
         }
     }
 
+    @Override
+    public boolean resetPassword(String email, String oldPassword, String newPassword, String confirmPassword) {
+        System.out.println("calling resetPassword method :");
+        DepartmentAdminDto departmentAdminDto = adminRepo.findByEmail(email);
+
+        if (!adminRepo.emailExists(email)) {
+            System.out.println("user not found in reset password inside 1st if :" + email);
+            return false;
+        }
+        String storepassword = departmentAdminDto.getPassword();
+
+        System.out.println("storedPassword:" + newPassword + "oldPassword:" + oldPassword);
+        if (encoder.matches(oldPassword, storepassword)) {
+
+            System.out.println(confirmPassword + "---------->" + newPassword);
+
+
+            if (!adminRepo.verifyOldPassword(email, storepassword)) {
+                System.out.println("old password not matched :" + email);
+                return false;
+            }
+            if (!newPassword.equals(confirmPassword)) {
+                return false;
+            }
+            //signUpRepo.updatePassword(email, newPassword);
+            departmentAdminDto.setPassword(encoder.encode(newPassword));
+            adminRepo.update(departmentAdminDto);
+            sendPasswordEmail(email, "Password Reset Successful", "Your password has been successfully reset..Your new password is :" + newPassword);
+
+
+
+
+        }else{
+            System.out.println("encoder is not working........");}
+        return true;
+    }
+
+    @Override
+    public void sendPasswordEmail(String toEmail, String subject, String body) {
+
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setTo(toEmail);
+        simpleMailMessage.setSubject(subject);
+        simpleMailMessage.setText(body);
+        simpleMailMessage.setFrom("dhanushreegowda1999@gmail.com");
+
+
+        mailSender.send(simpleMailMessage);
+    }
+
+
 }

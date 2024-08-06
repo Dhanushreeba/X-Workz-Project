@@ -133,7 +133,7 @@
                     <label for="email" class="form-label"><b>Email:</b></label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                        <input type="email" class="form-control" id="email" onblur="emailValidation()" onchange="emailAjaxValidation()"  name="email" placeholder="Enter email" >
+                        <input type="email" class="form-control" id="email" onblur="emailValidation()"  name="email" placeholder="Enter email" >
                     </div>
                 </div>
 
@@ -145,7 +145,7 @@
                       <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
 
-            <input type="tel" class="form-control" id="contactNumber" onblur="contactNumberValidation()" onchange="contactNumberAjaxValidation()" name="contactNumber" placeholder="Enter contactnumber" >
+            <input type="tel" class="form-control" id="contactNumber" onblur="contactNumberValidation()"  name="contactNumber" placeholder="Enter contactnumber" >
                     </div>
                     </div>
 

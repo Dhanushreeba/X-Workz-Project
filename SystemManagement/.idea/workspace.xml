@@ -17,6 +17,7 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/configuration/SpringConfi.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/configuration/WebInit.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/constant/Status.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/controller/AdminController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/controller/AjaxEmailController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/controller/EditController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/controller/ForgetPasswordController.java" afterDir="false" />
@@ -24,6 +25,8 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/controller/ResetPasswordController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/controller/SignUpController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/controller/ViewUserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/dto/AdminDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/dto/DepartmentDto.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/dto/ImageDto.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/dto/RaiseComplaintDto.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/dto/SignUpDto.java" afterDir="false" />
@@ -46,11 +49,17 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/com/xworkz/project/util/PasswordGenerator.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/Application.properties" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/Admin.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/AdminViewRaiseComplaintDetails.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/AdminViewUserDetails.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/ComplaintSearchByAdmin.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/DepartmentAdding.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/Edit.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/EditRaiseComplaint.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/ForgetPassword.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/ProfileUpload.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/RaiseComplaint.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/RegisterDepartmentAdmin.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/ResetPassword.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/SignIn.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/SignUp.jsp" afterDir="false" />
@@ -59,6 +68,7 @@
       <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/WelcomePage.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/javascript/DepartmentAdmin.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/javascript/RaiseComplaint.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -173,6 +183,10 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="org.springframework.beans.factory.BeanCreationException" package="org.springframework.beans.factory" />
           <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalArgumentException" package="java.lang" />
+          <option name="timeStamp" value="3" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>

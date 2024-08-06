@@ -13,7 +13,7 @@ public class PasswordGenerator {
     private static final String PASSWORD_ALLOW_BASE = CHAR_LOWER + CHAR_UPPER + DIGIT + SPECIAL_CHAR;
     private static final SecureRandom random = new SecureRandom();
 
-    public String generatePassword(int length) {
+    public static String generatePassword(int length) {
         if (length < 12) throw new IllegalArgumentException("Password length must be at least 12 characters");
 
         StringBuilder password = new StringBuilder(length);

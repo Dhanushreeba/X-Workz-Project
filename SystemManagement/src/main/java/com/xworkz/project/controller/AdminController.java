@@ -190,7 +190,7 @@ public class AdminController {
             bindingResult.getAllErrors().forEach(objectError -> System.out.println(objectError.getDefaultMessage()));
             redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
             // model.addAttribute("errors", bindingResult.getAllErrors());
-            model.addAttribute("departmentAdminDto", departmentAdminDto); //this retaining values form form page
+            model.addAttribute("departmentAdminDto", departmentAdminDto); //this retaining values form page
 
             return "RegisterDepartmentAdmin";
 
@@ -198,18 +198,19 @@ public class AdminController {
         } else {
             boolean saveData = adminService.saveDepartmentAdminData(departmentAdminDto);
             if (saveData) {
+
                 departmentAdminDto.setPassword(generatedPassword);
 
                 //send email with generated password
                 String subject="Welcome to our Issue Management";
 
                 String body="Hello" + departmentAdminDto.getAdminName() + ",\n\n your password is successfull generated. your password is :" +departmentAdminDto.getPassword();
-                //adminService.sendingEmail(email,subject, body);
+                adminService.sendingEmail(email,subject, body);
 
 
                 System.out.println("saveDepartmentAdminData saved successful in addDepartmentAdmin");
                 redirectAttributes.addFlashAttribute("msg", "Department Admin data saved successfully..");
-                // model.addAttribute("msg", "Department Admin data saved successfully..");
+                 model.addAttribute("msg", "Department Admin data saved successfully..");
 
                 return "RegisterDepartmentAdmin";
 
@@ -222,6 +223,67 @@ public class AdminController {
 
             return "RegisterDepartmentAdmin";
         }
+    }
+
+    @PostMapping("sub-admin-log-in")
+    public String subAdminLogin(DepartmentAdminDto departmentAdminDto,
+                                @RequestParam("email") String email,
+                                @RequestParam("password") String password, Model model) {
+        System.out.println("subAdminLogin method running in AdminController..");
+        DepartmentAdminDto login = adminService.findEmailAndPassword(email, password);
+
+        if (login != null) {
+            System.out.println("subAdminLogin successful AdminController..");
+
+            // adminService.resetFailedAttempts(email); //locked
+
+            model.addAttribute("msg", "Login successful");
+            return "SubAdminLogin";
+        } else {
+            System.out.println("subAdminLogin not successful in AdminController..");
+            adminService.incrementFailedAttempts(email); //locked
+
+            int failedAttempts = adminService.getFailedAttempts(email);
+            System.out.println("Failed attempts for " + email + " : " + failedAttempts);
+            model.addAttribute("errorMsg", "Failed to login please check your email and password");
+
+            if (failedAttempts >= 3) {
+                adminService.lockAccount(email);// Lock account after 3 failed attempts
+                System.out.println(email + " :Your account is locked due to too many failed attempts");
+
+                model.addAttribute("accountError", "Your account is locked due to too many failed attempts.");
+                model.addAttribute("accountLocked", true);
+            } else {
+                model.addAttribute("error", "Invalid email id and password. Attempts:" + failedAttempts);
+                System.out.println("Invalid email Id and password");
+                model.addAttribute("accountLocked", false);
+            }
+
+            return "SubAdminProfile";
+        }
+    }
+
+    @PostMapping("sub-admin-forgot-password")
+    public String forgotPassword(@RequestParam String email, Model model) {
+        System.out.println("forgotPassword method running in AdminController..");
+
+        DepartmentAdminDto resetEmail = adminService.resetPasswordEmail(email);
+
+        if (resetEmail != null) {
+            System.out.println("forgotPassword successful in AdminController..");
+            model.addAttribute("msg", "A new password has been sent to your email.");
+
+            // Reset failed attempts
+            adminService.resetFailedAttempts(email);
+            adminService.unlockAccount(email);
+
+            return "SubAdminForgetPassword";
+        } else {
+            System.out.println("forgotPassword not successful in AdminController..");
+            model.addAttribute("errorMsg", "Email Address not found");
+        }
+
+        return "SubAdminForgetPassword";
     }
 
 
@@ -248,5 +310,20 @@ public class AdminController {
     @GetMapping("/RegisterDepartmentAdmin")
     public  String RegisterDepartmentAdminPage(){
         return "RegisterDepartmentAdmin";
+    }
+
+    @GetMapping("/SubAdminLogin")
+    public  String SubAdminLoginPage(){
+        return "SubAdminLogin";
+    }
+
+    @GetMapping("/SubAdminProfile")
+    public  String SubAdminProfilePage(){
+        return "SubAdminProfile";
+    }
+
+    @GetMapping("/SubAdminForgetPassword")
+    public  String SubAdminForgetPasswordPage(){
+        return "SubAdminForgetPassword";
     }
 }

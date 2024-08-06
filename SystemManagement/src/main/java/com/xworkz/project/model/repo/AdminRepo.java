@@ -38,5 +38,23 @@ public interface AdminRepo {
 
     //register department admin data save
     boolean saveDepartmentAdminData(DepartmentAdminDto departmentAdminDto);
+
+    //subAdmin login id email exists in database
+    DepartmentAdminDto findEmailAndPassword(String email, String password);
+
+    //to check email is their or not
+    DepartmentAdminDto findByEmail(String email);
+
+    //forgot password
+
+    public DepartmentAdminDto resetPasswordEmail(String email);
+
+    //then I have to update forgot password in database
+
+    void updatePassword(String email, String password);
+
+    //update account locked and attempt failed
+
+    boolean update(DepartmentAdminDto  departmentAdminDto);
 }
 

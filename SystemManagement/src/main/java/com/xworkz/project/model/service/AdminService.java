@@ -37,4 +37,26 @@ public interface AdminService {
     //save department admin data
     boolean saveDepartmentAdminData(DepartmentAdminDto departmentAdminDto);
 
+    //to send an email to the particular admin entry
+    public void sendingEmail(String to, String subject, String body);
+
+    //subAdmin login id email exists in database
+    public DepartmentAdminDto findEmailAndPassword(String email, String password);
+
+    //to reset password
+    public DepartmentAdminDto resetPasswordEmail(String email);
+
+
+    //checking wrong password and lock the account
+    void incrementFailedAttempts(String email);
+
+    int getFailedAttempts(String email);
+
+    void resetFailedAttempts(String email);
+
+    void lockAccount(String email);
+
+    //to unlock when I new password generate
+    void unlockAccount(String email);
+
 }

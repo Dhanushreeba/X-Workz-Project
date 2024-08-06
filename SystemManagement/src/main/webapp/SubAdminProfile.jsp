@@ -24,12 +24,8 @@
 
                 </div>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                    <li> <a class="dropdown-item" href="view-user-raise-complaint"><strong>ViewRaiseComplaint</strong></a></li>
-                     <li> <a class="dropdown-item" href="view-user-details"><strong>ViewUserDetail</strong></a></li>
-                     <li><a class="dropdown-item" href="ComplaintSearchByAdmin.jsp"><strong>Search</strong></a></li>
-                     <li><a class="dropdown-item" href="DepartmentAdding"><strong>Add Department</strong></a></li>
-                     <li><a class="dropdown-item" href="RegisterDepartmentAdmin"><strong>Register DepartmentAdmin</strong></a></li>
-                     <li> <a class="dropdown-item" href="SubAdminLogin"><strong>SubAdminLogin</strong></a></li>
+                    <li> <a class="dropdown-item" href="SubAdminProfile"><strong>sub Admin</strong></a></li>
+                    <li> <a class="dropdown-item" href="SubAdminForgetPassword.jsp"><strong>sub Admin</strong></a></li>
 
                 </ul>
             </div>

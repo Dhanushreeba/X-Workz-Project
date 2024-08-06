@@ -30,6 +30,16 @@ public class DepartmentAdminDto {
     @Column(name = "dep_admin_alternate_number")
     private Long alternateContactNumber;
 
+    //email locked update in database
+    @Column(name = "failed_attempt")
+    private Integer failedAttempt=0;
+
+
+    public static final int MAX_LOGIN_ATTEMPTS=3;
+    @Column(name = "account_locked")
+    private Boolean accountLocked=false;
+
+
     @Override
     public String toString() {
         return "DepartmentAdminDto{" +
@@ -40,6 +50,8 @@ public class DepartmentAdminDto {
                 ", password='" + password + '\'' +
                 ", contactNumber=" + contactNumber +
                 ", alternateContactNumber=" + alternateContactNumber +
+                ", failedAttempt=" + failedAttempt +
+                ", accountLocked=" + accountLocked +
                 '}';
     }
 
@@ -97,5 +109,21 @@ public class DepartmentAdminDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getFailedAttempt() {
+        return failedAttempt;
+    }
+
+    public void setFailedAttempt(Integer failedAttempt) {
+        this.failedAttempt = failedAttempt;
+    }
+
+    public Boolean isAccountLocked() {
+        return accountLocked;
+    }
+
+    public void setAccountLocked(Boolean accountLocked) {
+        this.accountLocked = accountLocked;
     }
 }

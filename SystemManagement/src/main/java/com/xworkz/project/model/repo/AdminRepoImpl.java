@@ -275,5 +275,148 @@ public class AdminRepoImpl implements AdminRepo{
         return false;
     }
 
+    //subAdmin login id email exists in database
+    @Override
+    public DepartmentAdminDto findEmailAndPassword(String email, String password) {
+        System.out.println("findEmailAndPassword method running in AdminRepoImpl..");
+
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+
+        try {
+            entityTransaction.begin();
+            String query = "SELECT d FROM DepartmentAdminDto d WHERE d.email=:email AND d.password=:password";
+            Query query1 = entityManager.createQuery(query);
+            query1.setParameter("email", email);
+            query1.setParameter("password", password);
+            DepartmentAdminDto departmentAdminDto = (DepartmentAdminDto) query1.getSingleResult();
+            System.out.println("departmentAdminDto :" +departmentAdminDto);
+            entityTransaction.commit();
+            return departmentAdminDto;
+
+        } catch (NoResultException e) {
+            e.printStackTrace();
+            System.out.println("No entity found for query findEmailAndPassword");
+            return null;  // Or handle the case where no result is found
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (entityTransaction.isActive()) {
+                entityTransaction.rollback();
+            }
+            return null;
+        } finally {
+            entityManager.close();
+            System.out.println("Connection closed");
+        }
+    }
+
+    @Override
+    public DepartmentAdminDto findByEmail(String email) {
+        System.out.println("findByEmail method running in AdminRepoImpl..");
+
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        entityTransaction.begin();
+
+        try {
+            System.out.println(" Existing Email : " + email);
+            String query = "SELECT e FROM DepartmentAdminDto e WHERE e.email=:email";
+            Query query1 = entityManager.createQuery(query);
+            query1.setParameter("email", email);
+
+            DepartmentAdminDto data = (DepartmentAdminDto) query1.getSingleResult();
+            System.out.println("email :" + data);
+            entityTransaction.commit();
+            return data;
+
+        } catch (NoResultException e) {
+            System.out.println("No entity found for query in findByEmail");
+            entityTransaction.rollback(); // Rollback the transaction in case of no result
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+            entityTransaction.rollback(); // Rollback the transaction in case of other persistence exceptions
+        } finally {
+            entityManager.close();
+            System.out.println("Connection closed");
+        }
+        return null;
+    }
+
+    @Override
+    public DepartmentAdminDto resetPasswordEmail(String email) {
+        System.out.println("resetPasswordEmail method running in AdminRepoImpl..{}" +email);
+        System.out.println("resetPasswordEmail : " +email);
+
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            String query = "SELECT f FROM DepartmentAdminDto f WHERE f.email=:email";
+            Query query1 = entityManager.createQuery(query);
+            query1.setParameter("email", email);
+            DepartmentAdminDto findEmail = (DepartmentAdminDto) query1.getSingleResult();
+
+            System.out.println("FindEmail : {}" +findEmail);
+
+            return findEmail;
+        } catch (PersistenceException persistenceException) {
+            System.out.println("No entity found for query in resetPasswordEmail");
+            persistenceException.printStackTrace();
+        } finally {
+            entityManager.close();
+            System.out.println("Connection closed");
+        }
+        return null;
+    }
+
+    @Override
+    public void updatePassword(String email, String password) {
+        System.out.println("updatePassword method running in AdminRepoImpl..");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+
+        try {
+            entityTransaction.begin();
+            String query = "UPDATE DepartmentAdminDto u SET u.password=:newPassword WHERE u.email=:email";
+            Query query1 = entityManager.createQuery(query);
+            query1.setParameter("newPassword", password);
+            query1.setParameter("email", email);
+
+            int update = query1.executeUpdate();
+            System.out.println("forgotPasswordUpdate :{}" +update);
+            entityTransaction.commit();
+        } catch (Exception e) {
+            System.out.println("No entity found for query in updatePassword");
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+            System.out.println("Connection closed");
+        }
+    }
+
+    @Override
+    public boolean update(DepartmentAdminDto departmentAdminDto) {
+        System.out.println("update method running in AdminRepoImpl..");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        try {
+            entityTransaction.begin();
+            entityManager.merge(departmentAdminDto);
+            entityTransaction.commit();
+        }
+        catch (PersistenceException persistenceException)
+        {
+            System.out.println("No found for  update");
+            persistenceException.printStackTrace();
+            entityManager.close();
+        }
+        finally {
+            entityManager.close();
+        }
+
+
+        return true;
+    }
+
 }
 

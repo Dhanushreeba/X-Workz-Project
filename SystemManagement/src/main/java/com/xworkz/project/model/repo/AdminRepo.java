@@ -75,7 +75,7 @@ public interface AdminRepo {
 
 //    List<DepartmentAdminDto> searchByEmail(String email);
 
-
+     List<DepartmentAdminDto> searchById(Integer id);
 
 }
 

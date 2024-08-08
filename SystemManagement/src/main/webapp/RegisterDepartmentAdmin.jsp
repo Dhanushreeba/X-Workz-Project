@@ -51,26 +51,22 @@
                 </a>
                 <a class="navbar-brand text-dark" href="HomePage"><b>Home</b></a>
 
-                    <a class="navbar-brand text-dark" href="SignInPage"><b>SignIn</b></a>
-
             </div>
 
 
-            <div class="dropdown">
-                        <button class="dropdown-toggle dropdown-toggle-custom" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            Admin
-               </button>
-               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-               <li><a class="dropdown-item" href="view-user-details"><strong>ViewUserDetails</strong></a></li>
+<div class="dropdown">
+                <div class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
 
-               <li><a class="dropdown-item" href="View-raise-complaint"><strong>ViewRaiseComplaintDetails</strong></a></li>
+                </div>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                     <li> <a class="dropdown-item" href="AdminPage"><strong>Admin</strong></a></li>
+                     <li> <a class="dropdown-item" href="SubAdminLogin"><strong>SubAdminLogin</strong></a></li>
+                     <li> <a class="dropdown-item" href="SubAdminResetPassword"><strong>Reset Password</strong></a></li>
 
-              <li><a class="dropdown-item" href="add-complaints"><strong>AddComplaints</strong></a></li>
-
-
-                        </ul>
-                    </div>
+                </ul>
+            </div>
         </div>
+
     </nav>
 
     <div class="card border-dark container w-25 mt-5 mb-5 justify-content-center">
@@ -174,11 +170,6 @@
                     <div>
                     <center>    <input type="submit" id="submit" value="Apply" class="btn btn-primary oval-btn"  disabled > </center>
                     </div>
-
-
-    <div class="mb-3">
-            <center>  <p> Have already have account?     <a href="SignInPage" class="link-primary"><strong>SignIn Here?</strong></a></p></center>
-                </div>
 
                 </form>
 

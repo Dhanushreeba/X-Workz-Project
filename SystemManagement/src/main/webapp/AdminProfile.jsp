@@ -19,6 +19,7 @@
                 <a class="navbar-brand text-dark" href="HomePage"><b>Home</b></a>
 
             </div>
+
             <div class="dropdown">
                 <div class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
 
@@ -36,6 +37,8 @@
             </div>
         </div>
     </nav>
+
+<span style="color:green"><h3>${AdminProfilePageMessage}</h3></span>
 
 </body>
 </html>

@@ -76,5 +76,8 @@ public interface AdminService {
 
 //    List<DepartmentAdminDto> searchByEmail(String email);
 
+    List<DepartmentAdminDto> searchById(Integer id);
+
+
 
 }

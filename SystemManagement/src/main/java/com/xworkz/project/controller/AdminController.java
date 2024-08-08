@@ -242,10 +242,10 @@ public class AdminController {
                                 @RequestParam("password") String password,
                                 @RequestParam("departmentName")String departmentName,Model model, HttpSession session) {
         System.out.println("subAdminLogin method running in AdminController..");
-      //  DepartmentAdminDto login=adminRepo.findByEmail(email);
+        DepartmentAdminDto login1=adminRepo.findByEmail(email);
       DepartmentAdminDto login = adminService.findEmailAndPasswordAndDepartment(email, password,departmentName);
 
-        if (login != null) {
+        if (login != null && login!=null) {
             System.out.println("subAdminLogin successful AdminController..");
              session.setAttribute("departmentAdminDto",login);
             // adminService.resetFailedAttempts(email); //locked

@@ -17,7 +17,41 @@
             padding: 10px 20px;  /* Adjust the padding to control the button size */
         }
     </style>
+<script>
+        let fieldsChecks = { "email": false, };
 
+        function validateAndEnableSubmit() {
+            let flag = false;
+            for (let [key, value] of Object.entries(fieldsChecks)) {
+                if (value === false) {
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag) {
+                document.getElementById("submit").removeAttribute("disabled");
+            } else {
+                document.getElementById("submit").setAttribute("disabled", "");
+            }
+        }
+
+        function emailValidation() {
+            let element = document.getElementById("email");
+            let error = document.getElementById("erroremail");
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (element.value.length > 3 && element.value.length < 30 && emailRegex.test(element.value)) {
+                error.innerHTML = "";
+                fieldsChecks["email"] = true;
+            } else {
+                error.innerHTML = "Invalid email. Characters should be greater than 3 and less than 30.";
+                error.style.color = "red";
+                fieldsChecks["email"] = false;
+            }
+            validateAndEnableSubmit();
+        }
+
+
+    </script>
 
 </head>
 <body>
@@ -55,9 +89,11 @@
 
         <form action="sub-admin-forgot-password" method="post">
             <div class="row mb-3">
+                <span id="erroremail"></span><br>
                 <label for="email" class="form-label"><b>Email:</b></label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div><br>
+                <input type="email" class="form-control" value="${dto.email}" id="email" name="email" onblur="emailValidation()">
+                   </div>
+                     <br>
 
 
 

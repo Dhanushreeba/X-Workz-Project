@@ -193,7 +193,7 @@ public class AdminServiceImpl implements AdminService{
             System.out.println(departmentAdminDto.getPassword() + "********" + password);
 
             if (encoder.matches(password, departmentAdminDto.getPassword()) && departmentAdminDto.getDepartmentName().equals(departmentName)) {
-                System.out.println("findEmailAndPassword successful in AdminServiceImpl..");
+                System.out.println("findEmailAndPasswordAndDepartment successful in AdminServiceImpl..");
                 return departmentAdminDto;
             } else {
                 System.out.println("Password mismatch in AdminServiceImpl..");
@@ -202,7 +202,7 @@ public class AdminServiceImpl implements AdminService{
             System.out.println("No user found with email: " + email);
         }
 
-        System.out.println("findEmailAndPassword not successful in AdminServiceImpl..");
+        System.out.println("findEmailAndPasswordAndDepartment not successful in AdminServiceImpl..");
         return null;
 
     }
@@ -377,6 +377,21 @@ public class AdminServiceImpl implements AdminService{
 
         mailSender.send(simpleMailMessage);
     }
+
+    @Override
+    public List<DepartmentAdminDto> searchById(Integer id) {
+        System.out.println("searchById method running in AdminServiceImpl..");
+
+        List<DepartmentAdminDto> listOfData = adminRepo.searchById(id);
+        if (!listOfData.isEmpty()) {
+            System.out.println("searchById successful in AdminServiceImpl");
+            return listOfData;
+        } else {
+            System.out.println("searchById not successful in AdminServiceImpl..");
+            return Collections.emptyList();
+        }
+    }
+
 
 //    @Override
 //    public List<DepartmentAdminDto> searchByEmail(String email) {

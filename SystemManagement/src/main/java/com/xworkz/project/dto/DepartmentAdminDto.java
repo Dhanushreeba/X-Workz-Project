@@ -39,6 +39,10 @@ public class DepartmentAdminDto {
     @Column(name = "account_locked")
     private Boolean accountLocked=false;
 
+    @ManyToOne
+    @JoinColumn(name = "department_id",referencedColumnName = "dep_id")
+    private DepartmentDto department;
+
 
     @Override
     public String toString() {
@@ -52,6 +56,7 @@ public class DepartmentAdminDto {
                 ", alternateContactNumber=" + alternateContactNumber +
                 ", failedAttempt=" + failedAttempt +
                 ", accountLocked=" + accountLocked +
+                ", department=" + department +
                 '}';
     }
 
@@ -125,5 +130,17 @@ public class DepartmentAdminDto {
 
     public void setAccountLocked(Boolean accountLocked) {
         this.accountLocked = accountLocked;
+    }
+
+    public DepartmentDto getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(DepartmentDto department) {
+        this.department = department;
+    }
+
+    public Boolean getAccountLocked() {
+        return accountLocked;
     }
 }

@@ -127,9 +127,9 @@ public class AdminServiceImpl implements AdminService{
 
     //find all Departments in dropdown where admin view details
     @Override
-    public List<DepartmentDto> findAll(String departmentType) {
+    public List<DepartmentDto> findAll(String departmentName) {
         System.out.println("findAll method is running in AdminServiceImpl..");
-        List<DepartmentDto> data = adminRepo.findAll(departmentType);
+        List<DepartmentDto> data = adminRepo.findAll(departmentName);
         System.out.println("DepartmentName: " +data);
 
         if (data != null) {
@@ -184,14 +184,15 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public DepartmentAdminDto findEmailAndPassword(String email, String password) {
+    public DepartmentAdminDto findEmailAndPasswordAndDepartment(String email, String password,String departmentName) {
         System.out.println("findEmailAndPassword method running in AdminServiceImpl..");
 
         DepartmentAdminDto departmentAdminDto = adminRepo.findByEmail(email);
+
         if (departmentAdminDto != null) {
             System.out.println(departmentAdminDto.getPassword() + "********" + password);
 
-            if (encoder.matches(password, departmentAdminDto.getPassword())) {
+            if (encoder.matches(password, departmentAdminDto.getPassword()) && departmentAdminDto.getDepartmentName().equals(departmentName)) {
                 System.out.println("findEmailAndPassword successful in AdminServiceImpl..");
                 return departmentAdminDto;
             } else {
@@ -205,6 +206,25 @@ public class AdminServiceImpl implements AdminService{
         return null;
 
     }
+
+    @Override
+    public DepartmentDto searchByDepartmentType(String departmentName) {
+        System.out.println("Running searchByDepartmentType method in AdminServiceImpl...");
+        DepartmentDto departmentDto = adminRepo.searchByDepartmentType(departmentName);
+        if (departmentDto != null) {
+            System.out.println("FindBy Department Name successfully: " + departmentName);
+            return departmentDto;
+        }
+        System.out.println("No Department found for name: " + departmentName);
+        return null;
+    }
+
+
+//    @Override
+//    public List<DepartmentDto> getAllDepartment() {
+//        adminRepo.getAllDepartment();
+//        return Collections.emptyList();
+//    }
 
     @Override
     public DepartmentAdminDto resetPasswordEmail(String email) {
@@ -357,6 +377,19 @@ public class AdminServiceImpl implements AdminService{
 
         mailSender.send(simpleMailMessage);
     }
+
+//    @Override
+//    public List<DepartmentAdminDto> searchByEmail(String email) {
+//        System.out.println("Running search By Email in Service implementation");
+//        List<DepartmentAdminDto> list = adminRepo.searchByEmail(email);
+//        if (!list.isEmpty()) {
+//            System.out.println("Search result for email: " + email);
+//            return list;
+//        } else {
+//            System.out.println("No complaints found for email : " + email);
+//            return Collections.emptyList();
+//        }
+//    }
 
 
 }

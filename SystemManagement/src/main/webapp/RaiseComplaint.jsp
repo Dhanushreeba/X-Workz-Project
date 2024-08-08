@@ -71,18 +71,18 @@
                     </c:forEach>
                 </span>
 
-                <div class="row mb-3">
-                    <span id="complaintTypeError"></span>
-                    <label for="complaintType" class="form-label"><b>Complaint Type:</b></label>
-                    <select class="form-select custom-select-width" id="complaintType" name="complaintType">
-                        <option value="0" >Select</option>
-                        <option value="Electric issue">Electric issue</option>
-                        <option value="Water Supply">Water Supply</option>
-                        <option value="Network Problem">Network Problem</option>
-                        <option value="System Problem">System Problem</option>
-                        <option value="Water Problem">Water Problem</option>
-                    </select><br>
-                </div>
+<div class="row mb-3">
+                                    <span id="complaintTypeError"></span>
+                                    <label for="complaintType" class="form-label"><b>Complaint Type:</b></label>
+                                    <select class="form-select custom-select-width" id="complaintType" name="complaintType">
+                                        <option value="" >Select</option>
+                                        <option value="Electric issue">Electric issue</option>
+                                        <option value="Water Supply">Water Supply</option>
+                                        <option value="Network Problem">Network Problem</option>
+                                        <option value="System Problem">System Problem</option>
+                                        <option value="Gas Leakage">Gas Leakage</option>
+                                    </select>
+                                </div>
 
 
                 <!----Country ---!>

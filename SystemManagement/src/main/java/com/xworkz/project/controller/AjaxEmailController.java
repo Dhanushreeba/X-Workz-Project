@@ -1,5 +1,6 @@
 package com.xworkz.project.controller;
 
+import com.xworkz.project.model.service.AdminService;
 import com.xworkz.project.model.service.SignUpService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -21,6 +22,9 @@ public class AjaxEmailController {
     private static final Logger log = LoggerFactory.getLogger(AjaxEmailController.class);
     @Autowired
     private SignUpService signUpService;
+
+    @Autowired
+    private AdminService adminService;
 
 
     AjaxEmailController()

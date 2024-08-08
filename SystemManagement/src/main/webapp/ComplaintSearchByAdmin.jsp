@@ -60,7 +60,7 @@
                                         <option value="Water Supply">Water Supply</option>
                                         <option value="Network Problem">Network Problem</option>
                                         <option value="System Problem">System Problem</option>
-                                        <option value="Water Problem">Water Problem</option>
+                                        <option value="Gas Leakage">Gas Leakage</option>
                                     </select>
                                 </div>
 

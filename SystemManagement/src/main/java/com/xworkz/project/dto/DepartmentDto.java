@@ -15,7 +15,7 @@ public class DepartmentDto {
     private Integer id;
 
     @Column(name = "dep_type")
-    private String departmentType;
+    private String departmentName;
 
     @Column(name = "dep_area")
     private String area;
@@ -30,7 +30,7 @@ public class DepartmentDto {
     public String toString() {
         return "DepartmentDto{" +
                 "id=" + id +
-                ", departmentType='" + departmentType + '\'' +
+                ", departmentName='" + departmentName + '\'' +
                 ", area='" + area + '\'' +
                 ", address='" + address + '\'' +
                 '}';
@@ -44,12 +44,12 @@ public class DepartmentDto {
         this.id = id;
     }
 
-    public String getDepartmentType() {
-        return departmentType;
+    public String getDepartmentName() {
+        return departmentName;
     }
 
-    public void setDepartmentType(String departmentType) {
-        this.departmentType = departmentType;
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
     }
 
     public String getArea() {

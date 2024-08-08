@@ -10,7 +10,7 @@ public interface AdminRepo {
     //Login page
     AdminDto findByEmailAndPassword(String email, String password);
 
-    //Admin can view all user data
+    //Admin to view all user data
     List<SignUpDto> findById(SignUpDto dto);
 
     //Admin to view raised complaint
@@ -30,7 +30,8 @@ public interface AdminRepo {
     DepartmentDto saveDepartment(DepartmentDto departmentDto);
 
     //find all department
-    List<DepartmentDto> findAll(String  departmentType);
+    List<DepartmentDto> findAll(String  departmentName);
+
 
     //update status and department id
     void updateStatusAndDepartmentId(int complaintId, int departmentId, String status);
@@ -40,7 +41,7 @@ public interface AdminRepo {
     boolean saveDepartmentAdminData(DepartmentAdminDto departmentAdminDto);
 
     //subAdmin login id email exists in database
-    DepartmentAdminDto findEmailAndPassword(String email, String password);
+    DepartmentAdminDto findEmailAndPasswordAndDepartment(String email, String password,String departmentName);
 
     //to check email is their or not
     DepartmentAdminDto findByEmail(String email);
@@ -65,5 +66,16 @@ public interface AdminRepo {
 
     //ResetPassword
     void updatedPassword(String email, String newPassword);
+
+    //to view department name list in the Department admin Registration JSP
+    // void viewDepartmentList(Long departmentId,Long departmentAdminId);
+    DepartmentDto searchByDepartmentType(String departmentName);
+
+//    List<DepartmentDto> getAllDepartment();
+
+//    List<DepartmentAdminDto> searchByEmail(String email);
+
+
+
 }
 

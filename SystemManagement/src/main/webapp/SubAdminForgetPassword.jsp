@@ -29,6 +29,16 @@
                 <img src="https://x-workz.in/static/media/Logo.cf195593dc1b3f921369.png" alt="xworkz" width="140" height="70">
             </a>
             <a class="navbar-brand text-dark" href="HomePage"><b>Home</b></a>
+        <div class="dropdown">
+                        <div class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+
+                        </div>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                            <li> <a class="dropdown-item" href="SubAdminProfile"><strong>sub Admin</strong></a></li>
+                            <li> <a class="dropdown-item" href="SubAdminLogin"><strong>SubAdminLogin</strong></a></li>
+
+                        </ul>
+                    </div>
         </div>
     </div>
 </nav>

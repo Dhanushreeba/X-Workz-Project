@@ -87,7 +87,7 @@ public class AdminController {
         System.out.println("viewUserRaiseDetails method in AdminController..");
         List<RaiseComplaintDto> raiseComplaintDtoData = adminService.getById(raiseComplaintDto);
 
-        List<DepartmentDto> departments = adminService.findAll(departmentDto.getDepartmentType());
+        List<DepartmentDto> departments = adminService.findAll(departmentDto.getDepartmentName());
 
         model.addAttribute("viewRaiseComplaint",raiseComplaintDtoData);
         model.addAttribute("departments",departments);
@@ -113,7 +113,7 @@ public class AdminController {
         System.out.println("searchByComplaintType method running in AdminController..!!" + "***************__________" + raiseComplaintDto);
 
         //after search the status and deparment id has to be visible in search so use below statement
-        List<DepartmentDto> departments = adminService.findAll(departmentDto.getDepartmentType());
+        List<DepartmentDto> departments = adminService.findAll(departmentDto.getDepartmentName());
 
         if (!raiseComplaintDto.getComplaintType().isEmpty() && !raiseComplaintDto.getCity().isEmpty()) {
             List<RaiseComplaintDto> listOfTypeAndCity = adminService.searchByComplaintTypeAndCity(raiseComplaintDto.getComplaintType(), raiseComplaintDto.getCity());
@@ -147,7 +147,7 @@ public class AdminController {
         System.out.println("saveDepartment method running in AdminController..");
 
         DepartmentDto data = adminService.saveDepartment(departmentDto);
-        List<DepartmentDto> departments = adminService.findAll(departmentDto.getDepartmentType());
+        List<DepartmentDto> departments = adminService.findAll(departmentDto.getDepartmentName());
 
         if (data != null) {
             System.out.println("saveDepartment successful in AdminController..");
@@ -179,14 +179,20 @@ public class AdminController {
     //Add Department Admin and saved in database(register page)
 
     @PostMapping("add-department-admin")
-    public String addDepartmentAdmin(@Valid DepartmentAdminDto departmentAdminDto, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes,@RequestParam("email") String email,String password) {
+    public String addDepartmentAdmin(@Valid DepartmentAdminDto departmentAdminDto,DepartmentDto departmentDto, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes,@RequestParam("email") String email,String password) {
         System.out.println("addDepartmentAdmin method running in AdminController..");
+
+        //to save dep_id of departmentDto in departmentAdminDto
+        DepartmentDto result =adminService.searchByDepartmentType(departmentAdminDto.getDepartmentName());
+        System.out.println(departmentAdminDto.getDepartmentName()+"********"+result);
+        departmentAdminDto.setDepartment(result);
 
         //generate automatic password encrypted
         String generatedPassword=passwordGenerator.generatePassword(12);
 
         //generate automatic password encrypted
         departmentAdminDto.setPassword(encoder.encode(generatedPassword));
+
 
         System.out.println("DepartmentAdminDto  : " + departmentAdminDto);
 
@@ -233,9 +239,11 @@ public class AdminController {
     @PostMapping("sub-admin-log-in")
     public String subAdminLogin(DepartmentAdminDto departmentAdminDto,
                                 @RequestParam("email") String email,
-                                @RequestParam("password") String password, Model model, HttpSession session) {
+                                @RequestParam("password") String password,
+                                @RequestParam("departmentName")String departmentName,Model model, HttpSession session) {
         System.out.println("subAdminLogin method running in AdminController..");
-        DepartmentAdminDto login = adminService.findEmailAndPassword(email, password);
+      //  DepartmentAdminDto login=adminRepo.findByEmail(email);
+      DepartmentAdminDto login = adminService.findEmailAndPasswordAndDepartment(email, password,departmentName);
 
         if (login != null) {
             System.out.println("subAdminLogin successful AdminController..");

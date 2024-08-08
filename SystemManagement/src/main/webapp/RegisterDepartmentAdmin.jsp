@@ -80,7 +80,7 @@
             <div class="card-body text-dark">
 
 
-                <form action="add-department-admin" method="post">
+                <form action="add-department-admin" method="post" modelattribute="departmentAdminDto">
 
 
                    <div class="text-success"><strong>${msg}</strong></div>
@@ -116,36 +116,36 @@
                         <span id="departmentNameError"></span>
                         <label for="complaintType" class="form-label"><b>DepartmentName:</b></label>
                         <select class="form-select custom-select-width" id="complaintType" name="departmentName"  onblur="departmentNameValidation()" >
-                            <option value="0" ${countryDTO.complaintType == null ? 'selected' : ''}>Select</option>
-                            <option value="Electric " ${countryDTO.complaintType == 'Electric' ? 'selected' : ''}>Electric </option>
-                            <option value="Network" ${countryDTO.complaintType == 'Network' ? 'selected' : ''}>Network</option>
-                            <option value="Water" ${countryDTO.complaintType == 'Water' ? 'selected' : ''}>Water</option>
-                            <option value="System" ${countryDTO.complaintType == 'System' ? 'selected' : ''}>System</option>
-                     <option value="Gas Leakage" ${countryDTO.complaintType == 'Gas leakage' ? 'selected' : ''}>Gas leakage</option>
+                            <option value=" " ${countryDTO.complaintType == null ? 'selected' : ''}>Select</option>
+                            <option value="Electric issue " ${countryDTO.complaintType == 'Electric issue' ? 'selected' : ''}>Electric issue </option>
+                            <option value="Water Supply" ${countryDTO.complaintType == 'Water Supply' ? 'selected' : ''}>Water Supply</option>
+                            <option value="Network Problem" ${countryDTO.complaintType == 'Network Problem' ? 'selected' : ''}>Network Problem</option>
+                            <option value="System Problem" ${countryDTO.complaintType == 'System Problem' ? 'selected' : ''}>System Problem</option>
+                     <option value="Gas Leakage" ${countryDTO.complaintType == 'Gas Leakage' ? 'selected' : ''}>Gas Leakage</option>
 
                         </select><br>
                     </div>
 
 
 
-    <div class="row mb-3">
+                  <div class="row mb-3">
                     <span id="emailError" style="color:red;"></span><br>
                     <label for="email" class="form-label"><b>Email:</b></label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                        <input type="email" class="form-control" id="email" onblur="emailValidation()"  name="email" placeholder="Enter email" >
+                        <input type="email" class="form-control" id="email" onblur="emailValidation()" onchange="emailValidation()" name="email" placeholder="Enter email" >
                     </div>
-                </div>
+                  </div>
 
 
        <div class="row mb-3">
-                  <span id="contactNumberError"></span><br>
+                  <span id="contactNumberError" style="color:red;"></span><br>
 
                         <label for="contactNumber" class="form-label"><b>Contact Number:</b></label>
                       <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
 
-            <input type="tel" class="form-control" id="contactNumber" onblur="contactNumberValidation()"  name="contactNumber" placeholder="Enter contactnumber" >
+            <input type="tel" class="form-control" id="contactNumber" onblur="contactNumberValidation()" onchange="contactNumberValidation()"  name="contactNumber" placeholder="Enter contactnumber" >
                     </div>
                     </div>
 
@@ -195,7 +195,7 @@
 
 
 
-         function emailAjaxValidation() {
+         function emailValidation() {
                             console.log("Validate email");
                             let email = document.getElementById("email").value;
                             console.log(email);
@@ -210,7 +210,7 @@
 
                             const request = new XMLHttpRequest();
 
-                            request.open("GET", "http://localhost:8082/SystemManagement/validateEmail/" + email);
+                            request.open("GET", "http://localhost:8080/SystemManagement/validateEmail/" + email);
                             request.send();
                             console.log(request);
                             request.onload = function () {
@@ -231,7 +231,7 @@
 
     }
 
-       function contactNumberAjaxValidation() {
+       function contactNumberValidation() {
                console.log("Validate contact number");
                let contactNumber = document.getElementById("contactNumber").value;
                console.log(contactNumber);
@@ -247,7 +247,7 @@
 
                {
                const request = new XMLHttpRequest();
-               request.open("GET", "http://localhost:8082/SystemManagement/validateContactNumber/" + contactNumber);
+               request.open("GET", "http://localhost:8080/SystemManagement/validateContactNumber/" + contactNumber);
                request.send();
                console.log(request);
                request.onload = function () {

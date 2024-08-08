@@ -29,7 +29,7 @@ public interface AdminService {
     DepartmentDto saveDepartment(DepartmentDto departmentDto);
 
     //find all Departments in dropdown where admin view details
-    List<DepartmentDto> findAll(String departmentType) ;
+    List<DepartmentDto> findAll(String departmentName) ;
 
     //update status and department id
     void updateStatusAndDepartmentId(int complaintId, int departmentId, String status);
@@ -41,7 +41,8 @@ public interface AdminService {
     public void sendingEmail(String to, String subject, String body);
 
     //subAdmin login id email exists in database
-    public DepartmentAdminDto findEmailAndPassword(String email, String password);
+    public DepartmentAdminDto findEmailAndPasswordAndDepartment(String email, String password,String departmentName);
+
 
     //to reset password
     public DepartmentAdminDto resetPasswordEmail(String email);
@@ -66,5 +67,14 @@ public interface AdminService {
 
     //Reset Password
     public void sendPasswordEmail(String toEmail, String subject, String body);
+
+    //to view department name list in the Department admin Registration JSP
+    //void viewDepartmentList( Long departmentId,Long departmentAdminId);
+    DepartmentDto searchByDepartmentType(String departmentName);
+
+//    List<DepartmentDto> getAllDepartment();
+
+//    List<DepartmentAdminDto> searchByEmail(String email);
+
 
 }
